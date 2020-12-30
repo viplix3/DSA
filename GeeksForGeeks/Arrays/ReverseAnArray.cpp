@@ -1,13 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-// void swap(int *element_1, int *element_2)
-// {
-//     int *temp = element_1;
-//     element_1 = element_2;
-//     element_2 = temp;
-// }
-
 void reverseArray(int arr[], int size)
 {
     int begin = 0;
