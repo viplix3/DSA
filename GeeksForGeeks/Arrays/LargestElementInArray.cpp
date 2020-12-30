@@ -17,9 +17,9 @@ int main(){
     int testArray_2[] = {5, 4, 3, 2, 1, 0};
     int testArray_3[] = {4, 2, 5, 1, 3, 0};
 
-    printf("Expected largest value: %d\t Computed largest value: 5\n", getArrayMaximum(testArray_1, ARRAY_SIZE));
-    printf("Expected largest value: %d\t Computed largest value: 5\n", getArrayMaximum(testArray_2, ARRAY_SIZE));
-    printf("Expected largest value: %d\t Computed largest value: 5\n", getArrayMaximum(testArray_3, ARRAY_SIZE));
+    printf("Expected largest value: 5\t Computed largest value: %d\n", getArrayMaximum(testArray_1, ARRAY_SIZE));
+    printf("Expected largest value: 5\t Computed largest value: %d\n", getArrayMaximum(testArray_2, ARRAY_SIZE));
+    printf("Expected largest value: 5\t Computed largest value: %d\n", getArrayMaximum(testArray_3, ARRAY_SIZE));
     
 
 
