@@ -34,3 +34,4 @@
 # vim backup files
 .vim/*
 */.vim/*
+.vscode/c_cpp_properties.json
