@@ -1,5 +1,7 @@
 // O(N) extra space solutuion -> Super easy
-// O(1) extra space solution -> Super easy, I cheated (https://www.youtube.com/watch?v=ZRoVWxBngX0&feature=emb_logo). 
+// O(1) extra space solution -> Super easy, I cheated.
+// 1. https://www.geeksforgeeks.org/rearrange-array-maximum-minimum-form-set-2-o1-extra-space/ and 
+// 2. https://www.youtube.com/watch?v=ZRoVWxBngX0&feature=emb_logo). 
 
 // C++ program to rearrange an array in minimum 
 // maximum form 
