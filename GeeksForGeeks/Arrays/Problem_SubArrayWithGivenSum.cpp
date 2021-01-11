@@ -6,9 +6,6 @@ bool subArrayExists(int arr[], int size, int requiredSum)
     int currentSum = arr[0];
     int windowInit = 0;
 
-    if(currentSum>requiredSum)
-        return false;
-
     for(int i=1; i<size; i++){
         if(currentSum == requiredSum)
             return true;
