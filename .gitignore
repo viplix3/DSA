@@ -34,8 +34,5 @@
 # vim backup files
 .vim/*
 */.vim/*
-.vscode/c_cpp_properties.json
-.vscode/launch.json
-.vscode/tasks.json
-GeeksForGeeks/Arrays/Problem_EquilibriumPoint
-GeeksForGeeks/Arrays/AppreanceInRange
+.vscode/*
+GeeksForGeeks/.vscode/*
