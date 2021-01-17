@@ -3,9 +3,8 @@ using namespace std;
 
 int solveJosephusProblem(int numRemainingPersons, int killIdx)
 {
-    if(numRemainingPersons==1){
+    if(numRemainingPersons==1)
         return 0;
-    }
     return (solveJosephusProblem(numRemainingPersons-1, killIdx) + killIdx) % numRemainingPersons;
 }
 
