@@ -37,7 +37,7 @@ int main() {
 
 //Complete this function
 
-void findStringPermutations(vector<string> &possibleWordCombinations, vector<string> dictValues, vector<int> currIndices, int numKeyPadEntries)
+void findStringPermutations(vector<string> &possibleWordCombinations, vector<string> &dictValues, vector<int> &currIndices, int numKeyPadEntries)
 {
 	int totalPossibleCombinations = 1;
 	for(int i=0; i<numKeyPadEntries; i++)
