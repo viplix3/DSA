@@ -1,32 +1,65 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int getNumOccurrences(vector<int> &arr, int element, int beginIdx, int endIdx)
+int getFirstOccurenceIdx(vector<int> arr, int element)
 {
-    if(beginIdx > endIdx)
-        return 0;
+    int beginIdx=0, endIdx=arr.size()-1, currOccIdx=arr.size();
 
-    int count = 0;
-    int midIdx = (beginIdx + endIdx) / 2;
-    
-    if(arr[midIdx] == element){
-        count += 1;
-        if((midIdx > 0) && (arr[midIdx-1] == element))
-            count += getNumOccurrences(arr, element, beginIdx, midIdx-1);
-        if((midIdx < arr.size()-1) && (arr[midIdx+1] == element))
-            count += getNumOccurrences(arr, element, midIdx+1, endIdx);
-        return count;
+    while(beginIdx <= endIdx){
+        int midIdx = (beginIdx + endIdx) / 2;
+
+        if(arr[midIdx] == element){
+            currOccIdx = min(currOccIdx, midIdx);
+
+            if(arr[midIdx-1] < element)
+                return currOccIdx;
+            else if(arr[midIdx-1] == element)
+                endIdx = midIdx-1;
+        }
+
+        else if(arr[midIdx] < element)
+            beginIdx = midIdx+1;
+        else
+            endIdx = midIdx-1;
     }
-    else if(arr[midIdx] < element){
-        beginIdx = midIdx+1;
-        return getNumOccurrences(arr, element, beginIdx, endIdx);
-    }
-    else{
-        endIdx = midIdx-1;
-        return getNumOccurrences(arr, element, beginIdx, endIdx);
-    }
+    return -1;
 }
 
+int getLastOccurenceIdx(vector<int> arr, int element)
+{
+    int beginIdx=0, endIdx=arr.size()-1, currOccIdx=-1;
+
+    while(beginIdx <= endIdx){
+        int midIdx = (beginIdx + endIdx) / 2;
+
+        if(arr[midIdx] == element){
+            currOccIdx = max(currOccIdx, midIdx);
+
+            if((midIdx == arr.size()-1) || (arr[midIdx+1] > element))
+                return currOccIdx;
+            else if(arr[midIdx+1] == element)
+                beginIdx = midIdx+1;
+        }
+
+        else if(arr[midIdx] < element)
+            beginIdx = midIdx+1;
+        else
+            endIdx = midIdx-1;
+    }
+    return -1;
+}
+
+int getNumOccurrences(vector<int> &arr, int element)
+{
+    int firstOccurrenceIdx = getFirstOccurenceIdx(arr, element);
+    
+    if(firstOccurrenceIdx == -1)
+        return 0;
+    
+    int lastOccurrentIdx = getLastOccurenceIdx(arr, element);
+    int numOccurrences = lastOccurrentIdx - firstOccurrenceIdx + 1;
+    return numOccurrences;
+}
 
 int main(){
     printf("Enter number of elements in the array: ");
@@ -41,7 +74,7 @@ int main(){
     printf("\nEnter the element to be searched for: ");
     int searchElement;
     scanf("%d", &searchElement);
-    int numOccurrences = getNumOccurrences(arr, searchElement, 0, numElements-1);
+    int numOccurrences = getNumOccurrences(arr, searchElement);
     if(numOccurrences == 0)
         printf("\nElement not present in the provided array\n");
     else
