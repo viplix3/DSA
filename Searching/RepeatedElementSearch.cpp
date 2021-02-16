@@ -11,16 +11,17 @@ int getRepeatingElement(vector<int> &arr)
         From above given factos we can infer that
         0 <= max(array) <= arr.size() - 2
     */
-    int countMap[arr.size()];
-    memset(countMap, 0, sizeof(countMap));
+    int currentIdx = 0;
+    int nextVisitIdx = arr[0]+1;
+    arr[0] = -1;
 
-    for(int i=0; i<arr.size(); i++)
-        countMap[arr[i]] += 1;
-    
-    for(int i=0; i<arr.size(); i++)
-        if(countMap[i] > 1)
-            return i;
-    return -1;
+    while(arr[nextVisitIdx] != -1){
+        currentIdx = nextVisitIdx;
+        nextVisitIdx = arr[currentIdx]+1;
+        arr[currentIdx] = -1;
+    }
+
+    return nextVisitIdx-1;
 }
 
 void printArray(vector<int> arr)
@@ -34,6 +35,7 @@ int main(){
     vector<int> test_array_1 = {0, 2, 1, 3, 2, 2};
     vector<int> test_array_2 = {1, 2, 3, 0, 3, 4, 5};
     vector<int> test_array_3 = {0, 0};
+    vector<int> test_array_4 = {0, 2, 1, 3, 4, 5, 6, 2};
 
     printf("\nContents of the array: ");
     printArray(test_array_1);
@@ -46,5 +48,9 @@ int main(){
     printf("\nContents of the array: ");
     printArray(test_array_3);
     printf("Repeated element in the given array: %d\n", getRepeatingElement(test_array_3));
+
+    printf("\nContents of the array: ");
+    printArray(test_array_4);
+    printf("Repeated element in the given array: %d\n", getRepeatingElement(test_array_4));
     return 0;
 }
