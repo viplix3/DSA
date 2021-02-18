@@ -11,17 +11,19 @@ int getRepeatingElement(vector<int> &arr)
         From above given factos we can infer that
         0 <= max(array) <= arr.size() - 2
     */
-    int currentIdx = 0;
-    int nextVisitIdx = arr[0]+1;
-    arr[0] = -1;
+    int slowPtr = arr[0]+1, fastPtr = arr[0]+1;
+    do{
+        slowPtr = arr[slowPtr]+1;
+        fastPtr = arr[arr[fastPtr]+1]+1;
+    } while(slowPtr != fastPtr);
 
-    while(arr[nextVisitIdx] != -1){
-        currentIdx = nextVisitIdx;
-        nextVisitIdx = arr[currentIdx]+1;
-        arr[currentIdx] = -1;
+    slowPtr = arr[0]+1;
+    while(slowPtr != fastPtr){
+        fastPtr = arr[fastPtr]+1;
+        slowPtr = arr[slowPtr]+1;
     }
 
-    return nextVisitIdx-1;
+    return slowPtr-1;
 }
 
 void printArray(vector<int> arr)
