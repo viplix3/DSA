@@ -6,9 +6,6 @@ int cutRope(int ropeLength, int cutSizes[])
     if(ropeLength < 0)
         return -1;
     
-    int numCuts_1, numCuts_2, numCuts_3;
-    numCuts_1 = numCuts_2 = numCuts_3 = 0;
-
     if(ropeLength == 0)
         return 0;
     
