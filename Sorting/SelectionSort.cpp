@@ -1,17 +1,15 @@
-
 #include<bits/stdc++.h>
 using namespace std;
 
-void insertionSort(vector<int> &arr)
+void selectionSort(vector<int> &arr)
 {
-    for(int i=1; i<arr.size(); i++){
-        int key = arr[i];
-        int j = i-1;
-        while(j>=0 && arr[j] > key){
-            arr[j+1] = arr[j];
-            j -= 1;
-        }
-        arr[j+1] = key;
+    for(int i=0; i<arr.size()-1; i++){
+        int minIdx = i;
+        for(int j=i+1; j<arr.size(); j++)
+            if(arr[j] < arr[minIdx]){
+                minIdx = j;
+            }
+        swap(arr[minIdx], arr[i]);
     }
 }
 
@@ -40,7 +38,7 @@ int main(){
     printArray(arr);
 
     printf("\nSorted array: ");
-    insertionSort(arr);
+    selectionSort(arr);
     printArray(arr);
 
     return 0;
