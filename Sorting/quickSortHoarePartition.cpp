@@ -34,6 +34,11 @@ int hoarePartition(vector<int> &arr, int lowIdx, int highIdx)
 
 void quickSort(vector<int> &arr, int lowIdx, int highIdx)
 {
+    /*
+        When using Hoare's partition, we will get a partition index such that all the elements on the left of partition are smaller than all
+        the elementx on the right of the partition index. Hence we need to sort the [0, partition index] and [partition index+1, N]. If we sort from 
+        [0, partition index-1] we would be disrupting the left and right parititon and there would be no small/greater partition.
+    */
     if(lowIdx < highIdx){
         int partitionIdx = hoarePartition(arr, lowIdx, highIdx);
         quickSort(arr, lowIdx, partitionIdx);
