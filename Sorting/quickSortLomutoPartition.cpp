@@ -18,6 +18,10 @@ int lomutoPartition(vector<int> &arr, int lowIdx, int highIdx)
 
 void quickSort(vector<int> &arr, int lowIdx, int highIdx)
 {
+    /*
+        When using Lomuto's partition, we will get a partition index such the element at that partition index is at its
+        correct position already. So we need to sort the left and right of the parition index.
+    */
     if(lowIdx < highIdx){
         int partitionIdx = lomutoPartition(arr, lowIdx, highIdx);
         quickSort(arr, lowIdx, partitionIdx-1);
