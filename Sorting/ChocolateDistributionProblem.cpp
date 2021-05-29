@@ -11,7 +11,7 @@ int getMinDivisionDifference(vector<int> &arr, int numDivisions)
     return minDiff;
 }
 
-void printArray(vector<int> arr)
+void printarray(vector<int> arr)
 {
     for(int i=0; i<arr.size(); i++)
         printf("%d ", arr[i]);
