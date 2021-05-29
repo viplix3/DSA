@@ -12,6 +12,9 @@ int hoarePartition(vector<int> &arr, int lowIdx, int highIdx)
             - All the elements in right part > pivot
             - All the elements in the mid part: yet to be categorized
     */
+   int pivotIdx = lowIdx + (rand() % (highIdx - lowIdx)); // Randomize pivot to avoid worst case in sorted input arrays
+
+   swap(arr[pivotIdx], arr[lowIdx]);
    int pivot = arr[lowIdx];
    int leftIdx = lowIdx - 1, rightIdx = highIdx + 1; // Initially both the partitions are empty
 

@@ -3,6 +3,10 @@ using namespace std;
 
 int lomutoPartition(vector<int> &arr, int lowIdx, int highIdx)
 {
+
+    int pivotIdx = lowIdx + (rand() % (highIdx - lowIdx)); // Randomize pivot to avoid worst case in sorted input arrays
+    swap(arr[pivotIdx], arr[highIdx]);
+
     int pivot = arr[highIdx];
     int pivotPosition = lowIdx-1;
 
