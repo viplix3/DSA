@@ -54,13 +54,13 @@ void cycleSort(vector<int> &arr)
             while(item == arr[position])
                 position += 1;
 
-            if(position != cycleStart){
-                numWrites += 1;
+            if(item != arr[position]){
                 swap(item, arr[position]);
+                numWrites += 1;
             }
         }
     }
-    printf("\nNumber of writes: %d", numWrites);
+    printf("Number of writes: %d", numWrites);
 }
 
 void printArray(vector<int> arr)
