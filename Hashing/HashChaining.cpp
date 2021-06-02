@@ -67,16 +67,24 @@ int main(){
         case 1:
             printf("Enter key to be inserted: ");
             scanf("%d", &key);
-            customHashTable.table_insert(key);
-            printf("Key inserted");
+            if(customHashTable.search(key) == true)
+                printf("Key already presenting in the hash table, aborting insert");
+            else{
+                customHashTable.table_insert(key);
+                printf("Key inserted");
+            }
             customHashTable.printHashTableInfo();
             break;
         
         case 2:
             printf("Enter key to be deleted: ");
             scanf("%d", &key);
-            customHashTable.table_delete(key);
-            printf("Key deleted");
+            if(customHashTable.search(key) == false)
+                printf("Key not present in the hash table, aborting delete");
+            else{
+                customHashTable.table_delete(key);
+                printf("Key deleted");
+            }
             customHashTable.printHashTableInfo();
             break;
         
@@ -88,7 +96,7 @@ int main(){
             if(search_result)
                 printf("Key is present in the hash table");
             else
-                printf("Key is not present in the has table");
+                printf("Key is not present in the hash table");
             customHashTable.printHashTableInfo();
             break;
         
