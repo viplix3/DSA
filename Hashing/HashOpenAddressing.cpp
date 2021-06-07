@@ -20,6 +20,13 @@ struct hashTable
         return key % BUCKET;
     }
 
+    int double_hash(int key, int iter){
+        int first_hash = hash(key);
+        int second_hash = (BUCKET-1) - (key % (BUCKET-1));
+        int double_hash = (first_hash + iter*(second_hash)) % BUCKET;
+        return double_hash;
+    }
+
     void table_insert(int key){
         if(hash_size == BUCKET){
             printf("No empty slot in the hash table, aborting insert");
@@ -27,9 +34,11 @@ struct hashTable
         }
         int __hash__ = hash(key); // First hash
         int prob_hash = __hash__;
+        int clash = 1;
 
         while((table[prob_hash] != -1) && (table[prob_hash] != -2)){
-            prob_hash = (prob_hash+1) % BUCKET;
+            prob_hash = double_hash(key, clash);
+            clash++;
         }
         table[prob_hash] = key;
         hash_size += 1;
@@ -38,9 +47,12 @@ struct hashTable
     void table_delete(int key){
         int __hash__ = hash(key);
         int prob_hash = __hash__;
+        int clash = 1;
 
-        while((table[prob_hash] != key))
-            prob_hash = (prob_hash+1) % BUCKET;
+        while((table[prob_hash] != key)){
+            prob_hash = double_hash(key, clash);
+            clash++;
+        }
 
         table[prob_hash] = -2;
         hash_size--;
@@ -49,10 +61,15 @@ struct hashTable
     bool search(int key){
         int __hash__ = hash(key);
         int prob_hash = __hash__;
+        int clash = 1;
+
         while(table[prob_hash] != -1){
             if(table[prob_hash] == key)
                 return true;
-            prob_hash = (prob_hash+1) % BUCKET;
+
+            prob_hash = double_hash(key, clash);
+            clash++;
+
             if(prob_hash == __hash__)
                 return false;
         }
