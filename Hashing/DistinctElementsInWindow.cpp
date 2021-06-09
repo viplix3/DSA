@@ -4,14 +4,21 @@ using namespace std;
 vector<int> findDistinctWindowElements(vector<int> &arr, int window_size)
 {
     vector<int> distinct_elements;
-    unordered_set<int> window_elements(arr.begin(), arr.begin() + window_size);
-    distinct_elements.push_back(window_elements.size());
+    unordered_map<int, int> frequency_map;
+
+    for(int i=0; i<window_size; i++)
+        frequency_map[arr[i]] += 1;
+
+    distinct_elements.push_back(frequency_map.size());
 
     for(int windowInit=1; windowInit<=arr.size() - window_size; windowInit++){
-        window_elements.clear();
-        for(int i=windowInit; i<windowInit+window_size; i++)
-            window_elements.insert(arr[i]);
-        distinct_elements.push_back(window_elements.size());
+        frequency_map[arr[windowInit-1]] -= 1;
+        frequency_map[arr[windowInit+window_size-1]] += 1;
+
+        if(frequency_map[arr[windowInit-1]] == 0)
+            frequency_map.erase(arr[windowInit-1]);
+
+        distinct_elements.push_back(frequency_map.size());
     }
     return distinct_elements;
 }
