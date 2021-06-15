@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-vector<int> naive_distinct_pattern_matching(string input_str, string pattern)
+vector<int> naive_distinct_pattern_matching(string &input_str, string &pattern)
 {
 	vector<int> matched_indice;
 	int i=0;
