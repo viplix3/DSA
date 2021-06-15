@@ -1,15 +1,15 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-constexpr int MODULO_CONST = 100007;
-constexpr int hash_factor = 256;
+constexpr int MODULO_CONST = 10000007;
 
 vector<int> RabinKarp(string input_str, string pattern)
 {
 	vector<int> matched_indice;
 	int hash_constant = 1, rolling_hash = 0, pattern_hash = 0;
+	int hash_factor = pattern.length();
 
-	for(int i=1; i<pattern.length()-1; i++)
+	for(int i=1; i<pattern.length(); i++)
 		hash_constant = (hash_constant * hash_factor) % MODULO_CONST;
 
 	for(int i=0; i<pattern.length(); i++){
@@ -89,8 +89,8 @@ int main(){
 	else
 		cout << "Given pattern doesn't appear in the provided input string" << endl;
 
-	input_str = "ABCDABCDABC";
-	pattern = "ABCD";
+	input_str = "AAAAAAAAAAA";
+	pattern = "AAAA";
 	pattern_occ_idx = RabinKarp(input_str, pattern);
 	cout << "\nInput string: " << input_str << endl;
 	cout << "Search pattern: " << pattern << endl;
