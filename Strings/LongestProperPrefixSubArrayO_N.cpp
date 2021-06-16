@@ -30,20 +30,35 @@ void fillLPS(string str, vector<int> &lps_arr)
 	int n = str.length(), len = 0;
 	lps_arr.emplace_back(0);
 	int i = 1;
+
+	/* 
+		At each iteration of while loop we ensure that our perfect prefix and suffix are same
+		The length of the same is being stored in len variable.
+		For each iteration through the string elements, we try to extend the LPS known for last string elemnt.
+
+		Now the substring from index [0, len-1] is the last known perfect prefix and it matches with
+		suffix starting from index [curr_itr_idx - len - 1, curr_itr_idx]. Hence, if element at index len matched with
+		current iteration index, we will have a LPS for current element which is 1 greater than the last known LPS.
+
+		If the elemnts at len and curr_itr_idx do not match, we will check the LPS know before the last known LPS and will try to extend
+		it using the same procedure. We will keep following these steps until we have a valid LPS or the LPS turns 0.
+
+		One important thing to note is that the lps_arr at any given index stores the length of the LPS for substring of that length,
+		and at the same time, the entry in the lps_arr also signifies ending index (0-based indexing) of the mathced perfect-prefix.
+		Hence to extend that particular LPS, we just need to match the string at index in the lps_arr with current element under consideration.
+	*/
 	
 	while(i < n){
-		if(str[i] == str[len]){
+		if(str[i] == str[len]){ // The if statement tried to extend the last known LPS
 			// Current LPS will be last LPS + 1
 			len++;
 			lps_arr.emplace(lps_arr.begin()+i, len);
-			// lps_arr[i] == len;
 			i++;
 		}
-		else{
+		else{ // The if statement fails so we try to extend the LPS just before the last known LPS
 			if(len == 0) // If current string elements do not match and lps for previous element was 0, it will remain 0 for current
 			{
 				lps_arr.emplace(lps_arr.begin()+i, 0);
-				// lps_arr[i] = 0;
 				i++;
 			}
 			else{ // If current string do not match but lps is not zero, we will try to extend the last known lps with current string element
