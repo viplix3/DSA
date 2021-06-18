@@ -34,6 +34,23 @@ vector<int> KMP(string input_str, string pattern)
 	vector<int> lps_pattern;
 	fillLPS(pattern, lps_pattern);
 
+	/*
+		How KMP works and what is the role of LPS array during pattern matching?
+		We are creating a LPS array for pattern here. How LPS array data is used during pattern matching in KMP is very intersting.
+		Eg. Pattern : ababa -> LPS: [0, 0, 1, 2, 3]
+		The LPS array tells us the length of the proper prefix which is also a suffix at any particular index of the string.
+		Hence in our example pattern, for 'b' at index 3, we have 2 in LPS. This tells us that if we have matched our pattern with input string
+		till 'b' at index 3 of pattern, then the data at index 0 & 1 is same as data in index 2 & 3 and if we slide our pattern over by 2, the starting
+		2 entries of the pattern will match with string. Why? As the 4 entries were matching with pattern and the starting and ending 2 are the same.
+
+		Now if suppose there is a mismatch between pattern and input string at index 4, how does KMP help in this case?
+		We know that data at indices [0, 3] of pattern matches with string and from the LPS array we know that data at indices [0, 1] of the pattern
+		is same as the data at indices [2, 3] of the pattern. Hence if there is a mismatch at index 4 of the string and pattern, we can slide the pattern
+		over by the len (entry in the LPS array of last match) and the starting len entries of the pattern would automatically match with string. 
+		[This isn't exactly what is done, simplified for understanding. Actual shift is (current failed/matched index of pattern - LPS entry)]
+		Now we have to compare and check data at entry len of pattern with string data which didn't match earlier and recurse.
+	*/
+
 	int i=0, j=0;
 
 	while(i < input_str.length()){
