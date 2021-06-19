@@ -24,6 +24,7 @@ Node* insert_at_begin(Node*, int);
 Node* insert_at_end(Node*, int);
 
 Node* delete_head(Node*);
+Node* delete_at_pos(Node*, int);
 
 }
 

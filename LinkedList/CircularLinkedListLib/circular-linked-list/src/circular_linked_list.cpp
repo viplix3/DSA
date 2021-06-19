@@ -76,3 +76,31 @@ circular_ll::Node* circular_ll::delete_head(Node* head_ptr) {
 
 	return head_ptr;
 }
+
+circular_ll::Node* circular_ll::delete_at_pos(Node* head_ptr, int del_pos) {
+	if(del_pos < 0 || head_ptr == NULL) {
+		std::cerr << "Invalid operation" << std::endl;
+		return head_ptr;
+	}
+
+	if(del_pos == 1)
+		return circular_ll::delete_head(head_ptr);
+
+	circular_ll::Node *curr_head = head_ptr;
+	int curr_pos = 1;
+
+	while(curr_pos != del_pos-1) {
+		curr_pos += 1;
+		curr_head = curr_head->next;
+	}
+
+	circular_ll::Node *deleted_node = curr_head->next;
+	curr_head->next = curr_head->next->next;
+
+	if(deleted_node == head_ptr)
+		head_ptr = head_ptr->next;
+
+	delete deleted_node;
+
+	return head_ptr;
+}
