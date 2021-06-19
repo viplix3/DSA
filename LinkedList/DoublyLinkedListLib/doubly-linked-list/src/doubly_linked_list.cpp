@@ -72,3 +72,25 @@ doubly_ll::Node* doubly_ll::delete_head(Node* head_ptr) {
 	delete deleted_node;
 	return head_ptr;
 }
+
+doubly_ll::Node* doubly_ll::delete_tail(Node* head_ptr) {
+	if(head_ptr == NULL) {
+		std::cerr << "\nEmpty linked list" << std::endl;
+		return head_ptr;
+	}
+
+	if(head_ptr->next == NULL){
+		delete head_ptr;
+		return NULL;
+	}
+
+	doubly_ll::Node *curr_head = head_ptr, *deleted_node = NULL;
+
+	while(curr_head->next->next != NULL)
+		curr_head = curr_head->next;
+	
+	deleted_node = curr_head->next;
+	curr_head->next = NULL;
+	delete deleted_node;
+	return head_ptr;
+}

@@ -31,5 +31,10 @@ int main(){
 	head_ptr = doubly_ll::delete_head(head_ptr);
 	doubly_ll::printList(head_ptr);
 
+	// Delete tail
+	std::cout << "\nDeleting tail of the doubly linked list" << std::endl;
+	head_ptr = doubly_ll::delete_tail(head_ptr);
+	doubly_ll::printList(head_ptr);
+
 	return EXIT_SUCCESS;
 }
