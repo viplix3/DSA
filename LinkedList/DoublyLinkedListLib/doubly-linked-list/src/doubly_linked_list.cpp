@@ -54,3 +54,21 @@ doubly_ll::Node* doubly_ll::reverse(Node* head_ptr) {
 	}
 	return prev_node->prev;
 }
+
+doubly_ll::Node* doubly_ll::delete_head(Node* head_ptr) {
+	if(head_ptr == NULL) {
+		std::cerr << "\nEmpty linked list" << std::endl;
+		return head_ptr;
+	}
+
+	if(head_ptr->next == NULL){
+		delete head_ptr;
+		return NULL;
+	}
+
+	doubly_ll::Node *deleted_node = head_ptr;
+	head_ptr = head_ptr->next;
+	head_ptr->prev = NULL;
+	delete deleted_node;
+	return head_ptr;
+}

@@ -26,5 +26,10 @@ int main(){
 	std::cout << "Reverse doubly linked list" << std::endl;
 	doubly_ll::printList(head_ptr);
 
+	// Delete head
+	std::cout << "\nDeleting head of the doubly linked list" << std::endl;
+	head_ptr = doubly_ll::delete_head(head_ptr);
+	doubly_ll::printList(head_ptr);
+
 	return EXIT_SUCCESS;
 }
