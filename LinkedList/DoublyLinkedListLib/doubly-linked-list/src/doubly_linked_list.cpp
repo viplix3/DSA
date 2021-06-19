@@ -40,3 +40,17 @@ doubly_ll::Node* doubly_ll::insert_at_end(Node* head_ptr, int data){
 	curr_head->next = temp;
 	return head_ptr;
 }
+
+doubly_ll::Node* doubly_ll::reverse(Node* head_ptr) {
+	if(head_ptr == NULL || head_ptr->next == NULL)
+		return head_ptr;
+
+	doubly_ll::Node *curr_head = head_ptr, *prev_node = NULL;
+	while(curr_head != NULL){
+		prev_node = curr_head->prev;
+		curr_head->prev = curr_head->next;
+		curr_head->next = prev_node;
+		curr_head = curr_head->prev;
+	}
+	return prev_node->prev;
+}

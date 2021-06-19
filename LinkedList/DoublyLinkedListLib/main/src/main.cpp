@@ -19,5 +19,12 @@ int main(){
 	head_ptr = doubly_ll::insert_at_end(head_ptr, 60);
 	doubly_ll::printList(head_ptr);
 
+	// Reverse
+	std::cout << "\nReversing the doubly linked list" << std::endl;
+	doubly_ll::printList(head_ptr);
+	head_ptr = doubly_ll::reverse(head_ptr);
+	std::cout << "Reverse doubly linked list" << std::endl;
+	doubly_ll::printList(head_ptr);
+
 	return EXIT_SUCCESS;
 }
