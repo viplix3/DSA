@@ -22,6 +22,7 @@ void printList(Node*);
 
 Node* insert_at_begin(Node*, int);
 Node* insert_at_end(Node*, int);
+Node* insert_at_pos(Node*, int, int);
 
 Node* delete_head(Node*);
 Node* delete_tail(Node*);
