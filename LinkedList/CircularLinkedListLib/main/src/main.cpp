@@ -1,4 +1,4 @@
-#include "circular_linked_list.hpp"
+#include <circular_linked_list.hpp>
 
 int main() {
 
@@ -18,6 +18,13 @@ int main() {
 	head_ptr = circular_ll::insert_at_end(head_ptr, 50);
 	head_ptr = circular_ll::insert_at_end(head_ptr, 60);
 	circular_ll::printList(head_ptr);
+
+	// Delete head
+	std::cout << "\nDeleting head" << std::endl;
+	while(head_ptr != NULL) {
+		head_ptr = circular_ll::delete_head(head_ptr);
+		circular_ll::printList(head_ptr);
+	}
 
 	return EXIT_SUCCESS;
 }

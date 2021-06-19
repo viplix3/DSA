@@ -57,3 +57,22 @@ circular_ll::Node* circular_ll::insert_at_end(Node* head_ptr, int data) {
 	// Now if we start treating temp address as head, above insertion is effectively at end
 	return temp;
 }
+
+circular_ll::Node* circular_ll::delete_head(Node* head_ptr) {
+	if(head_ptr == NULL) {
+		std::cerr << "Empty linked list" << std::endl;
+		return NULL;
+	}
+
+	if(head_ptr->next == head_ptr) {
+		delete head_ptr;
+		return NULL;
+	}
+
+	head_ptr->data = head_ptr->next->data;
+	circular_ll::Node *deleted_node = head_ptr->next;
+	head_ptr->next = head_ptr->next->next;
+	delete deleted_node;
+
+	return head_ptr;
+}
