@@ -2,7 +2,7 @@
 
 int main(){
 
-	int insertion_position, insertion_data;
+	int insertion_position, insertion_data, search_data, search_idx;
 
 	linked_list::Node *head_ptr = NULL;
 	linked_list::printList(head_ptr);
@@ -64,7 +64,27 @@ int main(){
 	std::cout << "Linked list after insertion" << std::endl;
 	linked_list::printList(head_ptr);
 
+	// Key search
+	std::cout << "\nSearching elements" << std::endl;
+	search_data = 55;
+	search_idx = linked_list::search_key(head_ptr, search_data);
+	if(search_idx != -1)
+		std::cout << "Element " << search_data << " is present at position " << search_idx << " in linked list" << std::endl;
 
+	search_data = 10;
+	search_idx = linked_list::search_key(head_ptr, search_data);
+	if(search_idx != -1)
+		std::cout << "Element " << search_data << " is present at position " << search_idx << " in linked list" << std::endl;
+
+	search_data = 35;
+	search_idx = linked_list::search_key(head_ptr, search_data);
+	if(search_idx != -1)
+		std::cout << "Element " << search_data << " is present at position " << search_idx << " in linked list" << std::endl;
+
+	search_data = 100;
+	search_idx = linked_list::search_key(head_ptr, search_data);
+	if(search_idx != -1)
+		std::cout << "Element " << search_data << " is present at position " << search_idx << " in linked list" << std::endl;
 
 	// Edge-ish cases
 	std::cout << "\nInserting at end of linked list when list is empty" << std::endl;

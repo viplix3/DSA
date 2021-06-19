@@ -99,3 +99,18 @@ linked_list::Node* linked_list::delete_tail(Node* head_ptr) {
 
 	return head_ptr;
 }
+
+int linked_list::search_key(Node* head_ptr, int key) {
+	int res_idx = 1;
+
+	while(head_ptr != NULL) {
+		if(head_ptr -> data == key)
+			return res_idx;
+		
+		res_idx += 1;
+		head_ptr = head_ptr->next;
+	}
+
+	std::cerr << "Element " << key << " is not present in the given linked list" << std::endl;
+	return -EXIT_FAILURE;
+}

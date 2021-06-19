@@ -27,6 +27,8 @@ Node* insert_at_pos(Node*, int, int);
 Node* delete_head(Node*);
 Node* delete_tail(Node*);
 
+int search_key(Node*, int);
+
 }
 
 #endif
