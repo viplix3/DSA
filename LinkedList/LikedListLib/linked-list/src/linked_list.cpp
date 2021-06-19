@@ -45,3 +45,26 @@ linked_list::Node* linked_list::delete_head(Node* head_ptr) {
 	delete head_ptr;
 	return new_head;
 }
+
+linked_list::Node* linked_list::delete_tail(Node* head_ptr) {
+	if(head_ptr == NULL) {
+		std::cerr << "List is empty" << std::endl;
+		return head_ptr;
+	}
+
+	if(head_ptr->next == NULL) {
+		delete head_ptr;
+		return NULL;
+	}
+
+	linked_list::Node *curr_head = head_ptr;
+
+	while(curr_head->next->next != NULL)
+		curr_head = curr_head->next;
+
+	linked_list::Node *deleted_node = curr_head->next;
+	curr_head->next = NULL;
+	delete deleted_node;
+
+	return head_ptr;
+}
