@@ -25,11 +25,14 @@ circular_ll::Node* circular_ll::insert_at_begin(Node* head_ptr, int data) {
 		return temp;
 	}
 
-	circular_ll::Node *curr_head = head_ptr;
-	temp->next = curr_head;
-	while(curr_head->next != head_ptr)
-		curr_head = curr_head->next;
-	curr_head->next = temp;
+	// Insert after head
+	temp->next = head_ptr->next;
+	head_ptr->next = temp;
 
-	return temp;
+	// Swap the data of head and temp, how head is effectively the new node
+	data = head_ptr->data;
+	head_ptr->data = temp->data;
+	temp->data = data;
+
+	return head_ptr;
 }
