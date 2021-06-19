@@ -29,10 +29,31 @@ circular_ll::Node* circular_ll::insert_at_begin(Node* head_ptr, int data) {
 	temp->next = head_ptr->next;
 	head_ptr->next = temp;
 
-	// Swap the data of head and temp, how head is effectively the new node
+	// Swap the data of head and temp, now head is effectively the new node
 	data = head_ptr->data;
 	head_ptr->data = temp->data;
 	temp->data = data;
 
 	return head_ptr;
+}
+
+circular_ll::Node* circular_ll::insert_at_end(Node* head_ptr, int data) {
+	circular_ll::Node *temp = new circular_ll::Node(data);
+
+	if(head_ptr == NULL) {
+		temp->next = temp;
+		return temp;
+	}
+
+	// Insert after head
+	temp->next = head_ptr->next;
+	head_ptr->next = temp;
+
+	// Swap the data of head and temp
+	data = head_ptr->data;
+	head_ptr->data = temp->data;
+	temp->data = data;
+	
+	// Now if we start treating temp address as head, above insertion is effectively at end
+	return temp;
 }
