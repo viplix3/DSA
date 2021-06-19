@@ -23,13 +23,13 @@ int main(){
 	linked_list::printList(temp_ptr);
 	std::cout << "Deleting the fist node of the linked list with ";
 	linked_list::printList(temp_ptr);
-	temp_ptr = linked_list::delete_first_node(temp_ptr);
+	temp_ptr = linked_list::delete_head(temp_ptr);
 	std::cout << "Linked list after deleting first node: ";
 	linked_list::printList(temp_ptr);
 
 	std::cout << "\nDeleting the fist node of the linked list with ";
 	linked_list::printList(head_ptr);
-	head_ptr = linked_list::delete_first_node(head_ptr);
+	head_ptr = linked_list::delete_head(head_ptr);
 	std::cout << "Linked list after deleting first node" << std::endl;
 	linked_list::printList(head_ptr);
 

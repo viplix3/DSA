@@ -35,7 +35,7 @@ linked_list::Node* linked_list::insert_at_end(Node* head_ptr, int data) {
 	return head_ptr;
 }
 
-linked_list::Node* linked_list::delete_first_node(Node* head_ptr) {
+linked_list::Node* linked_list::delete_head(Node* head_ptr) {
 	if(head_ptr == NULL) {
 		std::cerr << "List is empty" << std::endl;
 		return head_ptr;
