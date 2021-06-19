@@ -12,5 +12,12 @@ int main(){
 	head_ptr = doubly_ll::insert_at_begin(head_ptr, 10);
 	doubly_ll::printList(head_ptr);
 
+	// Insert at end
+	std::cout << "\nInserting at the end of doubly linked list" << std::endl;
+	head_ptr = doubly_ll::insert_at_end(head_ptr, 40);
+	head_ptr = doubly_ll::insert_at_end(head_ptr, 50);
+	head_ptr = doubly_ll::insert_at_end(head_ptr, 60);
+	doubly_ll::printList(head_ptr);
+
 	return EXIT_SUCCESS;
 }

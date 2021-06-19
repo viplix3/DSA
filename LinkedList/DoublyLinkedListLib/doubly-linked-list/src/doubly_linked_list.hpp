@@ -23,7 +23,7 @@ struct Node {
 void printList(Node*);
 
 Node* insert_at_begin(Node*, int);
-
+Node* insert_at_end(Node*, int);
 }
 
 #endif

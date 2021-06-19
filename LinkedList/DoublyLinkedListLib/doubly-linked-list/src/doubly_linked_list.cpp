@@ -24,3 +24,19 @@ doubly_ll::Node* doubly_ll::insert_at_begin(Node* head_ptr, int data) {
 
 	return temp;
 }
+
+doubly_ll::Node* doubly_ll::insert_at_end(Node* head_ptr, int data){
+	doubly_ll::Node *temp = new Node(data);
+
+	if(head_ptr == NULL)
+		return temp;
+
+	doubly_ll::Node *curr_head = head_ptr;
+
+	while(curr_head->next != NULL)
+		curr_head = curr_head->next;
+
+	temp->prev = curr_head;
+	curr_head->next = temp;
+	return head_ptr;
+}
