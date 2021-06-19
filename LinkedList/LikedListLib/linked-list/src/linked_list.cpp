@@ -72,6 +72,11 @@ linked_list::Node* linked_list::delete_head(Node* head_ptr) {
 		return head_ptr;
 	}
 	
+	if(head_ptr->next == NULL) {
+		delete head_ptr;
+		return NULL;
+	}
+
 	linked_list::Node *new_head = head_ptr->next;
 	delete head_ptr;
 	return new_head;
