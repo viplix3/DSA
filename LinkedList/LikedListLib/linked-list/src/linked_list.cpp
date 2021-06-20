@@ -66,6 +66,27 @@ linked_list::Node* linked_list::insert_at_pos(Node* head_ptr, int data, int inse
 	return head_ptr;
 }
 
+linked_list::Node* linked_list::sorted_insert(Node* head_ptr, int data) {
+	linked_list::Node *temp = new linked_list::Node(data);
+
+	if(head_ptr == NULL)
+		return temp;
+
+	if(head_ptr->data > data) {
+		temp->next = head_ptr;
+		return temp;
+	}
+
+	linked_list::Node *curr_head = head_ptr;
+	while((curr_head->next != NULL) && (curr_head->next->data < data)) {
+		curr_head = curr_head->next;
+	}
+
+	temp->next = curr_head->next;
+	curr_head->next = temp;
+	return head_ptr;
+}
+
 linked_list::Node* linked_list::delete_head(Node* head_ptr) {
 	if(head_ptr == NULL) {
 		std::cerr << "List is empty" << std::endl;

@@ -1,4 +1,4 @@
-#include "linked_list.hpp"
+#include <linked_list.hpp>
 
 int main(){
 
@@ -103,5 +103,17 @@ int main(){
 	temp_ptr = linked_list::delete_tail(temp_ptr);
 	std::cout << "Linked list after deleting last node: ";
 	linked_list::printList(temp_ptr);
+
+	// Sorted Insert
+	std::cout << "\nPerforming sorted insertions" << std::endl;
+	temp_ptr = linked_list::sorted_insert(temp_ptr, 30);
+	temp_ptr = linked_list::sorted_insert(temp_ptr, 10);
+	temp_ptr = linked_list::sorted_insert(temp_ptr, -50);
+	temp_ptr = linked_list::sorted_insert(temp_ptr, 100);
+	temp_ptr = linked_list::sorted_insert(temp_ptr, 0);
+	temp_ptr = linked_list::sorted_insert(temp_ptr, 30);
+	std::cout << "Linked list after sorted insertions" << std::endl;
+	linked_list::printList(temp_ptr);
+
 	return EXIT_SUCCESS;
 }
