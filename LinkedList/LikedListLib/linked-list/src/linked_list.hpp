@@ -29,6 +29,7 @@ Node* delete_head(Node*);
 Node* delete_tail(Node*);
 
 int search_key(Node*, int);
+int get_middle(Node*);
 
 }
 

@@ -140,3 +140,15 @@ int linked_list::search_key(Node* head_ptr, int key) {
 	std::cerr << "Element " << key << " is not present in the given linked list" << std::endl;
 	return -EXIT_FAILURE;
 }
+
+int linked_list::get_middle(Node* head_ptr) {
+	linked_list::Node *slow_ptr = head_ptr, *fast_ptr = head_ptr;
+
+	while(fast_ptr != NULL && fast_ptr->next != NULL) {
+		slow_ptr = slow_ptr->next;
+		fast_ptr = fast_ptr->next->next;
+	}
+
+	int data = slow_ptr->data;
+	return data;
+}

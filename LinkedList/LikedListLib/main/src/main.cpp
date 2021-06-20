@@ -115,5 +115,13 @@ int main(){
 	std::cout << "Linked list after sorted insertions" << std::endl;
 	linked_list::printList(temp_ptr);
 
+	// Get-middle
+	std::cout << "\nMiddle element" << std::endl;
+	linked_list::printList(head_ptr);
+	std::cout << "Middle element: " << linked_list::get_middle(head_ptr) << std::endl;
+
+	linked_list::printList(temp_ptr);
+	std::cout << "Middle element: " << linked_list::get_middle(temp_ptr) << std::endl;
+
 	return EXIT_SUCCESS;
 }
