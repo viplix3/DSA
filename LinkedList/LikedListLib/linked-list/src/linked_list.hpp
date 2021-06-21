@@ -33,6 +33,8 @@ int get_middle(Node*);
 int getNth_from_end(Node*, int);
 int getNth_from_end(Node*, int, bool);
 
+Node* reverse(Node*);
+
 }
 
 #endif

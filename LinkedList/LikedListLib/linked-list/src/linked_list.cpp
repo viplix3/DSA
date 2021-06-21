@@ -197,3 +197,27 @@ int linked_list::getNth_from_end(Node* head_ptr, int pos_from_tail, bool two_poi
 
 	return position_pointer->data;
 }
+
+linked_list::Node* linked_list::reverse(Node* head_ptr) {
+	if(head_ptr == NULL) {
+		std::cerr << "Empty list" << std::endl;
+		return NULL;
+	}
+
+	if(head_ptr->next == NULL)
+		return head_ptr;
+
+	linked_list::Node *prev_node, *curr_node;
+
+	prev_node = NULL;
+	curr_node = head_ptr;
+
+	while(curr_node != NULL) {
+		linked_list::Node *next_node = curr_node->next;
+		curr_node->next = prev_node;
+		prev_node = curr_node;
+		curr_node = next_node;
+	}
+
+	return prev_node;
+}

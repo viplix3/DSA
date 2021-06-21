@@ -141,5 +141,18 @@ int main(){
 	std::cout << "Item #" << pos_from_tail << " from the end of linked list: " <<
 		linked_list::getNth_from_end(temp_ptr, pos_from_tail, true) << std::endl;
 
+	// Reversing linked list
+	std::cout << "\nReversing Linked list" << std::endl;
+	linked_list::printList(head_ptr);
+	std::cout << "After reversing" << std::endl;
+	head_ptr = linked_list::reverse(head_ptr);
+	linked_list::printList(head_ptr);
+
+	std::cout << std::endl;
+	linked_list::printList(temp_ptr);
+	std::cout << "After reversing" << std::endl;
+	temp_ptr = linked_list::reverse(temp_ptr);
+	linked_list::printList(temp_ptr);
+
 	return EXIT_SUCCESS;
 }
