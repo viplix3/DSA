@@ -123,5 +123,19 @@ int main(){
 	linked_list::printList(temp_ptr);
 	std::cout << "Middle element: " << linked_list::get_middle(temp_ptr) << std::endl;
 
+	// Get Nth from end
+	int pos_from_tail;
+	std::cout << "\nPrinting Nth element from tail of linked list" << std::endl;
+	linked_list::printList(head_ptr);
+	pos_from_tail = 3;
+	std::cout << "Item #" << pos_from_tail << " from the end of linked list: " <<
+		linked_list::getNth_from_end(head_ptr, pos_from_tail) << std::endl;
+
+	std::cout << std::endl;
+	linked_list::printList(temp_ptr);
+	pos_from_tail = 10;
+	std::cout << "Item #" << pos_from_tail << " from the end of linked list: " <<
+		linked_list::getNth_from_end(temp_ptr, pos_from_tail) << std::endl;
+
 	return EXIT_SUCCESS;
 }

@@ -152,3 +152,24 @@ int linked_list::get_middle(Node* head_ptr) {
 	int data = slow_ptr->data;
 	return data;
 }
+
+int linked_list::getNth_from_end(Node* head_ptr, int pos_from_tail) {
+	int list_len = 0;
+	linked_list::Node* curr_head = head_ptr;
+
+	for(curr_head; curr_head != NULL; curr_head = curr_head->next)
+		list_len += 1;
+
+	if(list_len < pos_from_tail) {
+		std::cerr << "Invalid position" << std::endl;
+		return -EXIT_FAILURE;
+	}
+
+	int pos_from_head = list_len - pos_from_tail + 1;
+	curr_head = head_ptr;
+
+	for(int i=1; i<pos_from_head; i++)
+		curr_head = curr_head->next;
+	
+	return curr_head->data;
+}
