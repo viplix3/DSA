@@ -173,3 +173,27 @@ int linked_list::getNth_from_end(Node* head_ptr, int pos_from_tail) {
 	
 	return curr_head->data;
 }
+
+int linked_list::getNth_from_end(Node* head_ptr, int pos_from_tail, bool two_pointer) {
+	if(!two_pointer)
+		return linked_list::getNth_from_end(head_ptr, pos_from_tail);
+	
+	linked_list::Node *leading_pointer = head_ptr, *position_pointer = head_ptr;
+
+	while((leading_pointer->next != NULL) && (pos_from_tail != 0)) {
+		leading_pointer = leading_pointer->next;
+		pos_from_tail -= 1;
+	}
+
+	if(pos_from_tail != 0) {
+		std::cerr << "Invalid position" << std::endl;
+		return -EXIT_FAILURE;
+	}
+
+	while(leading_pointer != NULL) {
+		leading_pointer = leading_pointer->next;
+		position_pointer = position_pointer->next;
+	}
+
+	return position_pointer->data;
+}

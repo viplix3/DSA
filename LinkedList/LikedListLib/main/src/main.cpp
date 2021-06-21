@@ -128,14 +128,18 @@ int main(){
 	std::cout << "\nPrinting Nth element from tail of linked list" << std::endl;
 	linked_list::printList(head_ptr);
 	pos_from_tail = 3;
+	std::cout << "Item #" << pos_from_tail << " from the end of linked list by finding length: " <<
+		linked_list::getNth_from_end(head_ptr, pos_from_tail, false) << std::endl;
 	std::cout << "Item #" << pos_from_tail << " from the end of linked list: " <<
-		linked_list::getNth_from_end(head_ptr, pos_from_tail) << std::endl;
+		linked_list::getNth_from_end(head_ptr, pos_from_tail, true) << std::endl;
 
 	std::cout << std::endl;
 	linked_list::printList(temp_ptr);
 	pos_from_tail = 10;
+	std::cout << "Item #" << pos_from_tail << " from the end of linked list by finding length: " <<
+		linked_list::getNth_from_end(temp_ptr, pos_from_tail, false) << std::endl;
 	std::cout << "Item #" << pos_from_tail << " from the end of linked list: " <<
-		linked_list::getNth_from_end(temp_ptr, pos_from_tail) << std::endl;
+		linked_list::getNth_from_end(temp_ptr, pos_from_tail, true) << std::endl;
 
 	return EXIT_SUCCESS;
 }

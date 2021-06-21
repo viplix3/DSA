@@ -31,6 +31,7 @@ Node* delete_tail(Node*);
 int search_key(Node*, int);
 int get_middle(Node*);
 int getNth_from_end(Node*, int);
+int getNth_from_end(Node*, int, bool);
 
 }
 
