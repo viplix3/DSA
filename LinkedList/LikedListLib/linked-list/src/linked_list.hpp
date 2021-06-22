@@ -36,6 +36,7 @@ int getNth_from_end(Node*, int, bool);
 Node* reverse(Node*);
 Node* recusive_reverse(Node*);
 Node* recusive_reverse(Node*, Node*);
+Node* remove_duplicates_sorted(Node*);
 
 }
 

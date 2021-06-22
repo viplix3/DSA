@@ -256,3 +256,26 @@ linked_list::Node* linked_list::recusive_reverse(Node* prev_node, Node* head_ptr
 	head_ptr = next_node;
 	linked_list::recusive_reverse(prev_node, head_ptr);
 }
+
+linked_list::Node* linked_list::remove_duplicates_sorted(Node* head_ptr) {
+	if(head_ptr == NULL) {
+		std::cerr << "Empty list" << std::endl;
+		return NULL;
+	}
+
+	if(head_ptr->next == NULL)
+		return head_ptr;
+
+	linked_list::Node *curr_head = head_ptr;
+
+	while(curr_head != NULL && curr_head->next != NULL) {
+		if(curr_head->data == curr_head->next->data) {
+			linked_list::Node *repeated_node = curr_head->next;
+			curr_head->next = curr_head->next->next;
+			delete repeated_node;
+		}
+		else
+			curr_head = curr_head->next;
+	}
+	return head_ptr;
+}
