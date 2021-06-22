@@ -1,8 +1,5 @@
 #pragma once
 
-#ifndef CIRCULAR_LINKED_LIST_HPP_
-#define CIRCULAR_LINKED_LIST_HPP_
-
 #include <iostream>
 #include <stdlib.h>
 
@@ -27,5 +24,3 @@ Node* delete_head(Node*);
 Node* delete_at_pos(Node*, int);
 
 }
-
-#endif
