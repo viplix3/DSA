@@ -1,8 +1,5 @@
 #pragma once 
 
-#ifndef LINKED_LIST_HPP_
-#define LINKED_LIST_HPP_
-
 #include <iostream>
 #include <stdlib.h>
 
@@ -39,5 +36,3 @@ Node* recusive_reverse(Node*, Node*);
 void remove_duplicates_sorted(Node*);
 
 }
-
-#endif
