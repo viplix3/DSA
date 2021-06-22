@@ -1,8 +1,5 @@
 #pragma once
 
-#ifndef DOUBLY_LINKED_LIST_HPP_
-#define DOUBLE_LINKED_LIST_HPP_
-
 #include <iostream>
 #include <stdlib.h>
 
@@ -31,5 +28,3 @@ Node* delete_tail(Node*);
 Node* reverse(Node*);
 
 }
-
-#endif
