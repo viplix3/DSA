@@ -154,5 +154,18 @@ int main(){
 	temp_ptr = linked_list::reverse(temp_ptr);
 	linked_list::printList(temp_ptr);
 
+	// Recursive reversing linked list
+	std::cout << "\nRecursively reversing Linked list" << std::endl;
+	linked_list::printList(head_ptr);
+	std::cout << "After reversing" << std::endl;
+	head_ptr = linked_list::recusive_reverse(NULL, head_ptr);
+	linked_list::printList(head_ptr);
+
+	std::cout << std::endl;
+	linked_list::printList(temp_ptr);
+	std::cout << "After reversing" << std::endl;
+	temp_ptr = linked_list::recusive_reverse(temp_ptr);
+	linked_list::printList(temp_ptr);
+
 	return EXIT_SUCCESS;
 }

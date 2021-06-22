@@ -221,3 +221,38 @@ linked_list::Node* linked_list::reverse(Node* head_ptr) {
 
 	return prev_node;
 }
+
+linked_list::Node* linked_list::recusive_reverse(Node* head_ptr) {
+	if(head_ptr == NULL) {
+		std::cerr << "Empty list" << std::endl;
+		return NULL;
+	}
+
+	if(head_ptr->next == NULL)
+		return head_ptr;
+
+	linked_list::Node *reverse_head = linked_list::recusive_reverse(head_ptr->next);
+	linked_list::Node *reverse_tail = head_ptr->next;
+	reverse_tail->next = head_ptr;
+	head_ptr->next = NULL;
+	return reverse_head;
+}
+
+linked_list::Node* linked_list::recusive_reverse(Node* prev_node, Node* head_ptr) {
+	if(head_ptr == NULL && prev_node == NULL) {
+		std::cerr << "Empty list" << std::endl;
+		return NULL;
+	}
+
+	if(head_ptr == NULL && prev_node != NULL)
+		return prev_node;
+
+	if(head_ptr->next == NULL && prev_node == NULL)
+		return head_ptr;
+	
+	linked_list::Node *next_node = head_ptr->next;
+	head_ptr->next = prev_node;
+	prev_node = head_ptr;
+	head_ptr = next_node;
+	linked_list::recusive_reverse(prev_node, head_ptr);
+}
