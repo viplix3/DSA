@@ -171,13 +171,13 @@ int main(){
 	std::cout << "\nRemoving duplicated from sorted Linked list" << std::endl;
 	linked_list::printList(head_ptr);
 	std::cout << "After removal" << std::endl;
-	head_ptr = linked_list::remove_duplicates_sorted(head_ptr);
+	linked_list::remove_duplicates_sorted(head_ptr);
 	linked_list::printList(head_ptr);
 
 	std::cout << std::endl;
 	linked_list::printList(temp_ptr);
 	std::cout << "After removal" << std::endl;
-	temp_ptr = linked_list::remove_duplicates_sorted(temp_ptr);
+	linked_list::remove_duplicates_sorted(temp_ptr);
 	linked_list::printList(temp_ptr);
 
 	return EXIT_SUCCESS;
