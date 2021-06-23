@@ -270,3 +270,44 @@ void linked_list::remove_duplicates_sorted(Node* head_ptr) {
 			curr_head = curr_head->next;
 	}
 }
+
+linked_list::Node* linked_list::reverse_in_groups(Node* head_ptr, int group_size) {
+	if(head_ptr == NULL) {
+		std::cerr << "Empty list" << std::endl;
+		return NULL;
+	}
+
+	if(head_ptr->next == NULL)
+		return head_ptr;
+
+	linked_list::Node *prev_node, *curr_node;
+
+	curr_node = head_ptr;
+
+	bool is_first_pass = true;
+	linked_list::Node *last_group_tail, *curr_group_tail;
+
+	while(curr_node != NULL) {
+		curr_group_tail = curr_node;
+		prev_node = NULL;
+		int items_reversed = 0;
+
+		while(curr_node != NULL && items_reversed < group_size) {
+			linked_list::Node *next_node = curr_node->next;
+			curr_node->next = prev_node;
+			prev_node = curr_node;
+			curr_node = next_node;
+			items_reversed += 1;
+		}
+
+		if(is_first_pass) {
+			head_ptr = prev_node; // prev_node is current group head, if it is first pass, this will be head of list
+			is_first_pass = false;
+		}
+		else
+			last_group_tail->next = prev_node; // prev_node is current group head
+
+		last_group_tail = curr_group_tail;
+	}
+	return head_ptr;
+}

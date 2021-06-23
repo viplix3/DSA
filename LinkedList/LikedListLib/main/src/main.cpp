@@ -180,5 +180,21 @@ int main(){
 	linked_list::remove_duplicates_sorted(temp_ptr);
 	linked_list::printList(temp_ptr);
 
+	// Group reverse
+	int group_size;
+	std::cout << "\nReversing in groups of size k" << std::endl;
+	group_size = 3;
+	linked_list::printList(head_ptr);
+	std::cout << "After reversing in groups of size " << group_size << std::endl;
+	head_ptr = linked_list::reverse_in_groups(head_ptr, group_size);
+	linked_list::printList(head_ptr);
+
+	std::cout << "\nReversing in groups of size k" << std::endl;
+	group_size = 4;
+	linked_list::printList(temp_ptr);
+	std::cout << "After reversing in groups of size " << group_size << std::endl;
+	temp_ptr = linked_list::reverse_in_groups(temp_ptr, group_size);
+	linked_list::printList(temp_ptr);
+
 	return EXIT_SUCCESS;
 }
