@@ -355,3 +355,40 @@ void linked_list::delete_node_without_head(Node* ptr) {
 	ptr->next = deleted_node->next;
 	delete deleted_node;
 }
+
+linked_list::Node* linked_list::segregate_even_odd(Node* head_ptr) {
+	linked_list::Node *even_start, *even_end, *odd_start, *odd_end;
+	even_start = even_end = odd_start = odd_end = NULL;
+
+	for(linked_list::Node *curr_node = head_ptr; curr_node != NULL; curr_node = curr_node->next) {
+		int data = curr_node->data;
+
+		if(data % 2 == 0) {
+			if(even_start == NULL) {
+				even_start = curr_node;
+				even_end = curr_node;
+			}
+			else {
+				even_end->next = curr_node;
+				even_end = even_end->next;
+			}
+		}
+		else {
+			if(odd_start == NULL) {
+				odd_start = curr_node;
+				odd_end = curr_node;
+			}
+			else {
+				odd_end->next = curr_node;
+				odd_end = odd_end->next;
+			}
+		}
+	}
+
+	if(even_start == NULL || odd_start == NULL) // List contains either all odd or all even numbers
+		return head_ptr;
+	
+	even_end->next = odd_start;
+	odd_end->next = NULL;
+	return even_start;
+}

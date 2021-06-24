@@ -38,5 +38,6 @@ void remove_duplicates_sorted(Node*);
 bool detect_loop(Node*);
 void detect_and_remove_loop(Node*);
 void delete_node_without_head(Node*);
+Node *segregate_even_odd(Node*);
 
 }

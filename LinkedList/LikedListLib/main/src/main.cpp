@@ -106,12 +106,12 @@ int main(){
 
 	// Sorted Insert
 	std::cout << "\nPerforming sorted insertions" << std::endl;
-	temp_ptr = linked_list::sorted_insert(temp_ptr, 30);
+	temp_ptr = linked_list::sorted_insert(temp_ptr, 33);
 	temp_ptr = linked_list::sorted_insert(temp_ptr, 10);
 	temp_ptr = linked_list::sorted_insert(temp_ptr, -50);
-	temp_ptr = linked_list::sorted_insert(temp_ptr, 100);
+	temp_ptr = linked_list::sorted_insert(temp_ptr, 107);
 	temp_ptr = linked_list::sorted_insert(temp_ptr, 0);
-	temp_ptr = linked_list::sorted_insert(temp_ptr, 30);
+	temp_ptr = linked_list::sorted_insert(temp_ptr, 33);
 	std::cout << "Linked list after sorted insertions" << std::endl;
 	linked_list::printList(temp_ptr);
 
@@ -196,9 +196,23 @@ int main(){
 	temp_ptr = linked_list::reverse_in_groups(temp_ptr, group_size);
 	linked_list::printList(temp_ptr);
 
+	// Delete without head
 	std::cout << "\nDeleting node without head pointer from linked list" << std::endl;
 	linked_list::printList(temp_ptr);
 	linked_list::delete_node_without_head(temp_ptr->next->next);
+	linked_list::printList(temp_ptr);
+
+	// Even-Odd segeration
+	std::cout << "\nSegregating even and odd entries of linked list" << std::endl;
+	linked_list::printList(head_ptr);
+	head_ptr = linked_list::segregate_even_odd(head_ptr);
+	std::cout << "After segegration" << std::endl;
+	linked_list::printList(head_ptr);
+
+	std::cout << std::endl;
+	linked_list::printList(temp_ptr);
+	temp_ptr = linked_list::segregate_even_odd(temp_ptr);
+	std::cout << "After segegration" << std::endl;
 	linked_list::printList(temp_ptr);
 
 	return EXIT_SUCCESS;
