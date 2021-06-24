@@ -35,5 +35,6 @@ Node* recusive_reverse(Node*);
 Node* recusive_reverse(Node*, Node*);
 Node* reverse_in_groups(Node*, int);
 void remove_duplicates_sorted(Node*);
+bool detect_loop(Node*);
 
 }
