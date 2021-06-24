@@ -311,6 +311,7 @@ linked_list::Node* linked_list::reverse_in_groups(Node* head_ptr, int group_size
 	}
 	return head_ptr;
 }
+
 bool linked_list::detect_loop(Node* head_ptr) {
 	linked_list::Node *slow_ptr, *fast_ptr;
 	slow_ptr = fast_ptr = head_ptr;
@@ -323,4 +324,27 @@ bool linked_list::detect_loop(Node* head_ptr) {
 			return true;
 	}
 	return false;
+}
+
+void linked_list::detect_and_remove_loop(Node* head_ptr) {
+	linked_list::Node *slow_ptr, *fast_ptr;
+	slow_ptr = fast_ptr = head_ptr;
+
+	while(fast_ptr != NULL && fast_ptr->next != NULL) {
+		slow_ptr = slow_ptr->next;
+		fast_ptr = fast_ptr->next;
+
+		if(slow_ptr == fast_ptr)
+			break;
+	}
+
+	if(slow_ptr != fast_ptr)
+		return;
+
+	fast_ptr = head_ptr;
+	while(slow_ptr->next != fast_ptr->next) {
+		slow_ptr = slow_ptr->next;
+		fast_ptr = fast_ptr->next;
+	}
+	slow_ptr->next = NULL;
 }
