@@ -348,3 +348,10 @@ void linked_list::detect_and_remove_loop(Node* head_ptr) {
 	}
 	slow_ptr->next = NULL;
 }
+
+void linked_list::delete_node_without_head(Node* ptr) {
+	linked_list::Node *deleted_node = ptr->next;
+	ptr->data = deleted_node->data;
+	ptr->next = deleted_node->next;
+	delete deleted_node;
+}

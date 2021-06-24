@@ -37,5 +37,6 @@ Node* reverse_in_groups(Node*, int);
 void remove_duplicates_sorted(Node*);
 bool detect_loop(Node*);
 void detect_and_remove_loop(Node*);
+void delete_node_without_head(Node*);
 
 }

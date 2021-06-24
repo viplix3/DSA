@@ -196,5 +196,10 @@ int main(){
 	temp_ptr = linked_list::reverse_in_groups(temp_ptr, group_size);
 	linked_list::printList(temp_ptr);
 
+	std::cout << "\nDeleting node without head pointer from linked list" << std::endl;
+	linked_list::printList(temp_ptr);
+	linked_list::delete_node_without_head(temp_ptr->next->next);
+	linked_list::printList(temp_ptr);
+
 	return EXIT_SUCCESS;
 }
