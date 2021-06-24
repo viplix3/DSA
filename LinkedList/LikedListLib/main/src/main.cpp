@@ -88,40 +88,40 @@ int main(){
 
 	// Edge-ish cases
 	std::cout << "\nInserting at end of linked list when list is empty" << std::endl;
-	linked_list::Node *temp_ptr = NULL;
-	temp_ptr = linked_list::insert_at_end(temp_ptr, 90);
-	linked_list::printList(temp_ptr);
+	linked_list::Node *head_ptr_2 = NULL;
+	head_ptr_2 = linked_list::insert_at_end(head_ptr_2, 90);
+	linked_list::printList(head_ptr_2);
 
 	std::cout << "Deleting the fist node of the linked list with ";
-	linked_list::printList(temp_ptr);
-	temp_ptr = linked_list::delete_head(temp_ptr);
+	linked_list::printList(head_ptr_2);
+	head_ptr_2 = linked_list::delete_head(head_ptr_2);
 	std::cout << "Linked list after deleting first node: ";
-	linked_list::printList(temp_ptr);
+	linked_list::printList(head_ptr_2);
 
 	std::cout << "Deleting the last node of the linked list with ";
-	linked_list::printList(temp_ptr);
-	temp_ptr = linked_list::delete_tail(temp_ptr);
+	linked_list::printList(head_ptr_2);
+	head_ptr_2 = linked_list::delete_tail(head_ptr_2);
 	std::cout << "Linked list after deleting last node: ";
-	linked_list::printList(temp_ptr);
+	linked_list::printList(head_ptr_2);
 
 	// Sorted Insert
 	std::cout << "\nPerforming sorted insertions" << std::endl;
-	temp_ptr = linked_list::sorted_insert(temp_ptr, 33);
-	temp_ptr = linked_list::sorted_insert(temp_ptr, 10);
-	temp_ptr = linked_list::sorted_insert(temp_ptr, -50);
-	temp_ptr = linked_list::sorted_insert(temp_ptr, 107);
-	temp_ptr = linked_list::sorted_insert(temp_ptr, 0);
-	temp_ptr = linked_list::sorted_insert(temp_ptr, 33);
+	head_ptr_2 = linked_list::sorted_insert(head_ptr_2, 33);
+	head_ptr_2 = linked_list::sorted_insert(head_ptr_2, 10);
+	head_ptr_2 = linked_list::sorted_insert(head_ptr_2, -50);
+	head_ptr_2 = linked_list::sorted_insert(head_ptr_2, 107);
+	head_ptr_2 = linked_list::sorted_insert(head_ptr_2, 0);
+	head_ptr_2 = linked_list::sorted_insert(head_ptr_2, 33);
 	std::cout << "Linked list after sorted insertions" << std::endl;
-	linked_list::printList(temp_ptr);
+	linked_list::printList(head_ptr_2);
 
 	// Get-middle
 	std::cout << "\nMiddle element" << std::endl;
 	linked_list::printList(head_ptr);
 	std::cout << "Middle element: " << linked_list::get_middle(head_ptr) << std::endl;
 
-	linked_list::printList(temp_ptr);
-	std::cout << "Middle element: " << linked_list::get_middle(temp_ptr) << std::endl;
+	linked_list::printList(head_ptr_2);
+	std::cout << "Middle element: " << linked_list::get_middle(head_ptr_2) << std::endl;
 
 	// Get Nth from end
 	int pos_from_tail;
@@ -134,12 +134,12 @@ int main(){
 		linked_list::getNth_from_end(head_ptr, pos_from_tail, true) << std::endl;
 
 	std::cout << std::endl;
-	linked_list::printList(temp_ptr);
+	linked_list::printList(head_ptr_2);
 	pos_from_tail = 10;
 	std::cout << "Item #" << pos_from_tail << " from the end of linked list by finding length: " <<
-		linked_list::getNth_from_end(temp_ptr, pos_from_tail, false) << std::endl;
+		linked_list::getNth_from_end(head_ptr_2, pos_from_tail, false) << std::endl;
 	std::cout << "Item #" << pos_from_tail << " from the end of linked list: " <<
-		linked_list::getNth_from_end(temp_ptr, pos_from_tail, true) << std::endl;
+		linked_list::getNth_from_end(head_ptr_2, pos_from_tail, true) << std::endl;
 
 	// Reversing linked list
 	std::cout << "\nReversing Linked list" << std::endl;
@@ -149,10 +149,10 @@ int main(){
 	linked_list::printList(head_ptr);
 
 	std::cout << std::endl;
-	linked_list::printList(temp_ptr);
+	linked_list::printList(head_ptr_2);
 	std::cout << "After reversing" << std::endl;
-	temp_ptr = linked_list::reverse(temp_ptr);
-	linked_list::printList(temp_ptr);
+	head_ptr_2 = linked_list::reverse(head_ptr_2);
+	linked_list::printList(head_ptr_2);
 
 	// Recursive reversing linked list
 	std::cout << "\nRecursively reversing Linked list" << std::endl;
@@ -162,10 +162,10 @@ int main(){
 	linked_list::printList(head_ptr);
 
 	std::cout << std::endl;
-	linked_list::printList(temp_ptr);
+	linked_list::printList(head_ptr_2);
 	std::cout << "After reversing" << std::endl;
-	temp_ptr = linked_list::recusive_reverse(temp_ptr);
-	linked_list::printList(temp_ptr);
+	head_ptr_2 = linked_list::recusive_reverse(head_ptr_2);
+	linked_list::printList(head_ptr_2);
 
 	// Removing duplicates from sorted list
 	std::cout << "\nRemoving duplicated from sorted Linked list" << std::endl;
@@ -175,10 +175,10 @@ int main(){
 	linked_list::printList(head_ptr);
 
 	std::cout << std::endl;
-	linked_list::printList(temp_ptr);
+	linked_list::printList(head_ptr_2);
 	std::cout << "After removal" << std::endl;
-	linked_list::remove_duplicates_sorted(temp_ptr);
-	linked_list::printList(temp_ptr);
+	linked_list::remove_duplicates_sorted(head_ptr_2);
+	linked_list::printList(head_ptr_2);
 
 	// Group reverse
 	int group_size;
@@ -191,16 +191,16 @@ int main(){
 
 	std::cout << "\nReversing in groups of size k" << std::endl;
 	group_size = 4;
-	linked_list::printList(temp_ptr);
+	linked_list::printList(head_ptr_2);
 	std::cout << "After reversing in groups of size " << group_size << std::endl;
-	temp_ptr = linked_list::reverse_in_groups(temp_ptr, group_size);
-	linked_list::printList(temp_ptr);
+	head_ptr_2 = linked_list::reverse_in_groups(head_ptr_2, group_size);
+	linked_list::printList(head_ptr_2);
 
 	// Delete without head
 	std::cout << "\nDeleting node without head pointer from linked list" << std::endl;
-	linked_list::printList(temp_ptr);
-	linked_list::delete_node_without_head(temp_ptr->next->next);
-	linked_list::printList(temp_ptr);
+	linked_list::printList(head_ptr_2);
+	linked_list::delete_node_without_head(head_ptr_2->next->next);
+	linked_list::printList(head_ptr_2);
 
 	// Even-Odd segeration
 	std::cout << "\nSegregating even and odd entries of linked list" << std::endl;
@@ -210,10 +210,37 @@ int main(){
 	linked_list::printList(head_ptr);
 
 	std::cout << std::endl;
-	linked_list::printList(temp_ptr);
-	temp_ptr = linked_list::segregate_even_odd(temp_ptr);
+	linked_list::printList(head_ptr_2);
+	head_ptr_2 = linked_list::segregate_even_odd(head_ptr_2);
 	std::cout << "After segegration" << std::endl;
-	linked_list::printList(temp_ptr);
+	linked_list::printList(head_ptr_2);
+
+	// Linked list intersection
+	// Creating an intersection list
+	linked_list::Node* intersection_head = head_ptr->next->next->next;
+	intersection_head = linked_list::insert_at_begin(intersection_head, 546);
+	intersection_head = linked_list::insert_at_begin(intersection_head, 5754);
+	intersection_head = linked_list::insert_at_begin(intersection_head, 654);
+	intersection_head = linked_list::insert_at_begin(intersection_head, 324);
+
+	std::cout << "\nLinked list intersection" << std::endl;
+	linked_list::printList(head_ptr);
+	linked_list::printList(intersection_head);
+	linked_list::Node *intersection_node = linked_list::find_intersection(head_ptr, intersection_head);
+	if(intersection_node == NULL)
+		std::cout << "No intersecting node" << std::endl;
+	else
+		std::cout << "Intersecting node found, data at intersecting node: " << intersection_node->data << std::endl;
+
+
+	std::cout << std::endl;
+	linked_list::printList(head_ptr);
+	linked_list::printList(head_ptr_2);
+	intersection_node = linked_list::find_intersection(head_ptr, head_ptr_2);
+	if(intersection_node == NULL)
+		std::cout << "No intersecting node" << std::endl;
+	else
+		std::cout << "Intersecting node found, data at intersecting node: " << intersection_node->data << std::endl;
 
 	return EXIT_SUCCESS;
 }

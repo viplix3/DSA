@@ -392,3 +392,30 @@ linked_list::Node* linked_list::segregate_even_odd(Node* head_ptr) {
 	odd_end->next = NULL;
 	return even_start;
 }
+
+linked_list::Node* linked_list::find_intersection(Node* head_ptr_1, Node* head_ptr_2) {
+	int len_list_1, len_list_2;
+	len_list_1 = len_list_2 = 0;
+
+	for(linked_list::Node *curr_head = head_ptr_1; curr_head != NULL; curr_head = curr_head->next)
+		len_list_1 += 1;
+
+	for(linked_list::Node *curr_head = head_ptr_2; curr_head != NULL; curr_head = curr_head->next)
+		len_list_2 += 1;
+
+	int num_common = abs(len_list_1 - len_list_2);
+	linked_list::Node *longer_list_head = (len_list_1 > len_list_2) ? head_ptr_1 : head_ptr_2;
+	linked_list::Node *shorter_list_head = (len_list_1 > len_list_2) ? head_ptr_2 : head_ptr_1;
+	
+	for(int i=0; i < num_common; i++)
+		longer_list_head = longer_list_head->next;
+
+	while(longer_list_head != NULL && shorter_list_head != NULL) {
+		if(longer_list_head == shorter_list_head)
+			return longer_list_head;
+
+		longer_list_head = longer_list_head->next;
+		shorter_list_head = shorter_list_head->next;
+	}
+	return NULL;
+}
