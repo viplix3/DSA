@@ -477,3 +477,30 @@ linked_list::Node* linked_list::merge_sorted_lists(Node* head_ptr_1, Node* head_
 	return merged_head_ptr;
 }
 
+bool linked_list::is_palindrome(linked_list::Node* head_ptr) {
+	if(head_ptr == NULL)
+		return true;
+
+	linked_list::Node *slow_ptr = head_ptr, *fast_ptr = head_ptr;
+
+	while(fast_ptr->next != NULL && fast_ptr->next->next != NULL) {
+		slow_ptr = slow_ptr->next;
+		fast_ptr = fast_ptr->next->next;
+	}
+
+	linked_list::Node *curr_head = head_ptr, *curr_rev_head = NULL, *rev_head = NULL;
+	curr_rev_head = linked_list::reverse(slow_ptr->next);
+	rev_head = curr_rev_head;
+
+	while(curr_rev_head != NULL) {
+		if(curr_head->data != curr_rev_head->data) {
+			rev_head = linked_list::reverse(rev_head);
+			return false;
+		}
+		curr_head = curr_head->next;
+		curr_rev_head = curr_rev_head->next;
+	}
+
+	rev_head = linked_list::reverse(rev_head);
+	return true;
+}

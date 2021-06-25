@@ -41,6 +41,7 @@ void delete_node_without_head(Node*);
 Node* segregate_even_odd(Node*);
 Node* find_intersection(Node*, Node*);
 Node* merge_sorted_lists(Node*, Node*);
+bool is_palindrome(Node*);
 
 // Overloaded for cout
 std::ostream& operator<<(std::ostream&, const linked_list::Node*);

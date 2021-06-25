@@ -259,7 +259,27 @@ int main(){
 	std::cout << "Merged output" << std::endl;
 	std::cout << merged_head;
 
+	// Palindrome check
+	std::cout << "\nLinked list palindrome check" << std::endl;
+	std::cout << sorted_list_1;
+	std::cout << "Is palidrome: " << linked_list::is_palindrome(sorted_list_1) << std::endl;
 
+	std::cout << sorted_list_2;
+	std::cout << "Is palidrome: " << linked_list::is_palindrome(sorted_list_2) << std::endl;
+
+	linked_list::Node *palindrome_list = NULL;
+	palindrome_list = linked_list::insert_at_begin(palindrome_list, 10);
+	palindrome_list = linked_list::insert_at_end(palindrome_list, 10);
+	palindrome_list = linked_list::insert_at_begin(palindrome_list, 20);
+	palindrome_list = linked_list::insert_at_end(palindrome_list, 20);
+	palindrome_list = linked_list::insert_at_begin(palindrome_list, 15);
+	palindrome_list = linked_list::insert_at_end(palindrome_list, 15);
+	std::cout << palindrome_list;
+	std::cout << "Is palidrome: " << linked_list::is_palindrome(palindrome_list) << std::endl;
+
+	palindrome_list = linked_list::insert_at_pos(palindrome_list, 5, 4);
+	std::cout << palindrome_list;
+	std::cout << "Is palidrome: " << linked_list::is_palindrome(palindrome_list) << std::endl;
 
 	return EXIT_SUCCESS;
 }
