@@ -419,3 +419,45 @@ linked_list::Node* linked_list::find_intersection(Node* head_ptr_1, Node* head_p
 	}
 	return NULL;
 }
+
+linked_list::Node* linked_list::merge_sorted_lists(Node* head_ptr_1, Node* head_ptr_2) {
+	if(head_ptr_1 == NULL)
+		return head_ptr_2;
+	
+	if(head_ptr_2 == NULL)
+		return head_ptr_1;
+
+	linked_list::Node *merged_head_ptr = NULL, *merged_tail_ptr = NULL;
+
+	if(head_ptr_1->data <= head_ptr_2->data) {
+		merged_head_ptr = head_ptr_1;
+		merged_tail_ptr = head_ptr_1;
+		head_ptr_1 = head_ptr_1->next;
+	}
+	else {
+		merged_head_ptr = head_ptr_2;
+		merged_tail_ptr = head_ptr_2;
+		head_ptr_2 = head_ptr_2->next;
+	}
+
+	while(head_ptr_1 != NULL && head_ptr_2 != NULL) {
+		if(head_ptr_1->data <= head_ptr_2->data) {
+			merged_tail_ptr->next = head_ptr_1;
+			merged_tail_ptr = head_ptr_1;
+			head_ptr_1 = head_ptr_1->next;
+		}
+		else {
+			merged_tail_ptr->next = head_ptr_2;
+			merged_tail_ptr = head_ptr_2;
+			head_ptr_2 = head_ptr_2->next;
+		}
+	}
+
+	if(head_ptr_1 == NULL)
+		merged_tail_ptr->next = head_ptr_2;
+	else
+		merged_tail_ptr->next = head_ptr_1;
+
+	return merged_head_ptr;
+}
+

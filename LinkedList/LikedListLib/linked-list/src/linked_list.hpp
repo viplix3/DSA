@@ -40,5 +40,6 @@ void detect_and_remove_loop(Node*);
 void delete_node_without_head(Node*);
 Node* segregate_even_odd(Node*);
 Node* find_intersection(Node*, Node*);
+Node* merge_sorted_lists(Node*, Node*);
 
-}
+};
