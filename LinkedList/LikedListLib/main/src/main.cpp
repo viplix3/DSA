@@ -249,15 +249,15 @@ int main(){
 	sorted_list_1 = linked_list::sorted_insert(sorted_list_1, 10);
 	sorted_list_1 = linked_list::sorted_insert(sorted_list_1, 20);
 	sorted_list_1 = linked_list::sorted_insert(sorted_list_1, 30);
-	linked_list::printList(sorted_list_1);
+	std::cout << sorted_list_1;
 
 	sorted_list_2 = linked_list::sorted_insert(sorted_list_2, 5);
 	sorted_list_2 = linked_list::sorted_insert(sorted_list_2, 35);
-	linked_list::printList(sorted_list_2);
+	std::cout << sorted_list_2;
 
 	linked_list::Node *merged_head = linked_list::merge_sorted_lists(sorted_list_1, sorted_list_2);
 	std::cout << "Merged output" << std::endl;
-	linked_list::printList(merged_head);
+	std::cout << merged_head;
 
 
 

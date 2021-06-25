@@ -42,4 +42,7 @@ Node* segregate_even_odd(Node*);
 Node* find_intersection(Node*, Node*);
 Node* merge_sorted_lists(Node*, Node*);
 
+// Overloaded for cout
+std::ostream& operator<<(std::ostream&, const linked_list::Node*);
+
 };

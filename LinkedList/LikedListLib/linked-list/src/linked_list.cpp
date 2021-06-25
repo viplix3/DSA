@@ -15,6 +15,22 @@ void linked_list::printList(Node* head_ptr) {
 		std::cout << "Empty Linked list" << std::endl;
 }
 
+std::ostream& linked_list::operator<<(std::ostream& output_stream, const linked_list::Node* head_ptr) {
+	if(head_ptr != NULL){
+		output_stream << "Linked list contents: ";
+
+		output_stream << head_ptr->data;
+		while(head_ptr->next != NULL){
+			head_ptr = head_ptr -> next;
+			output_stream << " -> " << head_ptr->data;
+		}
+		output_stream << std::endl;
+	}
+	else
+		output_stream << "Empty Linked list" << std::endl;
+	return output_stream;
+}
+
 linked_list::Node* linked_list::insert_at_begin(Node* head_ptr, int data) {
 	linked_list::Node *temp = new linked_list::Node(data);
 	temp->next = head_ptr;
