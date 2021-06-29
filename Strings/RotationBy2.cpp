@@ -16,18 +16,21 @@ class Solution
         if(str1.length() != str2.length())
             return false;
             
-        if(str1.length() == 1)
+        if(str1.length() < 2)
             return str1 == str2;
             
-        string search_space = str1 + str1;
-        auto search_idx = search_space.find(str2);
+        int strlength = str2.length();
+        string anticlockwise_rotated = "", clockwise_rotated = "";
         
-        if(search_idx == string::npos)
-            return false;
+        anticlockwise_rotated = anticlockwise_rotated +
+                                str2.substr(strlength-2) +
+                                str2.substr(0, strlength-2);
         
-        if(search_idx == 2 || search_idx == str1.length()-2)
-            return true;
-        return false;
+        clockwise_rotated = clockwise_rotated +
+                            str2.substr(2) +
+                            str2.substr(0, 2);
+        
+        return (anticlockwise_rotated == str1 || clockwise_rotated == str1);
     }
 
 };
