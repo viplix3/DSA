@@ -1,12 +1,49 @@
-// Working on LeetCode, not on G4G
-// On LeetCode, RunTime: 0ms, Memory Usage: 7.3MB
 // { Driver Code Starts
+//Initial Template for C++
+
 #include <bits/stdc++.h>
 #include <string>
 
 using namespace std;
 
-vector <string> possibleWords(int a[],int n);
+
+ // } Driver Code Ends
+//User function Template for C++
+
+class Solution
+{
+private:
+	void generateWords(vector<string>& allWords, int keypadInput[], int numInputs) {
+		string mapping[] = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+		static string currWord = "";
+		static int keyIdx = 0;
+		
+		if(currWord.length() == numInputs){
+			allWords.emplace_back(currWord);
+			return;
+		}
+
+		for(int keyEntryIdx = 0; keyEntryIdx < mapping[keypadInput[keyIdx]].length(); keyEntryIdx++) {
+			currWord += mapping[keypadInput[keyIdx]][keyEntryIdx]; // Added a letter of keyIdx
+
+			keyIdx += 1; // Now we need to add the letter of next key, so keyIdx is incremented by 1
+			generateWords(allWords, keypadInput, numInputs);
+			currWord.pop_back();
+			
+			keyIdx -= 1; // Now in next iteration, we want to add letter of curr key, so keyIdx reset is done
+		}
+
+	}
+
+    public:
+    //Function to find list of all words possible by pressing given numbers.
+    vector<string> possibleWords(int a[], int N)
+    {
+		vector<string> allWords;
+		generateWords(allWords, a, N);
+		return allWords;
+    }
+};
 
 
 int main() {
@@ -26,61 +63,12 @@ int main() {
 	       cin >> a[i]; //input the elements of array that are keys to be pressed
 	   }
 	   
-	  vector <string> res = possibleWords(a,N);
+	   Solution obj;
+	   
+	  vector <string> res = obj.possibleWords(a,N);
 	  for (string i : res) cout << i << " ";
 	   cout << endl;
 	}
 	
 	return 0;
-}// } Driver Code Ends
-
-
-//Complete this function
-
-void findStringPermutations(vector<string> &possibleWordCombinations, vector<string> &dictValues, vector<int> &currIndices, int numKeyPadEntries)
-{
-	int totalPossibleCombinations = 1;
-	for(int i=0; i<numKeyPadEntries; i++)
-		totalPossibleCombinations *= dictValues[i].size();
-	if(possibleWordCombinations.size() == totalPossibleCombinations)
-		return;
-	
-	string possibleWord = "";
-	for(int i=0; i<numKeyPadEntries; i++){
-		possibleWord += dictValues[i][currIndices[i]];
-	}
-	possibleWordCombinations.push_back(possibleWord);
-
-	bool updateFlag = true;
-	for(int i=numKeyPadEntries-1; i>=0; i--){
-		if(updateFlag){
-			currIndices[i] += 1;
-			updateFlag = false;
-		}
-
-		if(currIndices[i] == dictValues[i].length()){
-			currIndices[i] = 0;
-			updateFlag = true;
-		}
-		else
-			updateFlag = false;
-	}
-
-	findStringPermutations(possibleWordCombinations, dictValues, currIndices, numKeyPadEntries);
-}
-
-vector <string> possibleWords(int a[],int N)
-{
-    vector<string> keyPadDict = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
-    vector<string> possibleWordCombinations;
-	vector<int> currIndices;
-    vector<string> currDictSelection;
-
-	for(int i=0; i<N; i++){
-		currIndices.push_back(0);
-		currDictSelection.push_back(keyPadDict[a[i]]);
-	}
-	
-    findStringPermutations(possibleWordCombinations, currDictSelection, currIndices, N);
-	return possibleWordCombinations;
-}
+}  // } Driver Code Ends
