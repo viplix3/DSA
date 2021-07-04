@@ -3,24 +3,21 @@ using namespace std;
 
 int getFirstOccurenceIdx(vector<int> arr, int element)
 {
-    int beginIdx=0, endIdx=arr.size()-1, currOccIdx=arr.size();
+    int beginIdx=0, endIdx=arr.size()-1;
 
     while(beginIdx <= endIdx){
         int midIdx = (beginIdx + endIdx) / 2;
 
-        if(arr[midIdx] == element){
-            currOccIdx = min(currOccIdx, midIdx);
-
-            if(arr[midIdx-1] < element)
-                return currOccIdx;
-            else if(arr[midIdx-1] == element)
+        if(arr[midIdx] < element)
+            beginIdx = midIdx+1;
+        else if(arr[midIdx] > element)
+            endIdx = midIdx-1;
+        else {
+            if(midIdx == 0 || arr[midIdx-1] != arr[midIdx])
+                return midIdx;
+            else
                 endIdx = midIdx-1;
         }
-
-        else if(arr[midIdx] < element)
-            beginIdx = midIdx+1;
-        else
-            endIdx = midIdx-1;
     }
     return -1;
 }
