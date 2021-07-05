@@ -8,22 +8,6 @@ using namespace std;
 
 class Solution{
     public:
-        int bound_idx(long long arr[], int startIdx, int endIdx, long long key)
-        {
-            int N = endIdx;
-            while(startIdx < endIdx){
-                int midIdx = startIdx + (endIdx - startIdx) / 2;
-                if(arr[midIdx] <= key)
-                    startIdx = midIdx+1;
-                else
-                    endIdx = midIdx;
-            }
-            if(startIdx < N && arr[startIdx] <= key) {
-                   startIdx++;
-                }
-            return startIdx;
-        }
-        
         //Function to merge the arrays.
         void merge(long long arr1[], long long arr2[], int n, int m) 
         { 
