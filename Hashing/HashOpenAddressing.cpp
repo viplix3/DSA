@@ -35,9 +35,10 @@ struct hashTable
         int __hash__ = hash(key); // First hash
         int prob_hash = __hash__;
         int clash = 1;
+        int iter_hash = double_hash(key, clash);
 
         while((table[prob_hash] != -1) && (table[prob_hash] != -2)){
-            prob_hash = double_hash(key, clash);
+            prob_hash = (prob_hash + (clash * iter_hash)) % BUCKET;
             clash++;
         }
         table[prob_hash] = key;
@@ -48,9 +49,10 @@ struct hashTable
         int __hash__ = hash(key);
         int prob_hash = __hash__;
         int clash = 1;
+        int iter_hash = double_hash(key, clash);
 
         while((table[prob_hash] != key)){
-            prob_hash = double_hash(key, clash);
+            prob_hash = (prob_hash + (clash * iter_hash)) % BUCKET;
             clash++;
         }
 
@@ -62,12 +64,13 @@ struct hashTable
         int __hash__ = hash(key);
         int prob_hash = __hash__;
         int clash = 1;
+        int iter_hash = double_hash(key, clash);
 
         while(table[prob_hash] != -1){
             if(table[prob_hash] == key)
                 return true;
 
-            prob_hash = double_hash(key, clash);
+            prob_hash = (prob_hash + (clash * iter_hash)) % BUCKET;
             clash++;
 
             if(prob_hash == __hash__)
