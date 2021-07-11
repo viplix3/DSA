@@ -8,9 +8,9 @@ bool subArrayWithGivenSum(vector<int> &arr, int sum)
     prefixSumHashTable.insert(prefixSum);
 
     for(int i=1; i<arr.size(); i++){
-        prefixSum += arr[i];
         if(prefixSum == sum)
             return true;
+        prefixSum += arr[i];
         if(prefixSumHashTable.find(prefixSum - sum) != prefixSumHashTable.end())
             return true;
         prefixSumHashTable.insert(prefixSum);
