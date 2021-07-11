@@ -4,21 +4,21 @@ using namespace std;
 int longestSubArrayWithGivenSum(vector<int> &arr, int sum)
 {
     unordered_map<int, int> prefixSum_Idx;
-    prefixSum_Idx.insert({arr[0], 0});
-    int prefixSum = arr[0], length = 0;
+    int prefixSum = 0, length = 0;
 
-    for(int i=1; i<arr.size(); i++){
+    for(int i=0; i<arr.size(); i++){
         prefixSum += arr[i];
 
         if(prefixSum == sum)
             length = max(length, i+1);
         
+        if(prefixSum_Idx.find(prefixSum) == prefixSum_Idx.end())
+            prefixSum_Idx.insert({prefixSum, i});
+
         auto hash_pair = prefixSum_Idx.find(prefixSum - sum);
         if(hash_pair != prefixSum_Idx.end())
             length = max(length, i - hash_pair->second);
 
-        if(prefixSum_Idx.find(prefixSum) == prefixSum_Idx.end())
-            prefixSum_Idx.insert({prefixSum, i});
     }
     return length;
 }
