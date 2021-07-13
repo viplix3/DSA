@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// Get the maximum subsequence sum of the array such that the subsequence contains no consecutive elements
+
 long long getMaxNonAdjacentSubSequenceSum(vector<int>& arr)
 {
 	long long sum_including_prev = arr[0], sum_excluding_prev = 0;

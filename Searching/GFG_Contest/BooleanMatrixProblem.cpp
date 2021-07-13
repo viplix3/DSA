@@ -2,6 +2,8 @@
 #include <vector>
 using namespace std;
 
+// Given a matrix M, if any of the row is having 1, fill the whole row with 1s
+
 void fill_ones_rows(vector<vector<int>>& mat) {
 	vector<int> rows;
 	vector<int> row_of_ones(mat[0].size());

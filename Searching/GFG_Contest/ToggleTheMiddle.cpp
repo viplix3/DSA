@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// Flip the middle bit of a number. If the number is having even bits, flip mid and mid-1 bits
+
 int toggle_middle(int num)
 {
 	int num_bits = (int)log2(num) + 1;
