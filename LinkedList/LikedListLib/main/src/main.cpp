@@ -281,5 +281,17 @@ int main(){
 	std::cout << palindrome_list;
 	std::cout << "Is palidrome: " << linked_list::is_palindrome(palindrome_list) << std::endl;
 
+	// Pairwise swapp
+	std::cout << "\nPairwise swapping the linkedlist entried" << std::endl;
+	std::cout << sorted_list_1;
+	std::cout << "After pairwise swapping" << std::endl;
+	sorted_list_1 = linked_list::pairwise_swap(sorted_list_1);
+	std::cout << sorted_list_1;
+
+	std::cout << std::endl;
+	std::cout << sorted_list_2;
+	std::cout << "After pairwise swapping" << std::endl;
+	sorted_list_2 = linked_list::pairwise_swap(sorted_list_2);
+	std::cout << sorted_list_2;
 	return EXIT_SUCCESS;
 }
