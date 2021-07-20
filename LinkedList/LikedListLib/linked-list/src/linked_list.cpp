@@ -348,7 +348,7 @@ void linked_list::detect_and_remove_loop(Node* head_ptr) {
 
 	while(fast_ptr != NULL && fast_ptr->next != NULL) {
 		slow_ptr = slow_ptr->next;
-		fast_ptr = fast_ptr->next;
+		fast_ptr = fast_ptr->next->next;
 
 		if(slow_ptr == fast_ptr)
 			break;
