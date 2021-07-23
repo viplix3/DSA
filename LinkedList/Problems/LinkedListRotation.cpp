@@ -38,7 +38,7 @@ class Solution
 			return head;
 
         Node *curr_head = head;
-        Node *rotated_list_head = head;
+        Node *rotated_list_tail = head, *rotated_list_head = NULL;
 		int linked_list_length = 1;
         
         // Making list circular, i.e. connecting last node with head
@@ -48,17 +48,20 @@ class Solution
         }
         curr_head->next = head;
 
-		// Getting the rotated linked list head
 		num_rotations = num_rotations % linked_list_length;
 
-		while(num_rotations--)
-			rotated_list_head = rotated_list_head->next;
+        if(num_rotations == 0) {
+            curr_head->next = NULL;
+            return head;
+        }
+
+		// Getting the rotated linked list tail, the node next to it will be head
+		for(int i=1; i < num_rotations; i++)
+			rotated_list_tail = rotated_list_tail->next;
         
-        // Now we just need to make the next of node before rotated_list_head as NULL
-        curr_head = rotated_list_head;
-        while(curr_head->next != rotated_list_head)
-            curr_head = curr_head->next;
-        curr_head->next = NULL;
+        // Now we just need to make next node as head and next of curr node as NULL
+        rotated_list_head = rotated_list_tail->next;
+        rotated_list_tail->next = NULL;
         
         return rotated_list_head;
     }
