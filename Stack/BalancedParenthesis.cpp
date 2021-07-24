@@ -1,6 +1,15 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+bool is_matching(char ch1, char ch2)
+{
+	return (
+			(ch1 == '(' && ch2 == ')') ||
+			(ch1 == '{' && ch2 == '}') ||
+			(ch1 == '[' && ch2 == ']')
+			);
+}
+
 bool checkBalancedParenthesis(string str)
 {
 	stack<char> parenthesis_stack;
@@ -9,24 +18,12 @@ bool checkBalancedParenthesis(string str)
 		if(str[i] == '(' || str[i] == '[' || str[i] == '{')
 			parenthesis_stack.push(str[i]);
 		else {
-			if(str[i] == ')') {
-				if(parenthesis_stack.empty() || parenthesis_stack.top() != '(')
-					return false;
-				else
-					parenthesis_stack.pop();
-			}
-			else if(str[i] == ']') {
-				if(parenthesis_stack.empty() || parenthesis_stack.top() != '[')
-					return false;
-				else
-					parenthesis_stack.pop();
-			}
-			else if(str[i] == '}') {
-				if(parenthesis_stack.empty() || parenthesis_stack.top() != '{')
-					return false;
-				else
-					parenthesis_stack.pop();
-			}
+			if(parenthesis_stack.empty())
+				return false;
+			else if(is_matching(parenthesis_stack.top(), str[i]) == false)
+				return false;
+			else
+				parenthesis_stack.pop();
 		}
 	}
 	if(!parenthesis_stack.empty())
