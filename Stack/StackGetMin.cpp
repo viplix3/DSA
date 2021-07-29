@@ -26,6 +26,7 @@ public:
 			return INT_MIN;
 
 		int data = m_stack_arr[m_top_ptr];
+
 		if(data <= m_curr_min)
 			data = m_curr_min;
 
@@ -38,10 +39,10 @@ public:
 			return;
 		}
 
-		if(data <= m_curr_min) {
-			if(m_curr_min == INT_MAX)
-				m_curr_min = data;
-
+		if(isEmpty()) {
+			m_curr_min = data;
+		}
+		else if(data <= m_curr_min) {
 			int data_modified = 2 * data - m_curr_min;
 			m_curr_min = data;
 			data = data_modified;
@@ -57,9 +58,9 @@ public:
 			return INT_MIN;
 		}
 		
-		int data = m_stack_arr[m_top_ptr];
+		int data = top();
 		
-		if(data == m_curr_min) {
+		if(data <= m_curr_min) {
 			data = m_curr_min;
 			m_curr_min = 2 * m_curr_min - data;
 		}
