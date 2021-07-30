@@ -58,11 +58,12 @@ public:
 			return INT_MIN;
 		}
 		
-		int data = top();
+		int data = m_stack_arr[m_top_ptr];
 		
 		if(data <= m_curr_min) {
+			int curr_min_modified = 2 * m_curr_min - data;
 			data = m_curr_min;
-			m_curr_min = 2 * m_curr_min - data;
+			m_curr_min = curr_min_modified;
 		}
 		m_top_ptr -= 1;
 		
