@@ -21,11 +21,11 @@ public:
 		return false;
 	}
 
-	int top() {
+	T top() {
 		if(isEmpty())
 			return INT_MIN;
 
-		int data = m_stack_arr[m_top_ptr];
+		T data = m_stack_arr[m_top_ptr];
 
 		if(data <= m_curr_min)
 			data = m_curr_min;
@@ -43,7 +43,7 @@ public:
 			m_curr_min = data;
 		}
 		else if(data <= m_curr_min) {
-			int data_modified = 2 * data - m_curr_min;
+			T data_modified = 2 * data - m_curr_min;
 			m_curr_min = data;
 			data = data_modified;
 		}
@@ -52,16 +52,16 @@ public:
 		m_stack_arr[m_top_ptr] = data;
 	}
 
-	int pop() {
+	T pop() {
 		if(isEmpty()) {
 			std::cerr << "\nCannot pop from the stack, stack already empty" << std::endl;
 			return INT_MIN;
 		}
 		
-		int data = m_stack_arr[m_top_ptr];
+		T data = m_stack_arr[m_top_ptr];
 		
 		if(data <= m_curr_min) {
-			int curr_min_modified = 2 * m_curr_min - data;
+			T curr_min_modified = 2 * m_curr_min - data;
 			data = m_curr_min;
 			m_curr_min = curr_min_modified;
 		}
@@ -70,7 +70,7 @@ public:
 		return data;
 	}
 
-	int getMin() {
+	T getMin() {
 		if(isEmpty()) {
 			std::cerr << "\nConnot get minimum element, stack is empty" << std::endl;
 			return INT_MAX;
@@ -83,8 +83,8 @@ public:
 
 
 int main() {
-	Stack<int, 6> stackWithMin;
-	int data, num_items;
+	Stack<double, 6> stackWithMin;
+	double data, num_items;
 
 	std::cout << "\nTrying pop on empty stack" << std::endl;
 	data = stackWithMin.pop();
@@ -102,7 +102,7 @@ int main() {
 
 		std::cout << "Current stack" << std::endl;
 	
-		Stack<int, 6> stackWithMinCopy = stackWithMin;
+		Stack<double, 6> stackWithMinCopy = stackWithMin;
 
 		while(stackWithMinCopy.isEmpty() == false) {
 			data = stackWithMinCopy.top();
