@@ -50,16 +50,9 @@ string infixToPostFix(string infixExpression)
 					operator_dump.push(infixExpression[i]);
 				else if(isSamePrecedence(infixExpression[i], operator_dump.top())) {
 					if(infixExpression[i] != '^') { // Will process left to right
-						string operators = "";
-						operators += infixExpression[i];
-
-						while(operator_dump.empty() == false) {
-							operators += operator_dump.top();
-							operator_dump.pop();
-						}
-
-						reverse(operators.begin(), operators.end());
-						postfixExpression += operators;
+						postfixExpression += operator_dump.top();
+						operator_dump.pop();
+						operator_dump.push(infixExpression[i]);
 					}
 					else
 						operator_dump.push(infixExpression[i]);
@@ -112,10 +105,10 @@ int main() {
 	output_string = infixToPostFix(input_string);
 	cout << "Postfix expression: " << output_string << endl << endl;
 	
-	// input_string = "";
-	// cout << "Infix expression: " << input_string << endl;
-	// output_string = infixToPostFix(input_string);
-	// cout << "Postfix expression: " << output_string << endl << endl;
+	input_string = "a+b/c-d*e";
+	cout << "Infix expression: " << input_string << endl;
+	output_string = infixToPostFix(input_string);
+	cout << "Postfix expression: " << output_string << endl << endl;
 	
 	return 0;
 }
