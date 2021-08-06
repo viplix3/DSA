@@ -19,11 +19,11 @@ class Solution
 
         // Prev min of fist element is always nothing
         prevMinIdx.emplace_back(-1);
-        prevMinStack.push(arr[0]);
+        prevMinStack.push(0);
         
         // Next min of last element is always nothing
         nextMinIdx.emplace_back(arrSize);
-        nextMinStack.push(arr[arrSize-1]);
+        nextMinStack.push(arrSize-1);
         
         // Calculating prevMinIdx and nextMinIdx for each idx as they will give as the
         // minimum element of various window sizes at all the array indices
@@ -39,15 +39,33 @@ class Solution
             
             // Next min calculation
             while(nextMinStack.empty() == false && \
-                    arr[nexMinStack.top()] >= arr[arrSize - (i+1)])
+                    arr[nextMinStack.top()] >= arr[arrSize - (i+1)])
                 nextMinStack.pop();
             int nextMinForCurr = nextMinStack.empty() ? arrSize : nextMinStack.top();
             nextMinIdx.emplace_back(nextMinForCurr);
             nextMinStack.push(arrSize - (i+1));
         }
+        reverse(nextMinIdx.begin(), nextMinIdx.end());
         
-        
-        
+        vector<int> maxOfMins(arrSize+1);
+        for(int i=0; i<arrSize; i++) {
+            // The window size starting from current idx for which current element is minimum
+            int minWindowSize = (nextMinIdx[i] - prevMinIdx[i] - 1); // Min of all windows
+
+            // The current element is a cadidate for max of mins for window length of minWindowSize.
+            // Checking if some other candidate has already been populated for given window size
+            // If true, keeping the max of already populated element and current element to get true max of mins
+            maxOfMins[minWindowSize] = max(arr[i], maxOfMins[minWindowSize]);
+        }
+
+        // Now, there might be some window sizes for which no element is directly associated with
+        // In such cases, the last smaller window element will take over as max of mins for new window
+        for(int i=arrSize-1; i >= 1; i--) {// First is always maxArrElem and last is always minArrElem, starting from last
+            maxOfMins[i] = max(maxOfMins[i], maxOfMins[i+1]);
+        }
+
+        maxOfMins.erase(maxOfMins.begin());
+        return maxOfMins;
     }
 };
 
