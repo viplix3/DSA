@@ -25,17 +25,16 @@ public:
 
 	void push(T data)
 	{
+		Q2.push(data);
+
 		while(Q1.empty() == false) {
 			Q2.push(Q1.front());
 			Q1.pop();
 		}
 
-		Q1.push(data);
-
-		while(Q2.empty() == false) {
-			Q1.push(Q2.front());
-			Q2.pop();
-		}
+		queue<T> Q = Q1;
+		Q1 = Q2;
+		Q2 = Q;
 	}
 
 };
