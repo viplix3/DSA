@@ -134,6 +134,16 @@ int main() {
 	cout << "\tRear: " << DQ.getRear();
 	cout << "\n" << endl;
 
+	DQ.insertFront(60);
+	cout << "Front: " << DQ.getFront();
+	cout << "\tRear: " << DQ.getRear();
+	cout << "\n" << endl;
+
+	DQ.insertRear(70);
+	cout << "Front: " << DQ.getFront();
+	cout << "\tRear: " << DQ.getRear();
+	cout << "\n" << endl;
+
 	data = DQ.deleteFront();
 	cout << "Deleted data: " << data << endl;
 	cout << "Front: " << DQ.getFront();
