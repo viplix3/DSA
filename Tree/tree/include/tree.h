@@ -20,5 +20,7 @@ namespace Tree {
 
 	// Tree traversals
 	void inOrder_traversal(Node* root_ptr);
+	void preOrder_traversal(Node* root_ptr);
+	void postOrder_traversal(Node* root_ptr);
 
 }

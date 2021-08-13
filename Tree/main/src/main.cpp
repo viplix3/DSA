@@ -11,8 +11,16 @@ int main() {
 	Tree::insert_right(root_ptr->m_right, new Tree::Node(50));
 	cout << "\nTree created" << endl;
 
-	cout << "In-order traversal of tree: ";
+	cout << "In-order traversal of tree:\t";
 	Tree::inOrder_traversal(root_ptr);
+	cout << endl;
+
+	cout << "Pre-order traversal of tree:\t";
+	Tree::preOrder_traversal(root_ptr);
+	cout << endl;
+
+	cout << "Post-order traversal of tree:\t";
+	Tree::postOrder_traversal(root_ptr);
 	cout << endl;
 
 
