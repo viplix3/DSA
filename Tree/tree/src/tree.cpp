@@ -19,3 +19,11 @@ void Tree::insert_right(Node* parent, Node* node) {
 
 	parent->m_right = node;
 }
+
+int Tree::getTreeHeight(Node* root) {
+	if(root == NULL)
+		return 0;
+	
+	return std::max(getTreeHeight(root->m_left),
+				getTreeHeight(root->m_right))+1;
+}

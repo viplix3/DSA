@@ -23,6 +23,9 @@ int main() {
 	Tree::postOrder_traversal(root_ptr);
 	cout << endl;
 
+	cout << "Tree height: " << Tree::getTreeHeight(root_ptr);
+	cout << endl;
+
 
 	return EXIT_SUCCESS;
 }

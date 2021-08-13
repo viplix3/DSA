@@ -23,4 +23,7 @@ namespace Tree {
 	void preOrder_traversal(Node* root_ptr);
 	void postOrder_traversal(Node* root_ptr);
 
+	// Tree Properties
+	int getTreeHeight(Node* root_ptr);
+
 }
