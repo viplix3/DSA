@@ -29,5 +29,6 @@ namespace Tree {
 
 	// Misc.
 	void printKthLevel(Node* root_ptr, int level);
+	void levelOrder_lineByLine(Node* root_ptr);
 
 }

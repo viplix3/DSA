@@ -47,3 +47,34 @@ void Tree::levelOrder_traversal(Node* root) {
 			treeLevelNodes.push(currLevelNode->m_right);
 	}
 }
+
+void Tree::levelOrder_lineByLine(Node* root) {
+	if(root == NULL)
+		return;
+
+	std::queue<Node*> treeLevelNodes;
+	treeLevelNodes.push(root);
+	treeLevelNodes.push(NULL);
+
+	while(treeLevelNodes.empty() == false) {
+		Node *currLevelNode = treeLevelNodes.front();
+		treeLevelNodes.pop();
+
+		if(currLevelNode == NULL)
+			continue;
+
+		std::cout << currLevelNode->m_data << "\t";
+
+		if(currLevelNode->m_left != NULL)
+			treeLevelNodes.push(currLevelNode->m_left);
+		if(currLevelNode->m_right != NULL)
+			treeLevelNodes.push(currLevelNode->m_right);
+
+		if(treeLevelNodes.front() == NULL) {
+			std::cout << std::endl;
+			treeLevelNodes.pop();
+			treeLevelNodes.push(NULL);
+		}
+	}
+	
+}
