@@ -43,3 +43,11 @@ void Tree::printKthLevel(Node* root, int level) {
 	printKthLevel(root->m_left, level-1);
 	printKthLevel(root->m_right, level-1);
 }
+
+int Tree::getSize(Node* root) {
+	if(root == NULL)
+		return 0;
+	
+	return (1 + getSize(root->m_left)
+				 + getSize(root->m_right));
+}

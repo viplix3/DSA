@@ -56,7 +56,9 @@ int main() {
 	cout << endl;
 	cout << "Lever order traversal (BFS), level per line (method-2)" << endl;
 	Tree::levelOrder_lineByLine_method2(root_ptr);
+
 	cout << endl;
+	cout << "Tree size: " << Tree::getSize(root_ptr) << endl;
 
 	return EXIT_SUCCESS;
 }
