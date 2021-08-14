@@ -26,4 +26,7 @@ namespace Tree {
 	// Tree Properties
 	int getTreeHeight(Node* root_ptr);
 
+	// Misc.
+	void printKthLevel(Node* root_ptr, int level);
+
 }
