@@ -1,4 +1,5 @@
 #include "tree.h"
+#include <queue>
 
 void Tree::inOrder_traversal(Node* root)
 {
@@ -32,13 +33,17 @@ void Tree::levelOrder_traversal(Node* root) {
 	if(root == NULL)
 		return;
 	
-	if(root->m_left == NULL && root->m_right == NULL) { // Leaf node
-		std::cout << root->m_data << "\t";
-		return;
+	std::queue<Node*> treeLevelNodes;
+	treeLevelNodes.push(root);
+
+	while(treeLevelNodes.empty() == false) {
+		Node *currLevelNode = treeLevelNodes.front();
+		treeLevelNodes.pop();
+		std::cout << currLevelNode->m_data << "\t";
+
+		if(currLevelNode->m_left != NULL)
+			treeLevelNodes.push(currLevelNode->m_left);
+		if(currLevelNode->m_right != NULL)
+			treeLevelNodes.push(currLevelNode->m_right);
 	}
-
-	int treeHeight = Tree::getTreeHeight(root);
-
-	for(int i=0; i<treeHeight; i++)
-		Tree::printKthLevel(root, i);
 }
