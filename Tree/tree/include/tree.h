@@ -26,13 +26,14 @@ namespace Tree {
 
 	// Tree Properties
 	int getTreeHeight(Node* root_ptr);
+	int getSize(Node* root_ptr);
+	int getMax(Node* root_ptr);
+	bool childrenSumProperty(Node* root_ptr);
 
 	// Misc.
 	void printKthLevel(Node* root_ptr, int level);
 	void levelOrder_lineByLine(Node* root_ptr);
 	void levelOrder_lineByLine_method2(Node* root_ptr);
-	int getSize(Node* root_ptr);
-	int getMax(Node* root_ptr);
 	void printLeftView(Node* root_ptr);
 	void printLeftView_recursive(Node* root_ptr);
 

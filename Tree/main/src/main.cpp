@@ -89,5 +89,17 @@ int main() {
 	Tree::printLeftView(leftView_test2);
 	cout << endl;
 
+	Tree::Node *csp_tree = new Tree::Node(20);
+	Tree::insert_left(csp_tree, new Tree::Node(8));
+	Tree::insert_right(csp_tree, new Tree::Node(12));
+	Tree::insert_left(csp_tree->m_left, new Tree::Node(3));
+	Tree::insert_right(csp_tree->m_left, new Tree::Node(5));
+
+	cout << endl;
+	cout << "Tree 1 follows children sum property: " << Tree::childrenSumProperty(root_ptr) << endl;
+	cout << "Tree 2 follows children sum property: " << Tree::childrenSumProperty(leftView_test1) << endl;
+	cout << "Tree 3 follows children sum property: " << Tree::childrenSumProperty(leftView_test2) << endl;
+	cout << "Tree 4 follows children sum property: " << Tree::childrenSumProperty(csp_tree) << endl;
+
 	return EXIT_SUCCESS;
 }

@@ -61,3 +61,24 @@ int Tree::getMax(Node* root) {
 				std::max(getMax(root->m_left),
 							getMax(root->m_right)));
 }
+
+bool Tree::childrenSumProperty(Node* root) {
+	if(root == NULL)
+		return true;
+	
+	if(root->m_left == NULL && root->m_right == NULL)
+		return true;
+
+	int sum = root->m_data;
+
+	if(root->m_left != NULL)
+		sum -= root->m_left->m_data;
+	if(root->m_right != NULL)
+		sum -= root->m_right->m_data;
+	
+	return (
+			sum == 0 &&
+			childrenSumProperty(root->m_left) &&
+			childrenSumProperty(root->m_right)
+			);
+}
