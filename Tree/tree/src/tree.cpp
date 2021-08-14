@@ -132,32 +132,19 @@ void BTree2DLL(Tree::Node* root, Tree::Node** DLL_headRef, Tree::Node** DLL_tail
 	if(root == NULL)
 		return;
 
-	if(root->m_left == NULL && root->m_right == NULL) // Left node
-	{
-		if(*DLL_headRef == NULL) {
-			*DLL_headRef = root;
-			*DLL_tailRef = *DLL_headRef;
-		}
-		else {
-			(*DLL_tailRef)->m_right = root;
-			root->m_left = *DLL_tailRef;
-			*DLL_tailRef = (*DLL_tailRef)->m_right;
-		}
-		return;
-	}
 
 	BTree2DLL(root->m_left, DLL_headRef, DLL_tailRef);
 
 	if(*DLL_headRef == NULL) {
 		*DLL_headRef = *DLL_tailRef = root;
 	}
+	else {
+		(*DLL_tailRef)->m_right = root;
+		root->m_left = *DLL_tailRef;
+		*DLL_tailRef = (*DLL_tailRef)->m_right;
+	}
 
-	Tree::Node *root_right = root->m_right;
-	(*DLL_tailRef)->m_right = root;
-	root->m_left = *DLL_tailRef;
-	*DLL_tailRef = (*DLL_tailRef)->m_right;
-
-	BTree2DLL(root_right, DLL_headRef, DLL_tailRef);
+	BTree2DLL(root->m_right, DLL_headRef, DLL_tailRef);
 }
 
 Tree::Node* Tree::binaryTree2DLL(Node* root) {
