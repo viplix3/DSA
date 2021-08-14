@@ -1,4 +1,5 @@
 #include "tree.h"
+#include <climits>
 
 void Tree::insert_left(Node* parent, Node* node) {
 	if(parent == NULL)
@@ -50,4 +51,13 @@ int Tree::getSize(Node* root) {
 	
 	return (1 + getSize(root->m_left)
 				 + getSize(root->m_right));
+}
+
+int Tree::getMax(Node* root) {
+	if(root == NULL)
+		return INT_MIN;
+	
+	return std::max(root->m_data,
+				std::max(getMax(root->m_left),
+							getMax(root->m_right)));
 }

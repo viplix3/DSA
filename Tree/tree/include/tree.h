@@ -31,8 +31,7 @@ namespace Tree {
 	void printKthLevel(Node* root_ptr, int level);
 	void levelOrder_lineByLine(Node* root_ptr);
 	void levelOrder_lineByLine_method2(Node* root_ptr);
-
-	// Tree size
 	int getSize(Node* root_ptr);
+	int getMax(Node* root_ptr);
 
 }

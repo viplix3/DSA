@@ -60,5 +60,8 @@ int main() {
 	cout << endl;
 	cout << "Tree size: " << Tree::getSize(root_ptr) << endl;
 
+	cout << endl;
+	cout << "Maximum in tree: " << Tree::getMax(root_ptr) << endl;
+
 	return EXIT_SUCCESS;
 }
