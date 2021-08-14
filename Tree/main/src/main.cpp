@@ -129,5 +129,55 @@ int main() {
 	cout << "Tree 3 max width: " << Tree::getMaxWidth(leftView_test2) << endl;
 	cout << "Tree 4 max width: " << Tree::getMaxWidth(csp_tree) << endl;
 
+	// Binary tree to DLL
+	cout << endl;
+	cout << "Converting binary tree 2 to DLL" << endl;
+	cout << "InOrder traversal of tree: ";
+	Tree::inOrder_traversal(root_ptr);
+	cout << endl;
+	Tree::Node *DLL_head = Tree::binaryTree2DLL(root_ptr);
+	cout << "DLL (converting with inOrder traversal order)" << endl;
+	while(DLL_head != NULL) {
+		cout << DLL_head->m_data << "\t";
+		DLL_head = DLL_head->m_right;
+	}
+	cout << endl;
+
+	cout << endl;
+	cout << "InOrder traversal of tree: ";
+	Tree::inOrder_traversal(leftView_test1);
+	cout << endl;
+	DLL_head = Tree::binaryTree2DLL(leftView_test1);
+	cout << "DLL (converting with inOrder traversal order)" << endl;
+	while(DLL_head != NULL) {
+		cout << DLL_head->m_data << "\t";
+		DLL_head = DLL_head->m_right;
+	}
+	cout << endl;
+
+	cout << endl;
+	cout << "InOrder traversal of tree: ";
+	Tree::inOrder_traversal(leftView_test2);
+	cout << endl;
+	DLL_head = Tree::binaryTree2DLL(leftView_test2);
+	cout << "DLL (converting with inOrder traversal order)" << endl;
+	while(DLL_head != NULL) {
+		cout << DLL_head->m_data << "\t";
+		DLL_head = DLL_head->m_right;
+	}
+	cout << endl;
+
+	cout << endl;
+	cout << "InOrder traversal of tree: ";
+	Tree::inOrder_traversal(csp_tree);
+	cout << endl;
+	DLL_head = Tree::binaryTree2DLL(csp_tree);
+	cout << "DLL (converting with inOrder traversal order)" << endl;
+	while(DLL_head != NULL) {
+		cout << DLL_head->m_data << "\t";
+		DLL_head = DLL_head->m_right;
+	}
+	cout << endl;
+
 	return EXIT_SUCCESS;
 }
