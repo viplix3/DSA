@@ -50,8 +50,12 @@ int main() {
 	cout << endl;
 
 	cout << endl;
-	cout << "Lever order traversal (BFS), level per line" << endl;
+	cout << "Lever order traversal (BFS), level per line (method-1)" << endl;
 	Tree::levelOrder_lineByLine(root_ptr);
+
+	cout << endl;
+	cout << "Lever order traversal (BFS), level per line (method-2)" << endl;
+	Tree::levelOrder_lineByLine_method2(root_ptr);
 	cout << endl;
 
 	return EXIT_SUCCESS;

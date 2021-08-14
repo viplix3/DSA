@@ -76,5 +76,29 @@ void Tree::levelOrder_lineByLine(Node* root) {
 			treeLevelNodes.push(NULL);
 		}
 	}
-	
+}
+
+void Tree::levelOrder_lineByLine_method2(Node* root) {
+	if(root == NULL)
+		return;
+
+	std::queue<Node*> treeLevelNodes;
+	treeLevelNodes.push(root);
+
+	while(treeLevelNodes.empty() == false) {
+		int numLevelNodes = treeLevelNodes.size();
+
+		for(int i=0; i<numLevelNodes; i++) {
+			Node *currLevelNode = treeLevelNodes.front();
+			treeLevelNodes.pop();
+
+			std::cout << currLevelNode->m_data << "\t";
+
+			if(currLevelNode->m_left != NULL)
+				treeLevelNodes.push(currLevelNode->m_left);
+			if(currLevelNode->m_right != NULL)
+				treeLevelNodes.push(currLevelNode->m_right);
+		}
+		std::cout << std::endl;
+	}
 }
