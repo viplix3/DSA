@@ -44,6 +44,11 @@ int main() {
 	Tree::printKthLevel(root_ptr, 3);
 	cout << endl;
 
+	cout << endl;
+	cout << "Lever order traversal (BFS):\t";
+	Tree::levelOrder_traversal(root_ptr);
+	cout << endl;
+
 
 	return EXIT_SUCCESS;
 }

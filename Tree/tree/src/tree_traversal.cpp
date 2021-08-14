@@ -27,3 +27,18 @@ void Tree::postOrder_traversal(Node* root) {
 	postOrder_traversal(root->m_right);
 	std::cout << root->m_data << "\t";
 }
+
+void Tree::levelOrder_traversal(Node* root) {
+	if(root == NULL)
+		return;
+	
+	if(root->m_left == NULL && root->m_right == NULL) { // Leaf node
+		std::cout << root->m_data << "\t";
+		return;
+	}
+
+	int treeHeight = Tree::getTreeHeight(root);
+
+	for(int i=0; i<treeHeight; i++)
+		Tree::printKthLevel(root, i);
+}
