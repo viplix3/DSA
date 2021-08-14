@@ -82,3 +82,21 @@ bool Tree::childrenSumProperty(Node* root) {
 			childrenSumProperty(root->m_right)
 			);
 }
+
+int Tree::isHeightBalanced(Node* root) {
+	if(root == NULL)
+		return 0;
+
+	int leftHeight = isHeightBalanced(root->m_left);
+	if(leftHeight == -1)
+		return -1;
+
+	int rightHeight = isHeightBalanced(root->m_right);
+	if(rightHeight == -1)
+		return -1;
+
+	if(abs(leftHeight - rightHeight) > 1)
+		return -1;
+	else
+		return std::max(leftHeight, rightHeight) + 1;
+}

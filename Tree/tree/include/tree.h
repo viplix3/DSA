@@ -29,6 +29,7 @@ namespace Tree {
 	int getSize(Node* root_ptr);
 	int getMax(Node* root_ptr);
 	bool childrenSumProperty(Node* root_ptr);
+	int isHeightBalanced(Node* root_ptr);
 
 	// Misc.
 	void printKthLevel(Node* root_ptr, int level);

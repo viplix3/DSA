@@ -101,5 +101,27 @@ int main() {
 	cout << "Tree 3 follows children sum property: " << Tree::childrenSumProperty(leftView_test2) << endl;
 	cout << "Tree 4 follows children sum property: " << Tree::childrenSumProperty(csp_tree) << endl;
 
+	cout << endl;
+	cout << "Is tree 1 height balanced : ";
+		if(Tree::isHeightBalanced(root_ptr) > 0)
+			cout << "Yes" << endl;
+		else
+			cout << "No" << endl;
+	cout << "Is tree 2 height balanced : ";
+		if(Tree::isHeightBalanced(leftView_test1) > 0)
+			cout << "Yes" << endl;
+		else
+			cout << "No" << endl;
+	cout << "Is tree 3 height balanced : ";
+		if(Tree::isHeightBalanced(leftView_test2) > 0)
+			cout << "Yes" << endl;
+		else
+			cout << "No" << endl;
+	cout << "Is tree 4 height balanced : ";
+		if(Tree::isHeightBalanced(csp_tree) > 0)
+			cout << "Yes" << endl;
+		else
+			cout << "No" << endl;
+
 	return EXIT_SUCCESS;
 }
