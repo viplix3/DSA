@@ -1,5 +1,6 @@
 #include "tree.h"
 #include <climits>
+#include <queue>
 
 void Tree::insert_left(Node* parent, Node* node) {
 	if(parent == NULL)
@@ -99,4 +100,30 @@ int Tree::isHeightBalanced(Node* root) {
 		return -1;
 	else
 		return std::max(leftHeight, rightHeight) + 1;
+}
+
+int Tree::getMaxWidth(Node* root) {
+	if(root == NULL)
+		return 0;
+
+	std::queue<Node*> treeLevelNodes;
+	treeLevelNodes.push(root);
+	int maxWidth = INT_MIN;
+
+	while(treeLevelNodes.empty() == false) {
+		int currLevelWidth = treeLevelNodes.size();
+		maxWidth = std::max(maxWidth, currLevelWidth);
+
+		for(int i=0; i<currLevelWidth; i++) {
+			Tree::Node* curr_node = treeLevelNodes.front();
+			treeLevelNodes.pop();
+
+			if(curr_node->m_left != NULL)
+				treeLevelNodes.push(curr_node->m_left);
+
+			if(curr_node->m_right != NULL)
+				treeLevelNodes.push(curr_node->m_right);
+		}
+	}
+	return maxWidth;
 }

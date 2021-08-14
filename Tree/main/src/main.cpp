@@ -123,5 +123,11 @@ int main() {
 		else
 			cout << "No" << endl;
 
+	cout << endl;
+	cout << "Tree 1 max width: " << Tree::getMaxWidth(root_ptr) << endl;
+	cout << "Tree 2 max width: " << Tree::getMaxWidth(leftView_test1) << endl;
+	cout << "Tree 3 max width: " << Tree::getMaxWidth(leftView_test2) << endl;
+	cout << "Tree 4 max width: " << Tree::getMaxWidth(csp_tree) << endl;
+
 	return EXIT_SUCCESS;
 }
