@@ -102,3 +102,35 @@ void Tree::levelOrder_lineByLine_method2(Node* root) {
 		std::cout << std::endl;
 	}
 }
+
+void Tree::printLeftView(Node* root) {
+	if(root == NULL)
+		return;
+	
+	std::queue<Node*> treeLevelNodes;
+	treeLevelNodes.push(root);
+	treeLevelNodes.push(NULL);
+
+	Tree::Node *prev_node = NULL;
+
+	while(treeLevelNodes.size() > 1) {
+		Tree::Node *curr_node = treeLevelNodes.front();
+		treeLevelNodes.pop();
+
+		if(curr_node == NULL) {
+			prev_node = curr_node;
+			treeLevelNodes.push(NULL);
+			continue;
+		}
+
+		if(prev_node == NULL)
+			std::cout << curr_node->m_data << "\t";
+
+		if(curr_node->m_left != NULL)
+			treeLevelNodes.push(curr_node->m_left);
+		if(curr_node->m_right != NULL)
+			treeLevelNodes.push(curr_node->m_right);
+
+		prev_node = curr_node;
+	}
+}

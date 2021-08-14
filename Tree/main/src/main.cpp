@@ -63,5 +63,31 @@ int main() {
 	cout << endl;
 	cout << "Maximum in tree: " << Tree::getMax(root_ptr) << endl;
 
+	// Left view tests
+	cout << endl;
+	cout << "Left view (i.e. left most node at each tree level) of tree" << endl;
+	Tree::printLeftView(root_ptr);
+	cout << endl;
+
+	Tree::Node *leftView_test1 = new Tree::Node(30);
+	Tree::insert_right(leftView_test1, new Tree::Node(50));
+	Tree::insert_left(leftView_test1->m_right, new Tree::Node(60));
+	Tree::insert_left(leftView_test1->m_right->m_left, new Tree::Node(10));
+	cout << endl;
+	cout << "Left view (i.e. left most node at each tree level) of tree" << endl;
+	Tree::printLeftView(leftView_test1);
+	cout << endl;
+
+	Tree::Node *leftView_test2 = new Tree::Node(10);
+	Tree::insert_left(leftView_test2, new Tree::Node(50));
+	Tree::insert_right(leftView_test2, new Tree::Node(60));
+	Tree::insert_left(leftView_test2->m_right, new Tree::Node(70));
+	Tree::insert_right(leftView_test2->m_right, new Tree::Node(20));
+	Tree::insert_right(leftView_test2->m_right->m_left, new Tree::Node(8));
+	cout << endl;
+	cout << "Left view (i.e. left most node at each tree level) of tree" << endl;
+	Tree::printLeftView(leftView_test2);
+	cout << endl;
+
 	return EXIT_SUCCESS;
 }

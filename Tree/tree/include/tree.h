@@ -33,5 +33,7 @@ namespace Tree {
 	void levelOrder_lineByLine_method2(Node* root_ptr);
 	int getSize(Node* root_ptr);
 	int getMax(Node* root_ptr);
+	void printLeftView(Node* root_ptr);
+	void printLeftView_recursive(Node* root_ptr);
 
 }
