@@ -1,5 +1,6 @@
 #include "tree.h"
 #include <queue>
+#include <stack>
 
 void Tree::inOrder_traversal(Node* root)
 {
@@ -132,5 +133,44 @@ void Tree::printLeftView(Node* root) {
 			treeLevelNodes.push(curr_node->m_right);
 
 		prev_node = curr_node;
+	}
+}
+
+void Tree::spiralLevelOrder_traversal(Node* root) {
+	if(root == NULL)
+		return;
+	
+	std::queue<Tree::Node*> treeLevelNodes;
+	std::stack<int> nodeData;
+	bool reverse = false;
+
+	treeLevelNodes.push(root);
+
+	while(treeLevelNodes.empty() == false) {
+		int currLevelNodes = treeLevelNodes.size();
+
+		for(int i=0; i<currLevelNodes; i++) {
+			Tree::Node *currNode = treeLevelNodes.front();
+			treeLevelNodes.pop();
+
+			if(reverse)
+				nodeData.push(currNode->m_data);
+			else
+				std::cout << currNode->m_data << "\t";
+
+			if(currNode->m_left != NULL)
+				treeLevelNodes.push(currNode->m_left);
+			if(currNode->m_right != NULL)
+				treeLevelNodes.push(currNode->m_right);
+		}
+
+		if(reverse) {
+			while(nodeData.empty() == false) {
+				std::cout << nodeData.top() << "\t";
+				nodeData.pop();
+			}
+		}
+		reverse = !reverse;
+		std::cout << std::endl;
 	}
 }
