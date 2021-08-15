@@ -195,8 +195,8 @@ bool Tree::getNodePath(Node* root, int node_data, std::vector<Node*> &path) {
 Tree::Node* Tree::getLCA_pathTracingMethod(Node* root, int node1_data, int node2_data) {
 	std::vector<Tree::Node*> node1_path, node2_path;
 	
-	if(Tree::getNodePath(root, node1_data, node1_path) == false ||
-		Tree::getNodePath(root, node2_data, node2_path) == false)
+	if(getNodePath(root, node1_data, node1_path) == false ||
+		getNodePath(root, node2_data, node2_path) == false)
 		return NULL;
 	
 	for(int i=0; i < node1_path.size() && i < node2_path.size(); i++) {
@@ -204,5 +204,30 @@ Tree::Node* Tree::getLCA_pathTracingMethod(Node* root, int node1_data, int node2
 			return node1_path[i];
 	}
 
+	return NULL;
+}
+
+Tree::Node* Tree::getLCA_recursion(Node* root, int node1_data, int node2_data) {
+	static Tree::Node *node1 = new Tree::Node(node1_data);
+	static Tree::Node *node2 = new Tree::Node(node2_data);
+
+	if(root == NULL)
+		return NULL;
+
+	if(node1 != NULL && root->m_data == node1->m_data) {
+		node1 = NULL;
+		return root;
+	}
+
+	if(node2 != NULL && root->m_data == node2->m_data) {
+		node2 = NULL;
+		return root;
+	}
+
+	if(getLCA_recursion(root->m_left, node1_data, node2_data) != NULL ||
+		getLCA_recursion(root->m_right, node1_data, node2_data) != NULL)
+		if(node1 == NULL && node2 == NULL)
+			return root;
+	
 	return NULL;
 }

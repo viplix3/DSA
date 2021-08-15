@@ -36,6 +36,7 @@ namespace Tree {
 	int getMaxWidth(Node* root_ptr);
 	int getDiameter(Node* root_ptr);
 	Node* getLCA_pathTracingMethod(Node* root_ptr, int node1_data, int node2_data);
+	Node* getLCA_recursion(Node* root_ptr, int node1_data, int node2_data);
 
 	// Misc.
 	void printKthLevel(Node* root_ptr, int level);

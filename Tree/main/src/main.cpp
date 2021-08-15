@@ -193,6 +193,9 @@ int main() {
 	cout << "LCA using path tracing method for nodes 40 and 80" << endl;
 	Tree::Node *LCA_node = Tree::getLCA_pathTracingMethod(root_ptr, 40, 80);
 	cout << "LCA Node data: " << LCA_node->m_data << endl;
+	cout << "LCA using recursion for nodes 40 and 80" << endl;
+	LCA_node = Tree::getLCA_recursion(root_ptr, 40, 80);
+	cout << "LCA Node data: " << LCA_node->m_data << endl;
 
 	return EXIT_SUCCESS;
 }
