@@ -39,5 +39,6 @@ namespace Tree {
 	void printLeftView(Node* root_ptr);
 	void printLeftView_recursive(Node* root_ptr);
 	Node* binaryTree2DLL(Node* root_ptr); // DLL will be in inOrder traversal format
+	Node* constructTree(int inOrder[], int preOrder[], int numNodes);
 
 }

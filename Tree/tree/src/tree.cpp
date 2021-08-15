@@ -154,3 +154,30 @@ Tree::Node* Tree::binaryTree2DLL(Node* root) {
 	BTree2DLL(root, &DLL_head, &DLL_tail);
 	return DLL_head;
 }
+
+Tree::Node* buildTree(int inOrder[], int preOrder[], int startIdx, int endIdx, int &currNodeIdx_preOrder) {
+	if(startIdx > endIdx)
+		return NULL;
+
+	Tree::Node *currRoot = new Tree::Node(preOrder[currNodeIdx_preOrder]);
+	currNodeIdx_preOrder += 1;
+
+	int currNodeIdx_inOrder;
+	for(int i=startIdx; i <= endIdx; i++) {
+		if(inOrder[i] == currRoot->m_data) {
+			currNodeIdx_inOrder = i;
+			break;
+		}
+	}
+
+	currRoot->m_left = buildTree(inOrder, preOrder, startIdx, currNodeIdx_inOrder-1, currNodeIdx_preOrder);
+	currRoot->m_right = buildTree(inOrder, preOrder, currNodeIdx_inOrder+1, endIdx, currNodeIdx_preOrder);
+	return currRoot;
+}
+
+Tree::Node* Tree::constructTree(int inOrder[], int preOrder[], int numNodes) {
+	int currNodeIdx = 0;
+
+	Tree::Node* tree_root = buildTree(inOrder, preOrder, 0, numNodes-1, currNodeIdx);
+	return tree_root;
+}

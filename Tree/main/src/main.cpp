@@ -179,5 +179,18 @@ int main() {
 	}
 	cout << endl;
 
+	cout << endl;
+	cout << "Creating tree from provided InOrder and PreOrder traversal" << endl;
+	int inOrder[] = {40, 20, 50, 10, 30, 80, 70, 90};
+	int preOrder[] = {10, 20, 40, 50, 30, 70, 80, 90};
+	Tree::Node* tree_root = Tree::constructTree(inOrder, preOrder, 8);
+	cout << "Created tree inOrder traversal: ";
+	Tree::inOrder_traversal(tree_root);
+	cout << "\nCreated tree preOrder traversal: ";
+	Tree::preOrder_traversal(tree_root);
+	cout << "\nCreated tree postOrder traversal: ";
+	Tree::postOrder_traversal(tree_root);
+	cout << endl;
+
 	return EXIT_SUCCESS;
 }
