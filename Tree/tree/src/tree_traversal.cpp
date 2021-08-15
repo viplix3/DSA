@@ -231,3 +231,23 @@ Tree::Node* Tree::getLCA_recursion(Node* root, int node1_data, int node2_data) {
 	
 	return NULL;
 }
+
+Tree::Node* Tree::getLCA_GFG(Node* root, int node1_data, int node2_data) {
+	if(root == NULL)
+		return NULL;
+
+	if(root->m_data == node1_data || root->m_data == node2_data)
+		return root;
+
+	Tree::Node *LCA1 = getLCA_GFG(root->m_left, node1_data, node2_data);
+	Tree::Node *LCA2 = getLCA_GFG(root->m_right, node1_data, node2_data);
+
+	if(LCA1 != NULL && LCA2 != NULL) // Perfect LCA
+		return root;
+
+	if(LCA1 != NULL) // Both nodes in LCA1 (left of root)
+		return LCA1;
+	else // Either both nodes in LCA2 (right of root) or they doesn't exist
+		LCA2;
+	return NULL;
+}
