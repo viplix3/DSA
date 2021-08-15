@@ -174,3 +174,35 @@ void Tree::spiralLevelOrder_traversal(Node* root) {
 		std::cout << std::endl;
 	}
 }
+
+bool Tree::getNodePath(Node* root, int node_data, std::vector<Node*> &path) {
+	if(root == NULL)
+		return false;
+
+	path.emplace_back(root);
+
+	if(root->m_data == node_data)
+		return true;
+
+	if(Tree::getNodePath(root->m_left, node_data, path) || 
+		Tree::getNodePath(root->m_right, node_data, path))
+		return true;
+
+	path.pop_back();
+	return false;
+}
+
+Tree::Node* Tree::getLCA_pathTracingMethod(Node* root, int node1_data, int node2_data) {
+	std::vector<Tree::Node*> node1_path, node2_path;
+	
+	if(Tree::getNodePath(root, node1_data, node1_path) == false ||
+		Tree::getNodePath(root, node2_data, node2_path) == false)
+		return NULL;
+	
+	for(int i=0; i < node1_path.size() && i < node2_path.size(); i++) {
+		if(node1_path[i+1] != node2_path[i+1])
+			return node1_path[i];
+	}
+
+	return NULL;
+}

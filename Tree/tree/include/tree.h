@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <stdlib.h>
+#include <vector>
 
 namespace Tree {
 
@@ -24,6 +25,7 @@ namespace Tree {
 	void postOrder_traversal(Node* root_ptr);
 	void levelOrder_traversal(Node* root_ptr);
 	void spiralLevelOrder_traversal(Node* root_ptr);
+	bool getNodePath(Node* root_ptr, int node_data, std::vector<Node*> &path);
 
 	// Tree Properties
 	int getTreeHeight(Node* root_ptr);
@@ -33,6 +35,7 @@ namespace Tree {
 	int isHeightBalanced(Node* root_ptr);
 	int getMaxWidth(Node* root_ptr);
 	int getDiameter(Node* root_ptr);
+	Node* getLCA_pathTracingMethod(Node* root_ptr, int node1_data, int node2_data);
 
 	// Misc.
 	void printKthLevel(Node* root_ptr, int level);
