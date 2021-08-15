@@ -181,3 +181,24 @@ Tree::Node* Tree::constructTree(int inOrder[], int preOrder[], int numNodes) {
 	Tree::Node* tree_root = buildTree(inOrder, preOrder, 0, numNodes-1, currNodeIdx);
 	return tree_root;
 }
+
+int getHeightForDiameter(Tree::Node* root, int &maxDiameter) {
+	if(root == NULL)
+		return 0;
+	
+	int leftHeight = getHeightForDiameter(root->m_left, maxDiameter);
+	int rightHeight = getHeightForDiameter(root->m_right, maxDiameter);
+
+	// Check and update max diameter considering current node
+	maxDiameter = std::max(1+leftHeight+rightHeight, maxDiameter);
+	// Return height from the function
+	return 1 + std::max(leftHeight, rightHeight);
+}
+
+int Tree::getDiameter(Node* root) {
+	if(root == NULL)
+		return 0;
+	
+	int diameter = 0;
+	return (getHeightForDiameter(root, diameter));
+}

@@ -184,7 +184,10 @@ int main() {
 	cout << endl;
 	cout << "Spiral level order traversal" << endl;
 	Tree::spiralLevelOrder_traversal(root_ptr);
+
 	cout << endl;
+	cout << "Diameter (max internal nodes between two leaf nodes) for current tree: \t";
+	cout << Tree::getDiameter(root_ptr) << endl;
 
 	return EXIT_SUCCESS;
 }
