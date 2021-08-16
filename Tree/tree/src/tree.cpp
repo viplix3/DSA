@@ -202,3 +202,39 @@ int Tree::getDiameter(Node* root) {
 	int diameter = 0;
 	return (getHeightForDiameter(root, diameter));
 }
+
+int burnTreeFromLeaf(Tree::Node* root, int nodeData, int &currDistance, int &maxTimeToBurn) {
+	if(root == NULL)
+		return 0;
+
+	if(root->m_data == nodeData) {
+		currDistance = 0;
+		return 1;
+	}
+	
+	int currLeftHeight = -1, currRightHeight = -1; // Assuming no branch contains the burning leaf node
+	int leftHeight = burnTreeFromLeaf(root, nodeData, currLeftHeight, maxTimeToBurn); // +ve if left sub-tree contains burning leaf node
+	int rightHeight = burnTreeFromLeaf(root, nodeData, currRightHeight, maxTimeToBurn); // +ve if right sub-tree contains burning leaf node
+
+	// If left sub-tree contains the burning leaf node, currLeftHeight would be changed to the distance of burning
+	// left node from current root node in the recursive call done to find height
+	if(currLeftHeight != -1) {
+		currDistance = currLeftHeight + 1;
+		maxTimeToBurn = std::max(currDistance + rightHeight, maxTimeToBurn);
+	}
+	else if(currRightHeight != -1) { // If right sub-tree containins the burning leaf node, currRightHeight would be changed to the distance
+		currDistance = currRightHeight + 1;
+		maxTimeToBurn = std::max(currDistance + leftHeight, maxTimeToBurn);
+	}
+
+	return (std::max(leftHeight, rightHeight) + 1);
+}
+
+int Tree::timeToBurnTree(Node* root, int nodeData) {
+	if(root == NULL)
+		return -1;
+	
+	int timeToBurn = 0;
+	burnTreeFromLeaf(root, nodeData, -1, timeToBurn);
+	return timeToBurn;
+}
