@@ -1,6 +1,7 @@
 #include "tree.h"
 #include <climits>
 #include <queue>
+#include <math.h>
 
 void Tree::insert_left(Node* parent, Node* node) {
 	if(parent == NULL)
@@ -235,6 +236,31 @@ int Tree::timeToBurnTree(Node* root, int nodeData) {
 		return -1;
 	
 	int timeToBurn = 0;
-	burnTreeFromLeaf(root, nodeData, -1, timeToBurn);
+	int currDistance = -1;
+	burnTreeFromLeaf(root, nodeData, currDistance, timeToBurn);
 	return timeToBurn;
+}
+
+int Tree::countNodes_perfectBinaryTree(Node* root) {
+	int leftHeight = 0, rightHeight = 0;
+
+	// Get left height
+	Tree::Node *curr = root;
+	while(curr != NULL) {
+		leftHeight += 1;
+		curr = curr->m_left;
+	}
+
+	// Get right height
+	curr = root;
+	while(curr != NULL) {
+		rightHeight += 1;
+		curr = curr->m_right;
+	}
+
+	if(leftHeight == rightHeight)
+		return pow(2, leftHeight) - 1;
+	
+	return (1 + countNodes_perfectBinaryTree(root->m_left) + 
+			countNodes_perfectBinaryTree(root->m_right));
 }

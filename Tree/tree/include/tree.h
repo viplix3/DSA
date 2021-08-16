@@ -38,6 +38,7 @@ namespace Tree {
 	Node* getLCA_pathTracingMethod(Node* root_ptr, int node1_data, int node2_data);
 	Node* getLCA_recursion(Node* root_ptr, int node1_data, int node2_data);
 	Node* getLCA_GFG(Node* root_ptr, int node1_data, int node2_data);
+	int countNodes_perfectBinaryTree(Node* root_ptr);
 
 	// Misc.
 	void printKthLevel(Node* root_ptr, int level);
