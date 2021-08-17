@@ -264,3 +264,28 @@ int Tree::countNodes_perfectBinaryTree(Node* root) {
 	return (1 + countNodes_perfectBinaryTree(root->m_left) + 
 			countNodes_perfectBinaryTree(root->m_right));
 }
+
+void Tree::serialize_BinaryTree(Node* root, std::vector<int> &serialized_BTree) {
+	if(root == NULL)
+		serialized_BTree.emplace_back(Tree::NULLPTR);
+
+	serialized_BTree.emplace_back(root->m_data);
+	serialize_BinaryTree(root->m_left, serialized_BTree);
+	serialize_BinaryTree(root->m_right, serialized_BTree);
+}
+
+Tree::Node* Tree::deserialize_BinaryTree(std::vector<int> &serialized_BTree, int &idx) {
+	if(idx == serialized_BTree.size())
+		return NULL;
+	
+	int nodeVal = serialized_BTree[idx];
+	idx += 1;
+
+	if(nodeVal == Tree::NULLPTR)
+		return NULL;
+
+	Tree::Node *new_node = new Tree::Node(nodeVal);
+	new_node->m_left = deserialize_BinaryTree(serialized_BTree, idx);
+	new_node->m_right = deserialize_BinaryTree(serialized_BTree, idx);
+	return new_node;
+}

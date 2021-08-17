@@ -5,6 +5,7 @@
 #include <vector>
 
 namespace Tree {
+	static constexpr int NULLPTR = -1;
 
 	struct Node {
 		int m_data;
@@ -49,5 +50,7 @@ namespace Tree {
 	Node* binaryTree2DLL(Node* root_ptr); // DLL will be in inOrder traversal format
 	Node* constructTree(int inOrder[], int preOrder[], int numNodes);
 	int timeToBurnTree(Node* root_ptr, int leafNode);
+	void serialize_BinaryTree(Node* root_ptr, std::vector<int> &serialized_BTree);
+	Node* deserialize_BinaryTree(std::vector<int> &serialized_BTree, int &idx);
 
 }
