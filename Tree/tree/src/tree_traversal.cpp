@@ -251,3 +251,21 @@ Tree::Node* Tree::getLCA_GFG(Node* root, int node1_data, int node2_data) {
 		LCA2;
 	return NULL;
 }
+
+void Tree::inOrder_traversalIterative(Node* root) {
+	if(root == NULL)
+		return;
+
+	std::stack<Tree::Node*> prev_root;
+
+	while(root != NULL || prev_root.empty() == false) {
+		while(root != NULL) {
+			prev_root.push(root);
+			root = root->m_left;
+		}
+		root = prev_root.top();
+		prev_root.pop();
+		std::cout << root->m_data << "\t";
+		root = root->m_right;
+	}
+}

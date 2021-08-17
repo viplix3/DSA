@@ -200,5 +200,22 @@ int main() {
 	LCA_node = Tree::getLCA_GFG(root_ptr, 40, 80);
 	cout << "LCA Node data: " << LCA_node->m_data << endl;
 
+	cout << "Iterative traversals" << endl;
+
+	cout << endl;
+	cout << "inOrder traversal" << endl;
+	Tree::inOrder_traversalIterative(root_ptr);
+	cout << endl;
+
+	// cout << endl;
+	// cout << "preOrder traversal" << endl;
+	// Tree::preOrder_traversalIterative(root_ptr);
+	// cout << endl;
+
+	// cout << endl;
+	// cout << "postOrder traversal" << endl;
+	// Tree::postOrder_traversalIterative(root_ptr);
+	// cout << endl;
+
 	return EXIT_SUCCESS;
 }
