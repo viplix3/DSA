@@ -28,7 +28,6 @@ namespace Tree {
 
 	void inOrder_traversalIterative(Node* root_ptr);
 	void preOrder_traversalIterative(Node* root_ptr);
-	void postOrder_traversalIterative(Node* root_ptr);
 
 	void spiralLevelOrder_traversal(Node* root_ptr);
 	bool getNodePath(Node* root_ptr, int node_data, std::vector<Node*> &path);
