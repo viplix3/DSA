@@ -269,3 +269,21 @@ void Tree::inOrder_traversalIterative(Node* root) {
 		root = root->m_right;
 	}
 }
+
+void Tree::preOrder_traversalIterative(Node* root) {
+	if(root == NULL)
+		return;
+	
+	std::stack<Tree::Node*> prev_root;
+
+	while(root != NULL || prev_root.empty() == false) {
+		while(root != NULL) {
+			std::cout << root->m_data << "\t";
+			prev_root.push(root);
+			root = root->m_left;
+		}
+		root = prev_root.top();
+		prev_root.pop();
+		root = root->m_right;
+	}
+}

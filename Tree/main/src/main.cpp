@@ -207,15 +207,10 @@ int main() {
 	Tree::inOrder_traversalIterative(root_ptr);
 	cout << endl;
 
-	// cout << endl;
-	// cout << "preOrder traversal" << endl;
-	// Tree::preOrder_traversalIterative(root_ptr);
-	// cout << endl;
-
-	// cout << endl;
-	// cout << "postOrder traversal" << endl;
-	// Tree::postOrder_traversalIterative(root_ptr);
-	// cout << endl;
+	cout << endl;
+	cout << "preOrder traversal" << endl;
+	Tree::preOrder_traversalIterative(root_ptr);
+	cout << endl;
 
 	return EXIT_SUCCESS;
 }
