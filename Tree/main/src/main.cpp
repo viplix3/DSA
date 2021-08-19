@@ -196,9 +196,6 @@ int main() {
 	cout << "LCA using recursion for nodes 40 and 80" << endl;
 	LCA_node = Tree::getLCA_recursion(root_ptr, 40, 80);
 	cout << "LCA Node data: " << LCA_node->m_data << endl;
-	cout << "LCA using recursion (GFG Method) for nodes 40 and 80" << endl;
-	LCA_node = Tree::getLCA_GFG(root_ptr, 40, 80);
-	cout << "LCA Node data: " << LCA_node->m_data << endl;
 
 	cout << "Iterative traversals" << endl;
 

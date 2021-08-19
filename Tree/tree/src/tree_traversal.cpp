@@ -207,31 +207,6 @@ Tree::Node* Tree::getLCA_pathTracingMethod(Node* root, int node1_data, int node2
 	return NULL;
 }
 
-Tree::Node* Tree::getLCA_recursion(Node* root, int node1_data, int node2_data) {
-	static Tree::Node *node1 = new Tree::Node(node1_data);
-	static Tree::Node *node2 = new Tree::Node(node2_data);
-
-	if(root == NULL)
-		return NULL;
-
-	if(node1 != NULL && root->m_data == node1->m_data) {
-		node1 = NULL;
-		return root;
-	}
-
-	if(node2 != NULL && root->m_data == node2->m_data) {
-		node2 = NULL;
-		return root;
-	}
-
-	if(getLCA_recursion(root->m_left, node1_data, node2_data) != NULL ||
-		getLCA_recursion(root->m_right, node1_data, node2_data) != NULL)
-		if(node1 == NULL && node2 == NULL)
-			return root;
-	
-	return NULL;
-}
-
 Tree::Node* Tree::getLCA_GFG(Node* root, int node1_data, int node2_data) {
 	if(root == NULL)
 		return NULL;
@@ -248,7 +223,7 @@ Tree::Node* Tree::getLCA_GFG(Node* root, int node1_data, int node2_data) {
 	if(LCA1 != NULL) // Both nodes in LCA1 (left of root)
 		return LCA1;
 	else // Either both nodes in LCA2 (right of root) or they doesn't exist
-		LCA2;
+		return LCA2;
 	return NULL;
 }
 
