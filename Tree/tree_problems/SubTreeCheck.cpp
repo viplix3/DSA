@@ -99,34 +99,36 @@ struct Node
 class Solution
 {
 private:
-    bool matching = false;
+    bool isIdentical(Node* root1, Node* root2) {
+        if(root1 == NULL && root2 == NULL)
+            return true;
+        
+        if(root1 == NULL || root2 == NULL)
+            return false;
+            
+        bool data_check = (root1->data == root2->data);
+        bool left_subtree_check, right_subtree_check;
+        left_subtree_check = right_subtree_check = false;
+        
+        if(data_check) {
+            left_subtree_check = isIdentical(root1->left, root2->left);
+            right_subtree_check = isIdentical(root1->right, root2->right);
+        }
+        
+        return (data_check && left_subtree_check && right_subtree_check);
+    }
 public:
     //Function to check if S is a subtree of tree T.
     bool isSubTree(Node* superTree, Node* subTree) 
     {
-        if(superTree == NULL && subTree == NULL)
-            return true;
-        
-        if(superTree == NULL || subTree == NULL)
-            return false;
-        
-		if(superTree->data == subTree->data) {
-			if(isSubTree(superTree->left, subTree->left) && 
-				isSubTree(superTree->right, subTree->right))
-				return true;
-            else if(isSubTree(superTree->left, subTree) ||
-                isSubTree(superTree->right, subTree))
-                return true;
-            else
-                return false;
-		}
-        else {
-            if(isSubTree(superTree->left, subTree) ||
-                isSubTree(superTree->right, subTree))
-                return true;
-            else
-                return false;
+        if(superTree != NULL) {
+            return (
+                    isIdentical(superTree, subTree) || 
+                    isSubTree(superTree->left, subTree) ||
+                    isSubTree(superTree->right, subTree)
+                    );
         }
+		return false;
     }
 };
 
