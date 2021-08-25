@@ -121,23 +121,25 @@ int main() {
 
 
 //Function to return count of nodes at a given distance from leaf nodes.
-void getNodeCount(Node* root, int currDepth, int& traversedDepth, int requiredDepth, int& nodeCount) {
+void getNodeCount(Node* root, int requiredDepth, vector<Node*> ancestors, unordered_set<Node*>& visited) {
 	if(root == NULL)
 		return;
 	
-	if(currDepth > traversedDepth) {
-		traversedDepth += 1;
-		if(traversedDepth >= requiredDepth)
-			nodeCount += 1;
-	}
+	ancestors.emplace_back(root);
+	if((root->left == NULL && root->right == NULL) && ancestors.size() > requiredDepth)
+	    visited.insert(ancestors[ancestors.size() - requiredDepth - 1]);
+	    
 
-	getNodeCount(root->left, currDepth+1, traversedDepth, requiredDepth, nodeCount);
-	getNodeCount(root->right, currDepth+1, traversedDepth, requiredDepth, nodeCount);
+	getNodeCount(root->left, requiredDepth, ancestors, visited);
+	getNodeCount(root->right, requiredDepth, ancestors, visited);
 }
 
 int printKDistantfromLeaf(Node* root, int k)
 {
-	int traversedDepth = 0, count = 0;
-	getNodeCount(root, 0, traversedDepth, k, count);
-	return count;
+	vector<Node*> ancestors;
+	unordered_set<Node*> visited;
+	
+	getNodeCount(root, k, ancestors, visited);
+	
+	return visited.size();
 }
