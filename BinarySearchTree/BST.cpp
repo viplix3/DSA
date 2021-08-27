@@ -73,6 +73,43 @@ namespace BST {
 		return root;
 	}
 
+	Node* get_successor(Node* root) {
+		root = root->right;
+		while(root != NULL && root->left != NULL)
+			root = root->left;
+		return root;
+	}
+
+	Node* delete_node(Node* root, int key) {
+		if(root == NULL)
+			return NULL;
+
+		if(root->data > key)
+			root->left = delete_node(root->left, key);
+		else if(root->data < key)
+			root->right = delete_node(root->right, key);
+		else {
+			if(root->left == NULL) { // Single child (right)
+				Node *right_node = root->right;
+				delete root;
+				return right_node; // This will be linked to the parent of root which got deleted
+			}
+			else if(root->right == NULL) { // Single child (left)
+				Node *left_node = root->left;
+				delete root;
+				return left_node; // This will be linked to the parent of root which got deleted
+			}
+			else { // Both left and right child of the node to be deleted exists
+				// This will return the inOrder successor of the root node. This is leftmost child of the right node
+				Node *successor = get_successor(root); 
+				root->data = successor->data; // Replace root's data with successor's data
+				root->right = delete_node(root->right, successor->data);
+			}
+			return root;
+		}
+
+	}
+
 	void printInOrder(Node* root) {
 		if(root == NULL)
 			return;
@@ -109,6 +146,12 @@ int main() {
 		cout << data << " is not present in given BST" << endl;
 	else
 		cout << data << " is not present in given BST" << endl;
+
+	data = 15;
+	BST::delete_node(root, data);
+	cout << "InOrder traversal of BST after deleting node " << data << endl;
+	BST::printInOrder(root);
+	cout << endl;
 
 	return 0;
 }
