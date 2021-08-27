@@ -105,7 +105,7 @@ int main() {
 		cout << data << " is not present in given BST" << endl;
 
 	data = 20;
-	if(BST::search(root, data))
+	if(BST::search_recursive(root, data))
 		cout << data << " is not present in given BST" << endl;
 	else
 		cout << data << " is not present in given BST" << endl;
