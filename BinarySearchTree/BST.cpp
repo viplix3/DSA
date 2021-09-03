@@ -105,9 +105,8 @@ namespace BST {
 				root->data = successor->data; // Replace root's data with successor's data
 				root->right = delete_node(root->right, successor->data);
 			}
-			return root;
 		}
-
+		return root;
 	}
 
 	void printInOrder(Node* root) {
