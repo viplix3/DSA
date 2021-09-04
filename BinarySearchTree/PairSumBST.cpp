@@ -45,4 +45,20 @@ namespace BST {
 		}
 		return false;
 	}
+
+	bool isPairSum(Node *root, int sum, unordered_set<int> &s) {
+		if(root == NULL)
+			return false;
+		
+		if(isPairSum(root->left, sum, s))
+			return true;
+			
+		if(s.find(sum-root->data) != s.end())  
+			return true;
+		else
+			s.insert(root->data);
+		return isPairSum(root->right, sum, s);
+	} 
+
+
 }
