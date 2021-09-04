@@ -137,7 +137,7 @@ int main() {
 	std::cout << "InOrder traversal of BST after deleting" << std::endl;
 	aug_BST::printInOrder(root);
 
-	std::cout << "\n7th largest element in BST: " << aug_BST::getKthLargest(root, 7)->data << endl;
+	std::cout << "\n7th smallest element in BST: " << aug_BST::getKthLargest(root, 7)->data << endl;
 
 
 	return 0;
