@@ -11,43 +11,34 @@ namespace BST {
 		{}
 	};
 
-	int prevNodeData = INT_MIN;
-	Node *swapNode = NULL;
 
-	Node* fixBST(Node* root) {
+	void findSwapNodes(Node* root, Node* &prevNode, Node* &firstSwapNode, Node* &secondSwapNode) {
 		if(root == NULL)
-			return NULL;
+			return;
 		
-		vector<Node*> inOrder;
+		findSwapNodes(root->left, prevNode, firstSwapNode, secondSwapNode);
 
-		// Iterative inOrder
-		Node* curr = root;
-		stack<Node*> treeNodes;
-		while(curr != NULL || treeNodes.empty() == false) {
-			while(curr != NULL) {
-				treeNodes.push(curr);
-				curr = curr->left;
-			}
-			curr = treeNodes.top();
-			treeNodes.pop();
-			inOrder.emplace_back(curr);
-			curr = curr->right;
+		if(prevNode != NULL && root->data < prevNode->data) {
+			if(firstSwapNode == NULL)
+				firstSwapNode = root;
+			secondSwapNode = root;
 		}
+		prevNode = root;
 
-		// Find sorting violation nodes and swap
-		int firstIdx = -1, secondIdx = -1;
-		for(int i=1; i<inOrder.size(); i++) {
-			if(inOrder[i]->data < inOrder[i-1]->data) {
-				if(firstIdx == -1)
-					firstIdx = i-1;
-				secondIdx = i;
-			}
-		}
+		findSwapNodes(root->right, prevNode, firstSwapNode, secondSwapNode);
+	}
 
-		int swap_data = inOrder[secondIdx]->data;
-		inOrder[secondIdx]->data = inOrder[firstIdx]->data;
-		inOrder[firstIdx]->data = swap_data;
+	void fixBST(Node* root) {
+		if(root == NULL)
+			return;
 
-		return root;
+		Node *prevNode = NULL;
+		Node *firstSwapNode = NULL, *secondSwapNode = NULL;
+
+		findSwapNodes(root, prevNode, firstSwapNode, secondSwapNode);
+
+		int swapData = firstSwapNode->data;
+		firstSwapNode->data = secondSwapNode->data;
+		secondSwapNode->data = swapData;
 	}
 }
