@@ -14,82 +14,41 @@ namespace aug_BST {
 		{}
 	};
 
-	Node* getInOrderSuccessor(Node* root) {
-		root = root->right;
-		while(root != NULL && root->left != NULL)
-			root = root->left;
-		return root;
-	}
+	bool count_and_insert(Node* root, int x, int& curr_count) {
+		if(root->data > x) { // Node will be inserted on the left of root
+			root->leftNodeCount += 1;
 
-	Node* delete_node(Node* root, int key) {
-		if(root == NULL)
-			return NULL;
-
-		if(root->data < key)
-			root->right = delete_node(root->right, key);
-		else if(root->data > key) {
-			if(root->leftNodeCount != 0)
-				root->leftNodeCount -=1;
-			root->left = delete_node(root->left, key);
-		}
-		else {
-			if(root->right == NULL) {
-				Node* left_node = root->left;
-				if(left_node->leftNodeCount != 0)
-					left_node->leftNodeCount -= 1;
-				delete root;
-				return left_node;
-			}
-			else if(root->left == NULL) {
-				Node* right_node = root->right;
-				delete root;
-				return right_node;
+			if(root->left == NULL) { // If current root node is having no left child
+				root->left = new Node(x); // Insert neew node
+				return true;
 			}
 			else {
-				Node* successor = getInOrderSuccessor(root);
-				root->data = successor->data;
-				root->right = delete_node(root->right, successor->data);
+				if(!count_and_insert(root->left, x, curr_count)) { // If inserting node on root wasn't possible
+					root->leftNodeCount -= 1; // Nullify the left node count increased earlier
+					return false;
+				}
+				else
+					return true;
 			}
 		}
-		return root;
-	}
+		else if(root->data < x) {
+			curr_count = (root->leftNodeCount + curr_count + 1);
 
-	Node* insert(Node* root, int x) {
-		if(root == NULL)
-			return new Node(x);
-		
-		if(root->data < x)
-			root->right = insert(root->right, x);
-		else if(root->data > x) {
-			root->left = insert(root->left, x);
-			root->leftNodeCount += 1;
-		}
-		else {
-			root = delete_node(root, x);
-			insert(root, x);
-		}
-		return root;
-	}
-
-	int getMaxLeftNodeCount(Node* root) {
-		int maxLeftNode = INT_MIN;
-		if(root == NULL)
-			return 0;
-		
-		stack<Node*> prev_node;
-		while(root != NULL || prev_node.empty() == false) {
-			while(root != NULL) {
-				prev_node.push(root);
-				root = root->left;
+			if(root->right == NULL) { // If current node is having no right child
+				root->right = new Node(x);
+				return true;
 			}
-
-			root = prev_node.top();
-			prev_node.pop();
-			maxLeftNode = max(root->leftNodeCount, maxLeftNode);
-			root = root->right;
+			else {
+				if(!count_and_insert(root->right, x, curr_count))
+					return false;
+				else
+					return true;
+			}
 		}
-
-		return maxLeftNode;
+		else { // The value to be inserted is already present in the BST
+			curr_count = (curr_count + root->leftNodeCount);
+			return false;
+		}
 	}
 }
 
@@ -98,18 +57,23 @@ int main() {
 	cin >> numTestCases;
 
 	while(numTestCases--) {
-		int numElements;
-		aug_BST::Node *root = NULL;
-		int node_data;
+		int numElements, maxSmallCount = INT_MIN;
 
 		cin >> numElements;
+		int arr[numElements];
 
-		for(int i=0; i<numElements; i++) {
-			cin >> node_data;
-			root = aug_BST::insert(root, node_data);
+		for(int i=0; i<numElements; i++)
+			cin >> arr[i];
+
+		aug_BST::Node *root = new aug_BST::Node(arr[numElements-1]);
+		for(int i=numElements-2; i>=0; i--) {
+			int curr_small_count = 0;
+			aug_BST::count_and_insert(root, arr[i], curr_small_count);
+			maxSmallCount = max(curr_small_count, maxSmallCount);
 		}
 
-		cout << aug_BST::getMaxLeftNodeCount(root) << endl;
+		maxSmallCount = max(0, maxSmallCount);
+		cout << maxSmallCount << endl;
 	}
 
 	return 0;
