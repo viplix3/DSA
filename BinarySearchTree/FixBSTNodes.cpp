@@ -113,90 +113,31 @@ struct Node
 
 class Solution {
 private:
-    void getSwapNodes(Node* root, Node* &prev, Node* &node1, Node* &node2) {
+    void getSwapNodes(Node* root, Node* &prev_node, Node* &node1, Node* &node2) {
         if(root == NULL)
             return;
         
-        getSwapNodes(root->left, prev, node1, node2);
+        getSwapNodes(root->left, prev_node, node1, node2);
         
-        if(prev != NULL && root->data < prev->data) {
+        if(prev_node != NULL && root->data < prev_node->data) {
             if(node1 == NULL)
-                node1 = prev;
+                node1 = prev_node;
             node2 = root;
         }
-        prev = root;
+        prev_node = root;
         
-        getSwapNodes(root->right, prev, node1, node2);
+        getSwapNodes(root->right, prev_node, node1, node2);
     }
-    
-    Node* findParent(Node* root, Node* child) {
-        if(root == NULL || child == NULL)
-            return NULL;
-
-		Node* parent = NULL;
-
-		while(root != NULL) {
-			if(root->data < child->data) {
-				root = root->right;
-				parent = root;
-			}
-			else if(root->data > child->data) {
-				root = root->left;
-				parent = root;
-			}
-			else
-				break;
-		}
-
-		if(parent == NULL)
-			return root;
-        return parent;
-    }
-
-	void swap_nodes(Node* &root, Node* node1, Node* node2) {
-        Node* node1_parent = findParent(root, node1);
-        Node* node2_parent = findParent(root, node2);
-
-		Node* node1_left = node1->left;
-		Node* node1_right = node1->right;
-
-		// Swap children
-		node1->left = node2->left;
-		node1->right = node2->right;
-		
-		node2->left = node1_left;
-		node2->right = node1_right;
-
-		// If one of the nodes are root
-		if(node1_parent == root)
-			root = node2_parent;
-		else if(node2_parent == root)
-			root = node2_parent;
-		else { // If both nodes are intermediate
-			if(node1_parent->left == node1)
-				node1_parent->left = node2;
-			else
-				node1_parent->right = node2;
-			
-			if(node2_parent->left == node2)
-				node2_parent->left = node2;
-			else
-				node2_parent->right = node2;
-		}
-	}
     
 public:
     void correctBST( struct Node* root )
     {
-        Node *prev = NULL;
+        Node *prev_node = NULL;
         Node *swap_node1 = NULL, *swap_node2 = NULL;
         
-        getSwapNodes(root, prev, swap_node1, swap_node2);
-        
-        swap_nodes(root, swap_node1, swap_node2);
+        getSwapNodes(root, prev_node, swap_node1, swap_node2);
+        swap(swap_node1->data, swap_node2->data);
     }
-    
-    
 };
 
 
