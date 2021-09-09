@@ -46,9 +46,9 @@ public:
 
 		int minIdx = currIdx;
 
-		if((0 <= leftIdx < size) && (arr[leftIdx] < arr[currIdx]))
+		if((leftIdx < size) && (arr[leftIdx] < arr[currIdx]))
 			minIdx = leftIdx;
-		if((0 <= rightIdx < size) && (arr[rightIdx] < arr[currIdx]))
+		if((rightIdx < size) && (arr[rightIdx] < arr[currIdx]))
 			minIdx = rightIdx;
 		
 		if(minIdx != currIdx) {
