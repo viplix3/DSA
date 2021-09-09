@@ -3,7 +3,7 @@ using namespace std;
 
 class MinHeap {
 private:
-	int arr[];
+	int *arr;
 	int size, capacity;
 
 public:
@@ -81,7 +81,7 @@ public:
 		}
 
 		arr[idx] = newValue;
-		whle(idx != 0 && arr[parent(idx)] > arr[idx]) {
+		while(idx != 0 && arr[parent(idx)] > arr[idx]) {
 			swap(arr[idx], arr[parent(idx)]);
 			idx = parent(idx);
 		}
@@ -98,7 +98,7 @@ public:
 	}
 
 	void buildHeap() {
-		for(int i = (size-1)/2; i>=0; i--)
+		for(int i = (size-2)/2; i>=0; i--)
 			minHeapify(i);
 	}
 };
