@@ -73,4 +73,32 @@ public:
 
 		return minElem;
 	}
+
+	void decreaseKey(int idx, int newValue) {
+		if(idx >= size) {
+			std::cerr << "Out of bounds index, heap size is " << size-1 << ", provided index" << idx << std::endl;
+			return;
+		}
+
+		arr[idx] = newValue;
+		whle(idx != 0 && arr[parent(idx)] > arr[idx]) {
+			swap(arr[idx], arr[parent(idx)]);
+			idx = parent(idx);
+		}
+	}
+
+	void delete_key(int idx) {
+		if(idx >= size) {
+			std::cerr << "Invalid index provided" << std::endl;
+			return;
+		}
+
+		decreaseKey(idx, INT_MIN);
+		extractMin();
+	}
+
+	void buildHeap() {
+		for(int i = (size-1)/2; i>=0; i--)
+			minHeapify(i);
+	}
 };
