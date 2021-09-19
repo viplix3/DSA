@@ -1,5 +1,5 @@
-
-//Problem Link: https://www.geeksforgeeks.org/given-an-array-arr-find-the-maximum-j-i-such-that-arrj-arri/
+// https://practice.geeksforgeeks.org/problems/maximum-index-1587115620/1/
+// Article Link: https://www.geeksforgeeks.org/given-an-array-arr-find-the-maximum-j-i-such-that-arrj-arri/
 #include<bits/stdc++.h>
 using namespace std;
 
