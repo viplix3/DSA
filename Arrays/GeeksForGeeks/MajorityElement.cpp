@@ -7,12 +7,12 @@ int getCandidateMajorityElement(int arr[], int size)
     int voteCount = 1;
 
     for(int i=1; i<size; i++){
-        if(arr[i] == arr[i-1])
+        if(arr[i] == candidate)
             voteCount++;
         else
             voteCount--;
 
-        if(!voteCount){
+        if(voteCount == 0){
             voteCount = 1;
             candidate = arr[i];
         }
