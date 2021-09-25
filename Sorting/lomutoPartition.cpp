@@ -13,8 +13,10 @@ int lomutoPartition(vector<int> &arr, int pivotIdx, int lowIdx, int highIdx)
             swap(arr[pivotPosition], arr[i]);
         }
     }
-    swap(arr[pivotPosition+1], arr[highIdx]);
-    return pivotPosition+1;
+
+    pivotPosition += 1;
+    swap(arr[pivotPosition], arr[highIdx]);
+    return pivotPosition;
 }
 
 void printArray(vector<int> arr)
