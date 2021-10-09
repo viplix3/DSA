@@ -15,8 +15,8 @@ int getLongestSubStrLength(string &str)
 
 	for(int curr_idx=0; curr_idx < str.length(); curr_idx++){
 		previous_starting_idx = max(previous_starting_idx, previous_occurrence[str[curr_idx]] + 1);
-		int ending_idx = curr_idx - previous_starting_idx + 1;
-		max_substr_length = max(ending_idx, max_substr_length);
+		int curr_substr_length = curr_idx - previous_starting_idx + 1;
+		max_substr_length = max(curr_substr_length, max_substr_length);
 		previous_occurrence[str[curr_idx]] = curr_idx;
 	}
 	return max_substr_length;
