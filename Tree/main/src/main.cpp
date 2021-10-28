@@ -197,7 +197,7 @@ int main() {
 	LCA_node = Tree::getLCA_recursion(root_ptr, 40, 80);
 	cout << "LCA Node data: " << LCA_node->m_data << endl;
 
-	cout << "Iterative traversals" << endl;
+	cout << "\nIterative traversals";
 
 	cout << endl;
 	cout << "inOrder traversal" << endl;

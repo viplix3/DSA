@@ -207,22 +207,31 @@ Tree::Node* Tree::getLCA_pathTracingMethod(Node* root, int node1_data, int node2
 	return NULL;
 }
 
-Tree::Node* Tree::getLCA_GFG(Node* root, int node1_data, int node2_data) {
-	if(root == NULL)
+Tree::Node* Tree::getLCA_recursion(Node* root, int node1_data, int node2_data) {
+	if(root == NULL) // Either the tree is empty or we reached a leaf node while searching
 		return NULL;
 
+	/*
+		Found one of the two nodes, no need to search further down this path.
+		If the other node is in the sub-tree of current node, LCA would be the node found first (i.e. current node)
+		If the other tree is not a part of sub-tree, no need of continuing our search on this path
+	*/
 	if(root->m_data == node1_data || root->m_data == node2_data)
+		return root; // Return current node to parent to signify we found a node
+
+	Tree::Node *LCA1 = getLCA_recursion(root->m_left, node1_data, node2_data); // Send a search paty down left sub-tree
+	Tree::Node *LCA2 = getLCA_recursion(root->m_right, node1_data, node2_data); // Send a search paty down right sub-tree
+
+	// If both left and right sub-trees don't return NULL, we found the nodes in both left and right sub-trees
+	// and never reached left node which would have returned NULL, this is the case of PERFECT LCA
+	if(LCA1 != NULL && LCA2 != NULL)
 		return root;
 
-	Tree::Node *LCA1 = getLCA_GFG(root->m_left, node1_data, node2_data);
-	Tree::Node *LCA2 = getLCA_GFG(root->m_right, node1_data, node2_data);
-
-	if(LCA1 != NULL && LCA2 != NULL) // Perfect LCA
-		return root;
-
-	if(LCA1 != NULL) // Both nodes in LCA1 (left of root)
+	// Left sub-tree search party found one of the nodes
+	// Return the node found to parent
+	if(LCA1 != NULL)
 		return LCA1;
-	else // Either both nodes in LCA2 (right of root) or they doesn't exist
+	else // Either right sub-tree found one of the nodes, or it reached leaf node, return the value in either case
 		return LCA2;
 	return NULL;
 }
