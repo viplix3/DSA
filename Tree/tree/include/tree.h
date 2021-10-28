@@ -55,5 +55,6 @@ namespace Tree {
 	int timeToBurnTree(Node* root_ptr, int leafNode);
 	void serialize_BinaryTree(Node* root_ptr, std::vector<int> &serialized_BTree);
 	Node* deserialize_BinaryTree(std::vector<int> &serialized_BTree, int &idx);
+	void deleteNode(Node* root_ptr, int nodeData);
 
 }

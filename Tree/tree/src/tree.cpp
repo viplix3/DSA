@@ -289,3 +289,64 @@ Tree::Node* Tree::deserialize_BinaryTree(std::vector<int> &serialized_BTree, int
 	new_node->m_right = deserialize_BinaryTree(serialized_BTree, idx);
 	return new_node;
 }
+
+
+void deleteDeepest(Tree::Node* root, Tree::Node* deletionNode) {
+	std::queue<Tree::Node*> levelNodes;
+	levelNodes.push(root);
+
+	while(levelNodes.empty() == false) {
+		Tree::Node* currNode = levelNodes.front();
+		levelNodes.pop();
+
+		if(currNode->m_left) {
+			if(currNode->m_left == deletionNode) {
+				currNode->m_left = NULL;
+				delete deletionNode;
+				return;
+			}
+			else
+				levelNodes.push(currNode->m_left);
+		}
+
+		if(currNode->m_right) {
+			if(currNode->m_right == deletionNode) {
+				currNode->m_right = NULL;
+				delete deletionNode;
+				return;
+			}
+			else
+				levelNodes.push(currNode->m_right);
+		}
+
+	}
+}
+
+
+void Tree::deleteNode(Node* root_ptr, int nodeData) {
+	if(root_ptr == NULL)
+		return;
+
+	Tree::Node* keyNode = NULL, *deepestRightNode = NULL;
+	std::queue<Node*> levelNodes;
+	levelNodes.push(root_ptr);
+
+	while(levelNodes.empty() == false) {
+		Tree::Node* curr = levelNodes.front();
+		levelNodes.pop();
+
+		if(curr->m_data == nodeData)
+			keyNode = curr;
+
+		if(curr->m_left)
+			levelNodes.push(curr->m_left);
+		if(curr->m_right)
+			levelNodes.push(curr->m_right);
+		
+		deepestRightNode = curr;
+	}
+	
+	int deletedData = deepestRightNode->m_data;
+	deleteDeepest(root_ptr, deepestRightNode);
+	keyNode->m_data = deletedData;
+}

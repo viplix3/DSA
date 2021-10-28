@@ -209,5 +209,25 @@ int main() {
 	Tree::preOrder_traversalIterative(root_ptr);
 	cout << endl;
 
+	cout << endl;
+	cout << "Node deletion" << endl;
+	int deletion_data;
+
+	cout << "preOrder traversal before deletion" << endl;
+	Tree::preOrder_traversal(root_ptr);
+	deletion_data = 30;
+	Tree::deleteNode(root_ptr, deletion_data);
+	cout << "\npreOrder traversal after deletion" << endl;
+	Tree::preOrder_traversal(root_ptr);
+	cout << endl;
+
+	cout << "preOrder traversal before deletion" << endl;
+	Tree::preOrder_traversal(root_ptr);
+	deletion_data = 10;
+	Tree::deleteNode(root_ptr, deletion_data);
+	cout << "\npreOrder traversal after deletion" << endl;
+	Tree::preOrder_traversal(root_ptr);
+	cout << endl;
+
 	return EXIT_SUCCESS;
 }
