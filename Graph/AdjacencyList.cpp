@@ -32,6 +32,7 @@ int main() {
 		cout << endl;
 		edge += 1;
 	}
+	cout << endl;
 
 	return 0;
 }
