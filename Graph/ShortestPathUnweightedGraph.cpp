@@ -20,24 +20,24 @@ vector<int> getShortestPath(vector<int> adjacencyList[], int sourceVertex, int n
 	vector<int> distFromSource(numVertices);
 	fill(distFromSource.begin(), distFromSource.end(), INT_MAX);
 	bool visited[numVertices] = {false};
-	queue<pair<int, int>> gnodes; // first -> nodeNum, second -> dist. from source
+	queue<int> gnodes; // first -> nodeNum, second -> dist. from source
 
-	gnodes.push(make_pair(sourceVertex, 0)); // Dist. of source vertex to itself is always 0
+	gnodes.push(sourceVertex);
 	visited[sourceVertex] = true;
+	distFromSource[sourceVertex] = 0; // Dist. of source vertex to itself is always 0
 
 	while(gnodes.empty() == false) {
-		auto curr = gnodes.front();
+		int currNode = gnodes.front();
+		int currDist = distFromSource[currNode];
 		gnodes.pop();
-
-		int currNode = curr.first, currDist = curr.second;
 
 		for(int connected_node : adjacencyList[currNode])
 			if(visited[connected_node] == false) {
 				visited[connected_node] = true;
-				gnodes.push(make_pair(connected_node, currDist+1));
+				distFromSource[connected_node] = currDist+1;
+				gnodes.push(connected_node);
 			}
 
-		distFromSource[currNode] = currDist;
 	}
 
 	return distFromSource;
