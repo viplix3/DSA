@@ -17,16 +17,16 @@ void printAdjacencyList(vector<int> adjacencyList[], int numVertices) {
 
 void BFS(vector<int> adjacencyList[], int sourceVertex, int numVertices, bool visited[], int inDegree[]) {
 	queue<int> gnodes;
-
 	gnodes.push(sourceVertex);
-	visited[sourceVertex] = true;
 
 	while(gnodes.empty() == false) {
 		int curr = gnodes.front();
 		gnodes.pop();
 
-		if(inDegree[curr] == 0)
+		if(inDegree[curr] == 0) {
+			visited[curr] = true;
 			cout << curr << " ";
+		}
 		
 		for(int connected_node : adjacencyList[curr]) {
 			if(visited[connected_node] == false) {
