@@ -19,7 +19,7 @@ void topologicalSorting(vector<int> adjacencyList[], int numVertices) {
 	int inDegree[numVertices] = {0};
 	queue<int> gnodes;
 
-	// inDegree of each node, O(V+E) operation
+	// inDegree of each node, O(E) operation
 	for(int i=0; i<numVertices; i++)
 		for(int connected_node : adjacencyList[i])
 			inDegree[connected_node] += 1;
