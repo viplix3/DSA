@@ -15,44 +15,30 @@ void printAdjacencyList(vector<int> adjacencyList[], int numVertices) {
 	cout << endl;
 }
 
-void BFS(vector<int> adjacencyList[], int sourceVertex, int numVertices, bool visited[], int inDegree[]) {
-	queue<int> gnodes;
-	gnodes.push(sourceVertex);
-
-	while(gnodes.empty() == false) {
-		int curr = gnodes.front();
-		gnodes.pop();
-
-		if(inDegree[curr] == 0) {
-			visited[curr] = true;
-			cout << curr << " ";
-		}
-		
-		for(int connected_node : adjacencyList[curr]) {
-			if(visited[connected_node] == false) {
-				inDegree[connected_node] -= 1;
-
-				if(inDegree[connected_node] == 0) {
-					visited[connected_node] = true;
-					gnodes.push(connected_node);
-				}
-			}
-		}
-	}
-}
-
 void topologicalSorting(vector<int> adjacencyList[], int numVertices) {
 	int inDegree[numVertices] = {0};
-	bool visited[numVertices] = {false};
+	queue<int> gnodes;
 
-	// inDegree of each node, O(V*E) operation
+	// inDegree of each node, O(V+E) operation
 	for(int i=0; i<numVertices; i++)
 		for(int connected_node : adjacencyList[i])
 			inDegree[connected_node] += 1;
 
-	for(int i=0; i<numVertices; i++) {
-		if(visited[i] == false || inDegree[i] > 0)
-			BFS(adjacencyList, i, numVertices, visited, inDegree);
+	for(int i=0; i<numVertices; i++)
+		if(inDegree[i] == 0)
+			gnodes.push(i);
+	
+	while(gnodes.empty() == false) {
+		int curr = gnodes.front();
+		gnodes.pop();
+
+		cout << curr << " ";
+
+		for(int connected_node : adjacencyList[curr]) {
+			inDegree[connected_node] -= 1;
+			if(inDegree[connected_node] == 0)
+				gnodes.push(connected_node);
+		}
 	}
 }
 
