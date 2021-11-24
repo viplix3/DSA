@@ -27,6 +27,7 @@ public:
 
 	void addEdge(int sourceVertex, int destVertex, int weight) {
 		adjacencyMatrix[sourceVertex][destVertex] = weight;
+		adjacencyMatrix[destVertex][sourceVertex] = weight;
 	}
 
 	int getMinSpanningTreeCost() {
