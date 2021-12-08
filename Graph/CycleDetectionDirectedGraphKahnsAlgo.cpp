@@ -22,7 +22,7 @@ bool checkForCycle(vector<int> adjacencyList[], int numVertices) {
 
 	for(int i=0; i<numVertices; i++)
 		for(int connected_node : adjacencyList[i])
-			inDegree[i] += 1;
+			inDegree[connected_node] += 1;
 		
 	for(int i=0; i<numVertices; i++)
 		if(inDegree[i] == 0)
