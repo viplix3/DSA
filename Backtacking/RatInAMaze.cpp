@@ -18,26 +18,28 @@ bool isSafe(vector<vector<int>>& grid, int x, int y, int xMax, int yMax) {
 	return true;
 }
 
-bool solveRatInAMaze(vector<vector<int>>& grid, int currX, int currY, string& pathFollowed) {
+void solveRatInAMaze(vector<vector<int>>& grid, int currX, int currY, string currPath, vector<string>& possiblePaths) {
 	int numRows = grid.size(), numCols = grid[0].size();
 	int stepX[] = {0, -1, 1, 0}, stepY[] = {1, 0, 0, -1}; // x-axis: vertical, y-axis: horizontal
 	char currDir[] = {'R', 'U', 'D', 'L'};
 	const int VISITED = -1;
+
+	if((currX == (numRows-1)) && (currY == (numCols - 1))) {
+		possiblePaths.emplace_back(currPath);
+		return;
+	}
 
 	for(int i=0; i<4; i++) {
 		int newX = currX + stepX[i];
 		int newY = currY + stepY[i];
 
 		if(isSafe(grid, newX, newY, numRows, numCols)) {
+			int origGridData = grid[newX][newY];
 			grid[newX][newY] = VISITED;
-			if((newX == (numRows-1)) && (newY == (numCols - 1)) || solveRatInAMaze(grid, newX, newY, pathFollowed)) {
-				pathFollowed += currDir[i];
-				return true;
-			}
+			solveRatInAMaze(grid, newX, newY, currPath + currDir[i], possiblePaths);
+			grid[newX][newY] = origGridData;
 		}
 	}
-
-	return false;
 }
 
 int main() {
@@ -56,10 +58,14 @@ int main() {
 		}
 	}
 	
-	string pathFollowed = "";
-	cout << boolalpha << "Rat in the maze got cheese: " << solveRatInAMaze(grid, 0, 0, pathFollowed) << endl;
-	reverse(pathFollowed.begin(), pathFollowed.end());
-	cout << "Path followed by the rat: " << pathFollowed << endl;
+	vector<string> possiblePaths;
+	solveRatInAMaze(grid, 0, 0, "", possiblePaths);
+
+	cout << boolalpha << "Rat in the maze got cheese: " << bool(possiblePaths.size()) << endl;
+
+	sort(possiblePaths.begin(), possiblePaths.end());
+	for(string path : possiblePaths)
+		cout << "Path that can be followed by the rat: " << path << endl;
 
 	return 0;
 }
