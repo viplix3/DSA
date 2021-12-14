@@ -26,7 +26,7 @@ private:
 				swapIdx = i;
 			}
 		
-		if(swapIdx != currIdx)
+		if(currDigit != inNum[currIdx] - '0')
 			numSwaps -= 1;
 		
 		for(int i = numDigits; i >= currIdx; i--) {
