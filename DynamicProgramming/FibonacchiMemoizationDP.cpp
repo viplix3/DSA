@@ -1,14 +1,14 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int fibonacchiDP(int num, vector<int>& memoArr) {
+int fibonacciDP(int num, vector<int>& memoArr) {
 	if(memoArr[num] == -1) {
 		int currFib;
 
 		if(num == 0 || num == 1)
 			currFib = num;
 		else
-			currFib = fibonacchiDP(num-1, memoArr) + fibonacchiDP(num-2, memoArr);
+			currFib = fibonacciDP(num-1, memoArr) + fibonacciDP(num-2, memoArr);
 		
 		memoArr[num] = currFib;
 	}
@@ -18,7 +18,7 @@ int fibonacchiDP(int num, vector<int>& memoArr) {
 
 int fib(int n) {
 	vector<int> memo(n+1, -1);
-	return fibonacchiDP(n, memo);
+	return fibonacciDP(n, memo);
 }
 
 int main() {
