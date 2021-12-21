@@ -10,7 +10,7 @@ int coinSelect(vector<int> coins, int requiredSumValue) {
 	for(int currCoinChoice = 0; currCoinChoice <= totalCoinChoices; currCoinChoice++)
 		choices[0][currCoinChoice] = 1; // Base-case, when sum is 0, we alaways have 1 choice
 	
-	for(int currSumValue = 1; currSumValue < requiredSumValue; currSumValue++)
+	for(int currSumValue = 1; currSumValue <= requiredSumValue; currSumValue++)
 		choices[currSumValue][0] = 0; // Invalid-case, no choices of coin but sum > 0
 	
 	for(int currSumValue = 1; currSumValue <= requiredSumValue; currSumValue++) {
