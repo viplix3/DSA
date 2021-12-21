@@ -1,26 +1,30 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int coinSelect(vector<int> coinChoices, int sumValue) {
-	int totalCoinChoices = coinChoices.size();
+int coinSelect(vector<int> coins, int requiredSumValue) {
+	int totalCoinChoices = coins.size();
 
-	vector<vector<int>> choices(sumValue + 1, vector<int>(totalCoinChoices + 1, 0));
+	// rowIdx depics currSum, colIdx depicts currCoinChoice
+	vector<vector<int>> choices(requiredSumValue + 1, vector<int>(totalCoinChoices + 1, 0));
 
-	for(int i = 0; i < sumValue; i++)
-		choices[0][i] = 1; // Base-case, when sum is 0, we alaways have 1 choice
+	for(int currCoinChoice = 0; currCoinChoice <= totalCoinChoices; currCoinChoice++)
+		choices[0][currCoinChoice] = 1; // Base-case, when sum is 0, we alaways have 1 choice
 	
-	for(int i = 1; i < totalCoinChoices; i++)
-		choices[i][0] = 0; // Invalid-case, no choices of coin but sum > 0
+	for(int currSumValue = 1; currSumValue < requiredSumValue; currSumValue++)
+		choices[currSumValue][0] = 0; // Invalid-case, no choices of coin but sum > 0
 	
-	for(int i = 1; i <= sumValue; i++) { // i signifies current sum value
-		for(int j = 1; j <= totalCoinChoices; j++) { // j signifies current coin choice index
-			choices[i][j] = choices[i][j-1];
-			if(coinChoices[j-1] <= i)
-				choices[i][j] += choices[i-coinChoices[j-1]][j];
+	for(int currSumValue = 1; currSumValue <= requiredSumValue; currSumValue++) {
+		for(int currCoinChoice = 1; currCoinChoice <= totalCoinChoices; currCoinChoice++) {
+			// Skipping the current coin, if current coin is skipped, #choices will be same as that for last coin
+			choices[currSumValue][currCoinChoice] = choices[currSumValue][currCoinChoice-1];
+
+			// Choosing current coin
+			if(coins[currCoinChoice - 1] <= currSumValue)
+				choices[currSumValue][currCoinChoice] += choices[currSumValue - coins[currCoinChoice - 1]][currCoinChoice];
 		}
 	}
 
-	return choices[sumValue][totalCoinChoices];
+	return choices[requiredSumValue][totalCoinChoices];
 }
 
 ostream& operator<<(ostream& outStream, vector<int> data) {
