@@ -6,7 +6,9 @@ int getMaxValue(vector<int> coinValues, int initIdx, int endIdx) {
 		return max(coinValues[initIdx], coinValues[endIdx]);
 
 			// Choose either first or last coin, the one which would give us max sum
-	return max(
+	return max( // We will choose in such a way that we can maximum in current iteration
+				// In next iteration, opponent will choose in such a way which would maximize his output
+				// This would result in giving us minimum output in next iteration
 				coinValues[initIdx] + min(getMaxValue(coinValues, initIdx + 2, endIdx), // Current and opponet, both choose 1st
 											getMaxValue(coinValues, initIdx + 1, endIdx - 1)), // Current choost 1st, opponent choose last
 				coinValues[endIdx] + min(getMaxValue(coinValues, initIdx + 1, endIdx - 1), // Cuurent choost last, opponent choose 1st
