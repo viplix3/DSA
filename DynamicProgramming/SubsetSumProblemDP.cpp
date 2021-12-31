@@ -13,7 +13,7 @@ int getNumSubsets(vector<int> testArray, int requiredSum) {
 			numSubsets[currElementIdx][currSum] = numSubsets[currElementIdx-1][currSum]; // Skip current element
 
 			if(currSum >= testArray[currElementIdx - 1])
-				numSubsets[currElementIdx][currSum] += numSubsets[currElementIdx - 1][currSum - testArray[currElementIdx - 1]];
+				numSubsets[currElementIdx][currSum] += numSubsets[currElementIdx][currSum - testArray[currElementIdx - 1]];
 		}
 	}
 
