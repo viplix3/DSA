@@ -25,7 +25,7 @@ class Solution
 		numChoices[0] = 1;
 
 		for(int coinChoiceIdx = 0; coinChoiceIdx < numberOfCoins; coinChoiceIdx++) {
-			for(int currSumValue = 1; currSumValue <= value; currSumValue++) {
+			for(int currSumValue = coins[coinChoiceIdx]; currSumValue <= value; currSumValue++) {
 				if(currSumValue >= coins[coinChoiceIdx]) // Choose current coin
 					numChoices[currSumValue] += numChoices[currSumValue - coins[coinChoiceIdx]];
 			}
