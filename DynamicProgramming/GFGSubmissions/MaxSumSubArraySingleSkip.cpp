@@ -31,11 +31,11 @@ class Solution
 		}
 
 		int maxSum = backwardSubArraySum[1]; // subarray sum when 0th element is excluded
-
-		for(int i = 1; i < n; i++) {
+		for(int i = 1; i < (n-1); i++) {
 			int currIdxExcludedSum = forwardSubArraySum[i - 1] + backwardSubArraySum[i + 1];
 			maxSum = max(currIdxExcludedSum, maxSum);
 		}
+		maxSum = max(forwardSubArraySum[n-1], maxSum);
 
 		return max(maxSum, maxSumNoSkip);
     }
