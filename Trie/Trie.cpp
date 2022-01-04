@@ -70,6 +70,11 @@ TrieNode* deleteWord(string& key, int strIdx, TrieNode* root) {
 	int charIdx = key[strIdx] - 'a';
 	root->child[charIdx] = deleteWord(key, strIdx+1, root->child[charIdx]);
 
+	if(isEmpty(root) && root->isEnd == false) {
+		delete(root);
+		root = nullptr;
+	}
+
 	return root;
 }
 
