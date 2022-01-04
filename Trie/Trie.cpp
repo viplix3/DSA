@@ -44,9 +44,38 @@ void insert(string& key, TrieNode* root) {
 	curr->isEnd = true;
 }
 
+bool isEmpty(TrieNode* root) {
+	for(int i = 0; i < MAX_CHILDREN; i++)
+		if(root->child[i] != nullptr)
+			return false;
+	
+	return true;
+}
+
+TrieNode* deleteWord(string& key, int strIdx, TrieNode* root) {
+	if(root == nullptr)
+		return nullptr;
+	
+	if(strIdx == key.length()) {
+		root->isEnd = false;
+
+		if(isEmpty(root)) {
+			delete(root);
+			root = nullptr;
+		}
+
+		return root;
+	}
+
+	int charIdx = key[strIdx] - 'a';
+	root->child[charIdx] = deleteWord(key, strIdx+1, root->child[charIdx]);
+
+	return root;
+}
+
 int main() {
 	TrieNode *root = new TrieNode();
-	string inputString, searchString;
+	string inputString, searchString, deleteString;
 
 	inputString = "cat";
 	insert(inputString, root);
@@ -77,6 +106,12 @@ int main() {
 
 	searchString = "FAANG";
 	cout << boolalpha << searchString << " in Trie: " << search(searchString, root) << endl;
+
+	deleteString = "FAANG";
+	root = deleteWord(deleteString, 0, root);
+
+	deleteString = "cat";
+	root = deleteWord(deleteString, 0, root);
 
 	return 0;
 }
