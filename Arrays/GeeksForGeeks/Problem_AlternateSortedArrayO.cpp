@@ -1,3 +1,4 @@
+// https://practice.geeksforgeeks.org/problems/-rearrange-array-alternately-1587115620/1
 // O(N) extra space solutuion -> Super easy
 // O(1) extra space solution -> Super easy, I cheated.
 // 1. https://www.geeksforgeeks.org/rearrange-array-maximum-minimum-form-set-2-o1-extra-space/ and 

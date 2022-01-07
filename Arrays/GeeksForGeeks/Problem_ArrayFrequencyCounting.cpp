@@ -1,4 +1,5 @@
-// Difficuly is solving the problem in O(1) extrac space.
+// https://practice.geeksforgeeks.org/problems/frequency-of-array-elements-1587115620/1/
+// Difficuly is solving the problem in O(1) extra space.
 
 // { Driver Code Starts
 #include<bits/stdc++.h> 
