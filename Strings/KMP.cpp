@@ -3,25 +3,23 @@ using namespace std;
 
 void fillLPS(string str, vector<int>& lps_arr)
 {
-	lps_arr.clear();
-	lps_arr.emplace_back(0);
-	
-	int n = str.length(), len = 0;
+	int n = str.length(), currLpsLen = 0;
 	int i = 1;
+	lps_arr[currLpsLen] = 0;
 
 	while(i < n){
-		if(str[i] == str[len]) {
-			len += 1;
-			lps_arr.emplace(lps_arr.begin()+i, len);
+		if(str[i] == str[currLpsLen]) {
+			currLpsLen += 1;
+			lps_arr[i] = currLpsLen;
 			i += 1;
 		}
 		else{
-			if(len == 0) {
-				lps_arr.emplace(lps_arr.begin()+i, 0);
+			if(currLpsLen == 0) {
+				lps_arr[i] = 0;
 				i += 1;
 			}
 			else{
-				len = lps_arr[len-1];
+				currLpsLen = lps_arr[currLpsLen - 1];
 			}
 		}
 	}
@@ -30,8 +28,9 @@ void fillLPS(string str, vector<int>& lps_arr)
 
 vector<int> KMP(string input_str, string pattern)
 {
+	int patternLength = pattern.length();
 	vector<int> matched_indices;
-	vector<int> lps_pattern;
+	vector<int> lps_pattern(patternLength, 0);
 	fillLPS(pattern, lps_pattern);
 
 	/*
