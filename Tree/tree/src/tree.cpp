@@ -214,8 +214,8 @@ int burnTreeFromLeaf(Tree::Node* root, int nodeData, int &currDistance, int &max
 	}
 	
 	int currLeftHeight = -1, currRightHeight = -1; // Assuming no branch contains the burning leaf node
-	int leftHeight = burnTreeFromLeaf(root, nodeData, currLeftHeight, maxTimeToBurn); // +ve if left sub-tree contains burning leaf node
-	int rightHeight = burnTreeFromLeaf(root, nodeData, currRightHeight, maxTimeToBurn); // +ve if right sub-tree contains burning leaf node
+	int leftHeight = burnTreeFromLeaf(root->m_left, nodeData, currLeftHeight, maxTimeToBurn); // +ve if left sub-tree contains burning leaf node
+	int rightHeight = burnTreeFromLeaf(root->m_right, nodeData, currRightHeight, maxTimeToBurn); // +ve if right sub-tree contains burning leaf node
 
 	// If left sub-tree contains the burning leaf node, currLeftHeight would be changed to the distance of burning
 	// left node from current root node in the recursive call done to find height
