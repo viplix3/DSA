@@ -31,9 +31,8 @@
 *.out
 *.app
 
-# vim backup files
+# IDE files
 .vim/
 */.vim/
 .vscode/
-GeeksForGeeks/.vscode/
 build/

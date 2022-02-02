@@ -15,7 +15,7 @@ struct TrieNode {
 	}
 };
 
-bool search(string& key, TrieNode* root) {
+bool search(const string& key, TrieNode* root) {
 	TrieNode *curr = root;
 
 	for(int i = 0; i < key.length(); i++) {
@@ -52,7 +52,7 @@ bool isEmpty(TrieNode* root) {
 	return true;
 }
 
-TrieNode* deleteWord(string& key, int strIdx, TrieNode* root) {
+TrieNode* deleteWord(const string& key, int strIdx, TrieNode* root) {
 	if(root == nullptr)
 		return nullptr;
 	
