@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int constructSTree(int segmentStartIdx, int segmentEndIdx, int segTreeIdx, vector<int>& segTree, vector<int>& arr) {
+int constructSTree(int segmentStartIdx, int segmentEndIdx, int segTreeIdx, vector<int>& segTree, const vector<int>& arr) {
 	if(segmentStartIdx == segmentEndIdx) {
 		segTree[segTreeIdx] = arr[segmentStartIdx];
 		return segTree[segTreeIdx];
