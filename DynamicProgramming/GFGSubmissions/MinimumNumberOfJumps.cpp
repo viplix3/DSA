@@ -33,7 +33,7 @@ class Solution
 
                 if(currSlot >= maxReach) // If we are in a slot which is outside of our exploration range, we cannot reach end
                     return -1;
-                numStepsLeft += maxReach - currSlot; // Otherwise, we reduce the steps by number of slots traversed
+                numStepsLeft = maxReach - currSlot; // Otherwise, we reduce the steps by number of slots traversed
             }
         }
 
