@@ -132,7 +132,7 @@ class Solution
             second_rev = second_rev->next;
         }
     
-        if(carrry)
+        if(carry)
             sum_list_head->next = new Node(carry);
 
         sum_list_head = reverse(sum_list_tail);
