@@ -120,6 +120,37 @@ namespace BST {
 
 }
 
+class BSTIterator {
+private:
+	stack<BST::Node*> iteratorStack;
+
+private:
+	void pushAll(BST::Node* root) {
+		for(; root != NULL; iteratorStack.push(root), root = root->left)
+			;
+	}
+
+public:
+	BSTIterator(BST::Node* root) {
+		pushAll(root);
+	}
+
+public:
+	BST::Node* next() {
+		BST::Node* nextNode = iteratorStack.top();
+
+		iteratorStack.pop();
+		pushAll(nextNode->right);
+		return nextNode;
+	}
+
+public:
+	bool hasNext() {
+		return !iteratorStack.empty();
+	}
+
+};
+
 int main() {
 	BST::Node *root = NULL;
 	int data;
@@ -150,6 +181,13 @@ int main() {
 	BST::delete_node(root, data);
 	cout << "InOrder traversal of BST after deleting node " << data << endl;
 	BST::printInOrder(root);
+	cout << endl;
+
+	cout << "Iterator traversal of BST" << endl;
+	BSTIterator bstItr(root);
+
+	while(bstItr.hasNext())
+		cout << bstItr.next()->data << "\t";
 	cout << endl;
 
 	return 0;
