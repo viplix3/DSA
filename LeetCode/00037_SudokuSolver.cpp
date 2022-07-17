@@ -2,6 +2,27 @@
 
 class Solution {
 private:
+    bool isSafeToPlaceDigitSingleLoop(int rowIdx, int colIdx, int digit,
+                           const vector<vector<char>>& board) {
+        const int boardSize = 9;
+        int blockRowInitIdx = rowIdx - (rowIdx % 3);
+        int blockColInitIdx = colIdx - (colIdx % 3);
+        
+        for(int cellIdx = 0; cellIdx < boardSize; cellIdx++) {
+            // Current row check
+            if(board[rowIdx][cellIdx] == ('0' + digit))
+                return false;
+            // Current column check
+            if(board[cellIdx][colIdx] == ('0' + digit))
+                return false;
+            // 3x3 block check
+            if(board[blockRowInitIdx + (cellIdx / 3)][blockColInitIdx + (cellIdx % 3)] == ('0' + digit))
+                return false;
+        }
+        
+        return true;
+    }
+
     bool isSafeToPlaceDigit(int rowIdx, int colIdx, int digit,
                            const vector<vector<char>>& board) {
         const int boardSize = 9;
