@@ -1,5 +1,45 @@
 // https://leetcode.com/problems/flower-planting-with-no-adjacent/
 
+// Greedy solution: Taken from LeetCode discuss page
+class Solution {
+private:
+    void plantFlowers(vector<int>& plantedFlowers,
+                     vector<vector<int>>& gardenConfig,
+                     int numGardens) {
+        
+        for(int currGarden = 0; currGarden < numGardens; currGarden++) {
+            vector<int> usedFlowers(5, -1);
+            // Mark all the flowers used by gardens connected to currGarden
+            for(int connectedGarden : gardenConfig[currGarden])
+                if(plantedFlowers[connectedGarden] != -1)
+                    usedFlowers[plantedFlowers[connectedGarden]] = 1;
+            
+            // Plant a flower which is not used by any garden connected to currGarden
+            for(int flowerType = 1; flowerType <=4; flowerType++)
+                if(usedFlowers[flowerType] != 1) {
+                    plantedFlowers[currGarden] = flowerType;
+                    break;
+                }
+        }
+    }
+    
+public:
+    vector<int> gardenNoAdj(int numGardens, vector<vector<int>>& paths) {
+        vector<vector<int>> gardenConfig(numGardens);
+        vector<int> plantedFlowers(numGardens, -1);
+        
+        // Create 2D graph
+        for(vector<int> currPath : paths) {
+            gardenConfig[currPath[0] - 1].push_back(currPath[1] - 1);
+            gardenConfig[currPath[1] - 1].push_back(currPath[0] - 1);
+        }
+            
+        plantFlowers(plantedFlowers, gardenConfig, numGardens);
+        return plantedFlowers;
+    }
+};
+
+
 // Simple back-tracking solution: Gives TLE
 class Solution {
 private:
