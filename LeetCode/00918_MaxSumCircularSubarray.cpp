@@ -1,5 +1,32 @@
 // https://leetcode.com/problems/maximum-sum-circular-subarray/
 
+// Kadane's single pass solution
+class Solution {
+public:
+    int maxSubarraySumCircular(vector<int>& nums) {
+        int numElems = nums.size();
+        int currMax = nums[0], currMin = nums[0], arrSum = nums[0];
+        int maxSubarraySum = currMax, minSubarraySum = currMin;
+        
+        for(int i = 1; i < numElems; i++) {
+            currMax = max(currMax + nums[i], nums[i]);
+            currMin = min(currMin + nums[i], nums[i]);
+            
+            maxSubarraySum = max(currMax, maxSubarraySum);
+            minSubarraySum = min(currMin, minSubarraySum);
+            arrSum += nums[i];
+        }
+        
+        // All the entried are negative
+        if(maxSubarraySum < 0)
+            return maxSubarraySum;
+        
+        int maxCircularSubarraySum = max(maxSubarraySum, arrSum - minSubarraySum);
+        return maxCircularSubarraySum;
+    }
+};
+
+
 // Kadane's algo
 // Find maxSubarraySum, minSubarraySum and totalArraySum
 // maxCircularSubarraySum = totalArraySum - maxNegativeSubarraySum
