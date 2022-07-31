@@ -1,6 +1,29 @@
 // https://leetcode.com/problems/find-the-duplicate-number/
 
-// Find occurrence count of each element: O(N)
+// Floyd's algo, O(N), doesn't modify the array
+class Solution {
+public:
+    int findDuplicate(vector<int>& nums) {
+        int numElems = nums.size();
+        int slowPtr = nums[0], fastPtr = nums[0];
+        
+        do {
+            slowPtr = nums[slowPtr];
+            fastPtr = nums[nums[fastPtr]];
+        }
+        while(slowPtr != fastPtr);
+        
+        slowPtr = nums[0];
+        while(slowPtr != fastPtr) {
+            slowPtr = nums[slowPtr];
+            fastPtr = nums[fastPtr];
+        }
+        
+        return fastPtr;
+    }
+};
+
+// Find occurrence count of each element: O(N), modifies the array
 class Solution {
 public:
     int findDuplicate(vector<int>& nums) {
