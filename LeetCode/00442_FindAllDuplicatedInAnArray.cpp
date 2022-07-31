@@ -1,5 +1,25 @@
 // https://leetcode.com/problems/find-all-duplicates-in-an-array/
 
+// Use array elements as indices, mark repeating negative: O(N), single traversal
+class Solution {
+public:
+    vector<int> findDuplicates(vector<int>& nums) {
+        int numElems = nums.size();
+        vector<int> repeatingElems;
+        
+        for(int i = 0; i < numElems; i++) {
+            int elemAsIdx = abs(nums[i]) - 1;
+            
+            if(nums[elemAsIdx] < 0)
+                repeatingElems.push_back(elemAsIdx + 1);
+            else
+                nums[elemAsIdx] *= -1;
+        }
+        
+        return repeatingElems;
+    }
+};
+
 // Use array element as indices and add count: O(N)
 class Solution {
 public:
