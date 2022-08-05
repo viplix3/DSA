@@ -69,3 +69,22 @@ public:
         return findNumberOfCombinations(nums, startingIdx, target, cache);
     }
 };
+
+
+// Tabulation
+class Solution {
+public:
+    int combinationSum4(vector<int>& nums, int target) {
+        int numElems = nums.size();
+        vector<double> sumCombinations(target + 1); // Using double to avoid interger overflow
+        sumCombinations[0] = 1;
+        
+        for(int currSum = 1; currSum <= target; currSum++)
+            for(int i = 0; i < numElems; i++) {
+                if(nums[i] <= currSum)
+                    sumCombinations[currSum] += sumCombinations[currSum - nums[i]];
+            }
+        
+        return sumCombinations[target];
+    }
+};
