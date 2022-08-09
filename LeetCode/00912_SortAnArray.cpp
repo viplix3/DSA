@@ -40,7 +40,52 @@ private:
             quickSortLomutoPartition(nums, pivotIdx + 1, endIdx);
         }
     }
+   
     
+    // Merge Sort
+    void merge(vector<int>& nums,
+               int beginIdx, int midIdx, int endIdx) {
+        int numElemsLeftArr = midIdx - beginIdx + 1;
+        int numElemsRightArr = endIdx - midIdx;
+        
+        vector<int> leftArr(numElemsLeftArr);
+        vector<int> rightArr(numElemsRightArr);
+        
+        for(int i = 0; i < numElemsLeftArr; i++)
+            leftArr[i] = nums[beginIdx + i];
+        
+        for(int i = 0; i < numElemsRightArr; i++)
+            rightArr[i] = nums[midIdx + i + 1];
+        
+        int leftArrItr = 0, rightArrItr = 0, sortedArrItr = beginIdx;
+        
+        while(leftArrItr < numElemsLeftArr && rightArrItr < numElemsRightArr) {
+            if(leftArr[leftArrItr] <= rightArr[rightArrItr])
+                nums[sortedArrItr++] = leftArr[leftArrItr++];
+            else
+                nums[sortedArrItr++] = rightArr[rightArrItr++];
+        }
+        
+        while(leftArrItr < numElemsLeftArr)
+            nums[sortedArrItr++] = leftArr[leftArrItr++];
+        
+        while(rightArrItr < numElemsRightArr)
+            nums[sortedArrItr++] = rightArr[rightArrItr++];
+    }
+    
+    
+    void mergeSort(vector<int>& nums,
+                  int beginIdx, int endIdx) {
+        if(beginIdx < endIdx) {
+            int midIdx = beginIdx + (endIdx - beginIdx) / 2;
+            
+            mergeSort(nums, beginIdx, midIdx);
+            mergeSort(nums, midIdx + 1, endIdx);
+            
+            merge(nums, beginIdx, midIdx, endIdx);
+        }
+    }
+     
 public:
     vector<int> sortArray(vector<int>& nums) {
         int numElems = nums.size();
@@ -48,7 +93,10 @@ public:
         // O(N log(N)) quick sort: 67ms, 28.3MB
         // Comparitively slower than Hoare's parition
         quickSortLomutoPartition(nums, 0, numElems - 1);
-        
+    
+        // O(N log(N)) merge sort: 270ms, 96.1MB
+        mergeSort(nums, 0, numElems - 1);
+         
         return nums;
     }
 };
