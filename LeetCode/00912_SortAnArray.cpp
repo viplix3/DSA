@@ -138,12 +138,17 @@ public:
     vector<int> sortArray(vector<int>& nums) {
         int numElems = nums.size();
         
-        // O(N log(N)) quick sort: 67ms, 28.3MB
-        // Comparitively slower than Hoare's parition
+        // O(N^2) but doesn't ususally hit O(N^2) quick sort
+        // Average case is thera(N log(N))
+        // Quick sort is tail recurive and can benefit from tail call
+        // elimination, hence is comparatively faster than merge sort
+
+        // Comparitively slower than Hoare's parition: 67ms, 28.3MB
         quickSortLomutoPartition(nums, 0, numElems - 1);
         
         // Faster than hoare's partition: 71ms, 28.5MB
         quickSortHoarePartition(nums, 0, numElems - 1);
+
         
         // O(N log(N)) merge sort: 270ms, 96.1MB
         mergeSort(nums, 0, numElems - 1);
