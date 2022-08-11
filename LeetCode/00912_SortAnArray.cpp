@@ -2,6 +2,7 @@
 
 class Solution {
 private:
+    // Quick Sort
     int lomutoPartition(vector<int>& nums,
                        int beginIdx, int endIdx) {
         // Randomize the pivot index
@@ -29,18 +30,65 @@ private:
         return pivotPosition;
     }
     
+    int hoarePartition(vector<int>& nums,
+                      int beginIdx, int endIdx) {
+        // Randomize the pivot index
+        int pivotIdx = beginIdx + (rand() % (endIdx - beginIdx));
+        int pivot = nums[pivotIdx];
+        
+        // Put pivot to the beginIdx position
+        swap(nums[pivotIdx], nums[beginIdx]);
+        
+        int lessThanPivotIdx = beginIdx - 1;
+        int greaterThanPivotIdx = endIdx + 1;
+        
+        while(true) {
+            do {
+                lessThanPivotIdx++;
+            }
+            while(nums[lessThanPivotIdx] < pivot);
+            
+            do {
+                greaterThanPivotIdx--;
+            }
+            while(nums[greaterThanPivotIdx] > pivot);
+            
+            if(lessThanPivotIdx >= greaterThanPivotIdx)
+                return greaterThanPivotIdx;
+            
+            swap(nums[lessThanPivotIdx], nums[greaterThanPivotIdx]);
+        }
+        
+        return -1;
+    }
+    
     void quickSortLomutoPartition(vector<int>& nums,
                                   int beginIdx, int endIdx) {
         if(beginIdx < endIdx) {
-            // After this pivot index would be in it's correct position
-            // of sorted array
+            // This would rearrange the array such that everything less than
+            // pivot would be from beginIdx to pivotIdx, pivot would be
+            // in it's correct position of sorted array and everything
+            // greater than pivotIdx would be from pivotIdx + 1 to endIdx
             int pivotIdx = lomutoPartition(nums, beginIdx, endIdx);
             
             quickSortLomutoPartition(nums, beginIdx, pivotIdx - 1);
             quickSortLomutoPartition(nums, pivotIdx + 1, endIdx);
         }
     }
-   
+    
+    void quickSortHoarePartition(vector<int>& nums,
+                                int beginIdx, int endIdx) {
+        if(beginIdx < endIdx) {
+            // This would rearrange the array such that everything less than
+            // or equal to pivot would be from beginIdx to pivotIdx and everything
+            // greater than or equal to pivotIdx would be from pivotIdx + 1 to endIdx
+            int pivotIdx = hoarePartition(nums, beginIdx, endIdx);
+            
+            quickSortHoarePartition(nums, beginIdx, pivotIdx);
+            quickSortHoarePartition(nums, pivotIdx + 1, endIdx);
+        }
+    }
+    
     
     // Merge Sort
     void merge(vector<int>& nums,
@@ -85,7 +133,7 @@ private:
             merge(nums, beginIdx, midIdx, endIdx);
         }
     }
-     
+    
 public:
     vector<int> sortArray(vector<int>& nums) {
         int numElems = nums.size();
@@ -93,10 +141,13 @@ public:
         // O(N log(N)) quick sort: 67ms, 28.3MB
         // Comparitively slower than Hoare's parition
         quickSortLomutoPartition(nums, 0, numElems - 1);
-    
+        
+        // Faster than hoare's partition: 71ms, 28.5MB
+        quickSortHoarePartition(nums, 0, numElems - 1);
+        
         // O(N log(N)) merge sort: 270ms, 96.1MB
         mergeSort(nums, 0, numElems - 1);
-         
+        
         return nums;
     }
 };
