@@ -29,10 +29,10 @@ int closer(int arr[], int N, int x) {
             return midIdx+1;
             
         if(arr[midIdx] < x){
-            lowIdx = midIdx+1;
+            lowIdx = midIdx+2;
         }
         else
-            highIdx = midIdx-1;
+            highIdx = midIdx-2;
     }
     return -1;
 }
