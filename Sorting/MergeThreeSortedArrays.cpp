@@ -12,6 +12,39 @@ void printVector(const vector<int>& a)
     cout<<endl;
 } 
 
+// The expected way of doing 3 way merge
+class Solution{
+  public:
+    // A, B, and C: input sorted arrays
+    //Function to merge three sorted vectors or arrays 
+    //into a single vector or array.
+    vector<int> mergeThree(vector<int>& arr1, vector<int>& arr2, vector<int>& arr3) 
+    { 
+        int numElemsArr1 = arr1.size(), numElemsArr2 = arr2.size(), numElemsArr3 = arr3.size();
+        vector<int> mergedArr(numElemsArr1 + numElemsArr2 + numElemsArr3);
+        
+        int arr1Itr = 0, arr2Itr = 0, arr3Itr = 0, mergedArrItr = 0;
+        
+        while(arr1Itr < numElemsArr1 || arr2Itr < numElemsArr2 || arr3Itr < numElemsArr3) {
+            int arr1Val = (arr1Itr < numElemsArr1) ? arr1[arr1Itr] : INT_MAX;
+            int arr2Val = (arr2Itr < numElemsArr2) ? arr2[arr2Itr] : INT_MAX;
+            int arr3Val = (arr3Itr < numElemsArr3) ? arr3[arr3Itr] : INT_MAX;
+            
+            int minVal = min({arr1Val, arr2Val, arr3Val});
+            
+            if(arr1Itr < numElemsArr1 && arr1Val == minVal)
+                mergedArr[mergedArrItr++] = arr1[arr1Itr++];
+            else if(arr2Itr < numElemsArr2 && arr2Val == minVal)
+                mergedArr[mergedArrItr++] = arr2[arr2Itr++];
+            else
+                mergedArr[mergedArrItr++] = arr3[arr3Itr++];
+        }
+        
+        return mergedArr;
+    } 
+
+};
+
  // } Driver Code Ends
 class Solution{
   public:
