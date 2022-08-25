@@ -1,5 +1,21 @@
 // https://leetcode.com/problems/intersection-of-two-arrays/
 
+// O(N) time and O(N) space solution
+class Solution {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+        vector<int> numsIntersection;
+        unordered_set<int> hashset(nums1.begin(), nums1.end());
+        
+        for(int ele : nums2)
+            if(hashset.find(ele) != hashset.end()) {
+                numsIntersection.push_back(ele);
+                hashset.erase(ele);
+            }
+        
+        return numsIntersection;
+    }
+};
 
 // Merge Sort: O(N log(N))
 class Solution {
