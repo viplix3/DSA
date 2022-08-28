@@ -1,6 +1,6 @@
 // https://leetcode.com/problems/first-unique-character-in-a-string/
 
-// GitHub CoPilot, elegant and concise
+// GitHub CoPilot, elegant and concise but needs 2 traversal
 class Solution {
 public:
 	int firstUniqChar(string s) {
@@ -17,7 +17,7 @@ public:
 	}
 };
 
-// My solution, janky as always
+// My solution, janky as always, single traversal, better than the CoPilot one
 class Solution {
 public:
     int firstUniqChar(string s) {
