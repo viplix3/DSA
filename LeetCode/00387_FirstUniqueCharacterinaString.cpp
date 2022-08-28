@@ -24,7 +24,7 @@ public:
         /*
             -1 -> Didn't occur
             [0, sSize] -> Occurred 1 time, occurrence index
-            -1 -> Occurred multiple times
+            -2 -> Occurred multiple times
         */
         
         vector<int> charOccurrenceMap(27, -1);
