@@ -11,14 +11,11 @@ public:
         while(windowEndIdx < numSize) {
             currWindowSum += nums[windowEndIdx];
             
-            while(windowInitIdx <= windowEndIdx && currWindowSum > target) {
+            while(windowInitIdx <= windowEndIdx && currWindowSum >= target) {
                 minWindowSize = min(windowEndIdx - windowInitIdx + 1, minWindowSize);
                 currWindowSum -= nums[windowInitIdx];
                 windowInitIdx++;
             }
-            
-            if(currWindowSum == target)
-                minWindowSize = min(windowEndIdx - windowInitIdx + 1, minWindowSize);
             
             windowEndIdx++;
         }
