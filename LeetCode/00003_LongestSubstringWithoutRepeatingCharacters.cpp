@@ -31,3 +31,27 @@ public:
         return maxWindowLen;
     }
 };
+
+
+// Another approach taken from LC discuss (same as GFG)
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int sSize = s.length();
+        
+        int windowInitIdx = -1, windowEndIdx = 0, maxSubstringLen = 0;
+        vector<int> prevOccIdx(128, -1); // This will hold the right-most occurrence index of char
+        
+        while(windowEndIdx < sSize) {
+            if(prevOccIdx[s[windowEndIdx]] > windowInitIdx)
+                windowInitIdx = prevOccIdx[s[windowEndIdx]];
+            
+            prevOccIdx[s[windowEndIdx]] = windowEndIdx;
+            maxSubstringLen = max(windowEndIdx - windowInitIdx, maxSubstringLen);
+            
+            windowEndIdx++;
+        }
+        
+        return maxSubstringLen;
+    }
+};
