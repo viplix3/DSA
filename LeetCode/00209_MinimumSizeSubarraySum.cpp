@@ -1,6 +1,6 @@
 // https://leetcode.com/problems/minimum-size-subarray-sum/
 
-// Sliding window but with sharp edges
+// Sliding window
 class Solution {
 public:
     int minSubArrayLen(int target, vector<int>& nums) {
@@ -22,4 +22,27 @@ public:
         
         return (minWindowSize == numSize + 1) ? 0 : minWindowSize;
     }
+};
+
+// Binary seach O(N log(N)), because asked as followup
+class Solution {
+public:
+	int minSubArrayLen(int target, vector<int>& nums) {
+		int numElems = nums.size();
+		vector<int> prefixSum(numElems + 1, 0);
+
+		for(int i = 0; i < numElems; i++)
+			prefixSum[i + 1] = prefixSum[i] + nums[i];
+	
+	 	int windowEndIdx = numElems, minWindowSize = numElems + 1;
+		if(prefixSum[windowEndIdx] < target)
+			return 0;
+
+		for(; windowEndIdx > 0 && prefixSum[windowEndIdx] >= target; windowEndIdx--) {
+			int searchIdx = upper_bound(prefixSum.begin(), prefixSum.end(), prefixSum[windowEndIdx] - target) - prefixSum.begin();
+			minWindowSize = min(windowEndIdx - searchIdx + 1, minWindowSize);
+		}
+
+		return minWindowSize;
+	}
 };
