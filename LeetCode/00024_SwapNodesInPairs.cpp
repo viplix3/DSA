@@ -34,7 +34,7 @@ public:
             prev->next = curr;
             
             prev = curr;
-            curr = prev->next;
+            curr = curr->next;
         }
         
         return head;
