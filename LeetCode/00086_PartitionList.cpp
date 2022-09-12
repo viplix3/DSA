@@ -14,6 +14,48 @@ class Solution {
 public:
     ListNode* partition(ListNode* head, int x) {
         // Dummy nodes
+        ListNode dummyNode1(0), dummyNode2(0);
+        ListNode *lessThanXHead = &dummyNode1;
+        ListNode *greaterThanXHead = &dummyNode2;
+        
+        ListNode *curr = head;
+        ListNode *lessThanXTail = lessThanXHead, *greaterThanXTail = greaterThanXHead;
+        
+        while(curr) {
+            
+            if(curr->val < x) {
+                lessThanXTail->next = curr;
+                lessThanXTail = lessThanXTail->next;
+            }
+            else {
+                greaterThanXTail->next = curr;
+                greaterThanXTail = greaterThanXTail->next;
+            }
+            
+            curr = curr->next;
+        }
+        
+        lessThanXTail->next = greaterThanXHead->next;
+        greaterThanXTail->next = nullptr;
+        return lessThanXHead->next;
+    }
+};
+
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* partition(ListNode* head, int x) {
+        // Dummy nodes
         ListNode *lessThanXHead = new ListNode();
         ListNode *greaterThanXHead = new ListNode();
         
