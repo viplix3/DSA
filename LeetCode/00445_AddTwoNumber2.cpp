@@ -10,6 +10,49 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+
+// Doesn't modify input lists and doesn't reverse lists
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        vector<int> nums1, nums2;
+        
+        while(l1 != nullptr) {
+            nums1.push_back(l1->val);
+            l1 = l1->next;
+        }
+        
+        while(l2 != nullptr) {
+            nums2.push_back(l2->val);
+            l2 = l2->next;
+        }
+        
+        ListNode *sumListTail = nullptr, *sumListHead = nullptr;
+        
+        int nums1Size = nums1.size(), nums2Size = nums2.size();
+        int sum = 0, carry = 0;
+        
+        for(int i = nums1Size - 1, j = nums2Size - 1; i >= 0 || j >= 0 || carry > 0; i--, j--) {
+            sum = carry;
+            
+            if(i >= 0)
+                sum += nums1[i];
+            
+            if(j >= 0)
+                sum += nums2[j];
+            
+            carry = sum / 10;
+            sumListHead = new ListNode(sum % 10);
+            sumListHead->next = sumListTail;
+            sumListTail = sumListHead;
+        }
+        
+        return sumListHead;
+    }
+};
+
+
+
 // Modifies the input lists
 class Solution {
 private:
