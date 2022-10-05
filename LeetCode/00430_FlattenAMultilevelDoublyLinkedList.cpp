@@ -11,6 +11,49 @@ public:
 };
 */
 
+
+// LC discuss genius solution
+class Solution {
+public:
+    Node* flatten(Node* head) {
+        if(!head)
+            return head;
+        
+        Node *curr = head;
+        
+        /*
+         * Traverse horizontally until a child a found
+         * If you see a child (vertically), make that the next of current node
+         * Go to the end of child LL and link the right of current node to the tail of child
+         * Keep doing above steps, if you reach nullptr on horizontal traversal, you've flattened the LL
+        */
+        while(curr) {
+            if(curr->child) {
+                Node *parentRightNode = curr->next;
+                
+                curr->next = curr->child;
+                curr->next->prev = curr;
+                curr->child = nullptr;
+                
+                Node *childListRunner = curr->next;
+                
+                while(childListRunner->next)
+                    childListRunner = childListRunner->next;
+                
+                childListRunner->next = parentRightNode;
+                if(parentRightNode)
+                    parentRightNode->prev = childListRunner;
+            }
+            else
+                curr = curr->next;
+        }
+        
+        return head;
+    }
+};
+
+
+// My weak-ass solution
 class Solution {
 public:
     Node* flatten(Node* head) {
