@@ -23,9 +23,9 @@ public:
         
         /*
          * Traverse horizontally until a child a found
-         * If you see a child (vertically), make that the next of current node
-         * Go to the end of child LL and link the right of current node to the tail of child
-         * Keep doing above steps, if you reach nullptr on horizontal traversal, you've flattened the LL
+         * If you see a child (vertically), make that the next of current (parent) node
+         * Go to the end of child LL and link the right of parent node to the tail of child LL
+         * Keep doing above steps, if you reach nullptr on horizontal+child traversal, you've flattened the LL
         */
         while(curr) {
             if(curr->child) {
