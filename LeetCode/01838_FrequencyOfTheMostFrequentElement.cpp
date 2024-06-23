@@ -12,7 +12,7 @@ public:
 
         while (end_idx < nums.size())
         {
-            long long update_ops = static_cast<long long>(nums[end_idx] - nums[end_idx - 1]) * (end_idx - start_idx);
+            long update_ops = static_cast<long>(nums[end_idx] - nums[end_idx - 1]) * (end_idx - start_idx);
 
             if (update_ops <= k)
             {
