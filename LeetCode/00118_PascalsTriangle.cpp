@@ -2,6 +2,35 @@
 
 class Solution
 {
+private:
+    int get_value(int row_num, int col_num)
+    {
+        /*  Given row and cloumn number of the pascals triangle the
+        *   value can be found using the formula nCr (combination) in O(col_num) time and O(1) space complexity
+        *       n -> Row number
+        *       r -> Column number
+        *   When you expand this you get n!/r! * (n-r)!
+        * 
+        *   n * (n - 1) * (n - 2) * ... * (n - (r + 1)) * (n - r) *  (n - r - 1) * ... * 1 / (r! * (n - r)!
+        *   n * (n - 1) * (n - 2) * ... * (n - (r + 1)) * (n - r)! / (r! * (n - r)!) 
+        *
+        *   The (n-r)! in numerator will be cancelled by denominator after simplifing for this we get
+        *   n * (n - 1) * (n - 2) * ... * (n - (r + 1)) / r!
+        *   (n - 0) * (n - 1) * (n - 2) * ... * (n - (r + 1)) / r!
+        * 
+        *   The numerator will have r terms
+        */
+
+        int value = 1;
+        for (int i = 0; i < col_num; i++)
+        {
+            value = value * (n - i);// Numerator
+            value = value / (i + 1);// Denominator
+        }
+
+        return value;
+    }
+
 public:
     vector<vector<int>> generate(int num_rows)
     {
