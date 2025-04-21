@@ -2,30 +2,41 @@
 
 class Solution
 {
-private:
+public:
     int get_value(int row_num, int col_num)
     {
-        /*  Given row and cloumn number of the pascals triangle the
-        *   value can be found using the formula nCr (combination) in O(col_num) time and O(1) space complexity
-        *       n -> Row number
-        *       r -> Column number
-        *   When you expand this you get n!/r! * (n-r)!
+        /*
+        *   Given the row and column number of Pascal's Triangle (1-indexed),
+        *   the value at that position can be found using the combination formula (nCr),
+        *   where:
+        *       n = row_num - 1 (0-indexed row number)
+        *       r = col_num - 1 (0-indexed column number)
         * 
-        *   n * (n - 1) * (n - 2) * ... * (n - (r + 1)) * (n - r) *  (n - r - 1) * ... * 1 / (r! * (n - r)!
-        *   n * (n - 1) * (n - 2) * ... * (n - (r + 1)) * (n - r)! / (r! * (n - r)!) 
-        *
-        *   The (n-r)! in numerator will be cancelled by denominator after simplifing for this we get
-        *   n * (n - 1) * (n - 2) * ... * (n - (r + 1)) / r!
-        *   (n - 0) * (n - 1) * (n - 2) * ... * (n - (r + 1)) / r!
+        *   The formula for nCr is:
+        *       nCr = n! / (r! * (n - r)!)
         * 
-        *   The numerator will have r terms
+        *   To compute this efficiently without overflow or repeated factorial computation:
+        *       We use the multiplicative formula:
+        *       nCr = (n * (n - 1) * ... * (n - r + 1)) / (r!)
+        * 
+        *   This simplifies the computation to O(r) time and O(1) space.
         */
 
+        int n = row_num - 1;
+        int r = col_num - 1;
+
+        // Edge cases: C(n, 0) or C(n, n) = 1
+        if (r == 0 || r == n)
+            return 1;
+
         int value = 1;
-        for (int i = 0; i < col_num; i++)
+        for (int i = 1; i <= r; ++i)
         {
-            value = value * (row_num - i);// Numerator
-            value = value / (i + 1);      // Denominator
+            // Multiply the current term in the numerator: (n - i + 1)
+            value *= (n - i + 1);
+
+            // Divide by the current term in the denominator: i
+            value /= i;
         }
 
         return value;
