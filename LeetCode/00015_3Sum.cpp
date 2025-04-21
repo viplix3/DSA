@@ -66,6 +66,7 @@ private:
             {
                 pair<int, int> solution = {nums[left_ptr], nums[right_ptr]};
                 solution_pairs.push_back(solution);
+                left_idx++, right_idx--;// Need this explicitly to handle the case when there are no duplicates
 
                 // Move until you're not at the same value
                 while (left_ptr < right_ptr && nums[left_ptr] == solution.first)
