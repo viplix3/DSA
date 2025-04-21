@@ -24,8 +24,8 @@ private:
         int value = 1;
         for (int i = 0; i < col_num; i++)
         {
-            value = value * (n - i);// Numerator
-            value = value / (i + 1);// Denominator
+            value = value * (row_num - i);// Numerator
+            value = value / (i + 1);      // Denominator
         }
 
         return value;
